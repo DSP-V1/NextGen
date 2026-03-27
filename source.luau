@@ -10,7 +10,7 @@ local HttpService = game:GetService("HttpService")
 local TextService = game:GetService("TextService")
 local RunService = game:GetService("RunService")
 
-local ConfigFolder = "KairoConfigs"
+local ConfigFolder = "NextGenConfigFolder"
 
 local function CircleClick(Button, X, Y)
     spawn(

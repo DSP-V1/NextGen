@@ -669,10 +669,9 @@ end)
 		end)
 		AllLayouts = AllLayouts + 1
 		local TabFunc = {}
-          function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
+        function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
     local SectionFunc = {}
     local IsCollapsed = false
-
     local Section = Instance.new("Frame")
     local UICorner_5 = Instance.new("UICorner")
     local UIStroke_2 = Instance.new("UIStroke")
@@ -683,26 +682,22 @@ end)
     local SectionList = Instance.new("Frame")
     local UIPadding_4 = Instance.new("UIPadding")
     local UIListLayout_4 = Instance.new("UIListLayout")
-    
     local LeftIcon = Instance.new("ImageLabel")
     local RightArrow = Instance.new("ImageLabel")
-
     Section.Name = "Section"
     Section.Parent = Layout
     Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Section.BackgroundTransparency = 0.980
     Section.BorderSizePixel = 0
     Section.ClipsDescendants = true
+    Section.Position = UDim2.new(0, 0, 0, 0)
     Section.Size = UDim2.new(1, 0, 0, 35)
-
     UICorner_5.CornerRadius = UDim.new(0, 4)
     UICorner_5.Parent = Section
-
     UIStroke_2.Color = Color3.fromRGB(100, 100, 100)
     UIStroke_2.Thickness = 2
     UIStroke_2.Transparency = 0.92
     UIStroke_2.Parent = Section
-
     NameSection.Name = "NameSection"
     NameSection.Parent = Section
     NameSection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -710,7 +705,6 @@ end)
     NameSection.Size = UDim2.new(1, 0, 0, 35)
     NameSection.Text = ""
     NameSection.AutoButtonColor = false
-
     LeftIcon.Name = "LeftIcon"
     LeftIcon.Parent = NameSection
     LeftIcon.AnchorPoint = Vector2.new(0, 0.5)
@@ -719,18 +713,16 @@ end)
     LeftIcon.BackgroundTransparency = 1
     LeftIcon.Image = Icon or ""
     LeftIcon.Visible = (Icon ~= nil and Icon ~= "")
-
     Title.Name = "Title"
     Title.Parent = NameSection
     Title.BackgroundTransparency = 1.000
-    Title.Position = UDim2.new(0, (Icon ~= "" and 35 or 12), 0, 0)
+    Title.Position = UDim2.new(0, (Icon and Icon ~= "" and 35 or 12), 0, 0)
     Title.Size = UDim2.new(1, -70, 1, 0)
     Title.Font = Enum.Font.GothamBold
     Title.Text = RealNameSection
     Title.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title.TextSize = 14.000
     Title.TextXAlignment = Enum.TextXAlignment.Left
-
     RightArrow.Name = "RightArrow"
     RightArrow.Parent = NameSection
     RightArrow.AnchorPoint = Vector2.new(1, 0.5)
@@ -739,50 +731,41 @@ end)
     RightArrow.BackgroundTransparency = 1
     RightArrow.Image = "rbxassetid://100136819093667"
     RightArrow.Visible = Collapsible or false
-
     Line_3.Name = "Line"
     Line_3.Parent = NameSection
     Line_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Line_3.BorderSizePixel = 0
     Line_3.Position = UDim2.new(0, 0, 1, -1)
     Line_3.Size = UDim2.new(1, 0, 0, 1)
-
     UIGradient.Color = ColorSequence.new{
         ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)), 
         ColorSequenceKeypoint.new(0.52, Color3.fromRGB(0, 255, 0)), 
         ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25))
     }
     UIGradient.Parent = Line_3
-
     SectionList.Name = "SectionList"
     SectionList.Parent = Section
     SectionList.BackgroundTransparency = 1.000
     SectionList.Position = UDim2.new(0, 0, 0, 35)
     SectionList.Size = UDim2.new(1, 0, 0, 0)
-
     UIPadding_4.Parent = SectionList
     UIPadding_4.PaddingBottom = UDim.new(0, 7)
     UIPadding_4.PaddingLeft = UDim.new(0, 7)
     UIPadding_4.PaddingRight = UDim.new(0, 7)
     UIPadding_4.PaddingTop = UDim.new(0, 7)
-
     UIListLayout_4.Parent = SectionList
     UIListLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
     UIListLayout_4.Padding = UDim.new(0, 6)
-
     local function UpdateSize()
         local TargetSize = 35
         if not IsCollapsed then
             TargetSize = UIListLayout_4.AbsoluteContentSize.Y + 45
         end
-        
         game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
             Size = UDim2.new(1, 0, 0, TargetSize)
         }):Play()
     end
-
     UIListLayout_4:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(UpdateSize)
-
     if Collapsible then
         NameSection.MouseButton1Click:Connect(function()
             IsCollapsed = not IsCollapsed
@@ -791,10 +774,9 @@ end)
             UpdateSize()
         end)
     end
-
     SectionFunc.SectionList = SectionList
-              return SectionFunc
-            end
+    return SectionFunc
+end
 			local SectionFunc = {}
 			function SectionFunc:AddToggle(cftoggle)
 				local cftoggle = Library:MakeConfig({

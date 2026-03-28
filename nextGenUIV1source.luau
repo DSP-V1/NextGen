@@ -1390,176 +1390,163 @@ function Library:NewWindow(ConfigWindow)
 				cftextbox.Callback(RealTextBox.Text)
 			end
 			function SectionFunc:AddSlider(cfslider)
-				local cfslider = Library:MakeConfig({
-					Title = "Slider < Missing Title >",
-					Description = "",
-					Max = 100,
-					Min = 1,
-					Increment = 1,
-					Default = 1,
-					Callback = function()
+			  local cfslider = Library:MakeConfig({
+          Title = "Slider < Missing Title >",
+          Description = "",
+          Max = 100,
+          Min = 1,
+          Increment = 1,
+          Default = 1,
+          Callback = function() end
+        }, cfslider or {})
+      local Slider = Instance.new("Frame")
+      local UICorner_10 = Instance.new("UICorner")
+      local Title_4 = Instance.new("TextLabel")
+      local Content_3 = Instance.new("TextLabel")
+      local SliderFrame = Instance.new("Frame")
+      local UICorner_11 = Instance.new("UICorner")
+      local SliderDraggable = Instance.new("Frame")
+      local UICorner_12 = Instance.new("UICorner")
+      local Circle = Instance.new("Frame")
+      local UICorner_13 = Instance.new("UICorner")
+      local SliderValue = Instance.new("TextBox")
+      local UICorner_14 = Instance.new("UICorner")
+      Slider.Name = "Slider"
+      Slider.Parent = SectionList
+      Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+      Slider.BackgroundTransparency = 0.950
+      Slider.BorderSizePixel = 0
+      Slider.Size = UDim2.new(1, 0, 0, 35)
 
-					end
-				}, cfslider or {})
-				local Slider = Instance.new("Frame")
-				local UICorner_10 = Instance.new("UICorner")
-				local Title_4 = Instance.new("TextLabel")
-				local Content_3 = Instance.new("TextLabel")
-				local SliderFrame = Instance.new("Frame")
-				local UICorner_11 = Instance.new("UICorner")
-				local SliderDraggable = Instance.new("Frame")
-				local UICorner_12 = Instance.new("UICorner")
-				local Circle = Instance.new("Frame")
-				local UICorner_13 = Instance.new("UICorner")
-				local SliderValue = Instance.new("TextBox")
-				local UICorner_14 = Instance.new("UICorner")
-				Slider.Name = "Slider"
-				Slider.Parent = SectionList
-				Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Slider.BackgroundTransparency = 0.950
-				Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Slider.BorderSizePixel = 0
-				Slider.Size = UDim2.new(1, 0, 0, 35)
+      UICorner_10.CornerRadius = UDim.new(0, 3)
+      UICorner_10.Parent = Slider
 
-				UICorner_10.CornerRadius = UDim.new(0, 3)
-				UICorner_10.Parent = Slider
+      Title_4.Name = "Title"
+      Title_4.Parent = Slider
+      Title_4.BackgroundTransparency = 1.000
+      Title_4.Position = UDim2.new(0, 10, 0, 0)
+      Title_4.Size = UDim2.new(1, -60, 1, 0)
+      Title_4.Font = Enum.Font.GothamBold
+      Title_4.Text = cfslider.Title
+      Title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+      Title_4.TextSize = 13.000
+      Title_4.TextXAlignment = Enum.TextXAlignment.Left
 
-				Title_4.Name = "Title"
-				Title_4.Parent = Slider
-				Title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Title_4.BackgroundTransparency = 1.000
-				Title_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Title_4.BorderSizePixel = 0
-				Title_4.Position = UDim2.new(0, 10, 0, 0)
-				Title_4.Size = UDim2.new(1, -60, 1, 0)
-				Title_4.Font = Enum.Font.GothamBold
-				Title_4.Text = cfslider.Title
-				Title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-				Title_4.TextSize = 13.000
-				Title_4.TextXAlignment = Enum.TextXAlignment.Left
+      Content_3.Name = "Content"
+      Content_3.Parent = Slider
+      Content_3.BackgroundTransparency = 1.000
+      Content_3.Position = UDim2.new(0, 10, 0, 22)
+      Content_3.Size = UDim2.new(1, -160, 1, 0)
+      Content_3.Font = Enum.Font.GothamBold
+      Content_3.Text = cfslider.Description
+      Content_3.TextColor3 = Color3.fromRGB(100, 100, 100)
+      Content_3.TextSize = 12.000
+      Content_3.TextXAlignment = Enum.TextXAlignment.Left
+      Content_3.TextYAlignment = Enum.TextYAlignment.Top
+      Library:UpdateContent(Content_3, Title_4, Slider)
 
-				Content_3.Name = "Content"
-				Content_3.Parent = Slider
-				Content_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Content_3.BackgroundTransparency = 1.000
-				Content_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Content_3.BorderSizePixel = 0
-				Content_3.Position = UDim2.new(0, 10, 0, 22)
-				Content_3.Size = UDim2.new(1, -160, 1, 0)
-				Content_3.Font = Enum.Font.GothamBold
-				Content_3.Text = cfslider.Description
-				Content_3.TextColor3 = Color3.fromRGB(100, 100, 100)
-				Content_3.TextSize = 12.000
-				Content_3.TextXAlignment = Enum.TextXAlignment.Left
-				Content_3.TextYAlignment = Enum.TextYAlignment.Top
-				Library:UpdateContent(Content_3, Title_4, Slider)
+      SliderFrame.Name = "SliderFrame"
+      SliderFrame.Parent = Slider
+      SliderFrame.AnchorPoint = Vector2.new(0, 0.5)
+      SliderFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+      SliderFrame.BorderSizePixel = 0
+      SliderFrame.Position = UDim2.new(1, -140, 0.5, 0)
+      SliderFrame.Size = UDim2.new(0, 130, 0, 8)
 
-				SliderFrame.Name = "SliderFrame"
-				SliderFrame.Parent = Slider
-				SliderFrame.AnchorPoint = Vector2.new(0, 0.5)
-				SliderFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-				SliderFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				SliderFrame.BorderSizePixel = 0
-				SliderFrame.Position = UDim2.new(1, -140, 0.5, 0)
-				SliderFrame.Size = UDim2.new(0, 130, 0, 8)
+      UICorner_11.CornerRadius = UDim.new(1, 0)
+      UICorner_11.Parent = SliderFrame
 
-				UICorner_11.CornerRadius = UDim.new(1, 0)
-				UICorner_11.Parent = SliderFrame
+      SliderDraggable.Name = "SliderDraggable"
+      SliderDraggable.Parent = SliderFrame
+      SliderDraggable.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+      SliderDraggable.BorderSizePixel = 0
+      SliderDraggable.Size = UDim2.new(0, 0, 1, 0)
 
-				SliderDraggable.Name = "SliderDraggable"
-				SliderDraggable.Parent = SliderFrame
-				SliderDraggable.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-				SliderDraggable.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				SliderDraggable.BorderSizePixel = 0
-				SliderDraggable.Size = UDim2.new(0, 20, 1, 0)
+      UICorner_12.CornerRadius = UDim.new(1, 0)
+      UICorner_12.Parent = SliderDraggable
 
-				UICorner_12.CornerRadius = UDim.new(1, 0)
-				UICorner_12.Parent = SliderDraggable
+      Circle.Name = "Circle"
+      Circle.Parent = SliderDraggable
+      Circle.AnchorPoint = Vector2.new(0.5, 0.5)
+      Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+      Circle.BorderSizePixel = 0
+      Circle.Position = UDim2.new(1, 0, 0.5, 0)
+      Circle.Size = UDim2.new(0, 18, 0, 10)
 
-				Circle.Name = "Circle"
-				Circle.Parent = SliderDraggable
-				Circle.AnchorPoint = Vector2.new(0, 0.100000001)
-				Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Circle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Circle.BorderSizePixel = 0
-				Circle.Position = UDim2.new(3, -8, 0, -2)
-				Circle.Size = UDim2.new(1, 24, 0, 14)
+      UICorner_13.CornerRadius = UDim.new(1, 0)
+      UICorner_13.Parent = Circle
 
-				UICorner_13.CornerRadius = UDim.new(1, 0)
-				UICorner_13.Parent = Circle
+      SliderValue.Name = "SliderValue"
+      SliderValue.Parent = Slider
+      SliderValue.AnchorPoint = Vector2.new(0, 0.5)
+      SliderValue.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+      SliderValue.BorderSizePixel = 0
+      SliderValue.Position = UDim2.new(1, -195, 0.5, 0)
+      SliderValue.Size = UDim2.new(0, 35, 0, 20)
+      SliderValue.Font = Enum.Font.GothamBold
+      SliderValue.PlaceholderText = "..."
+      SliderValue.Text = ""
+      SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
+      SliderValue.TextSize = 11.000
 
-				SliderValue.Name = "SliderValue"
-				SliderValue.Parent = Slider
-				SliderValue.AnchorPoint = Vector2.new(0, 0.5)
-				SliderValue.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-				SliderValue.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				SliderValue.BorderSizePixel = 0
-				SliderValue.Position = UDim2.new(1, -195, 0.5, 0)
-				SliderValue.Size = UDim2.new(0, 35, 0, 20)
-				SliderValue.Font = Enum.Font.GothamBold
-				SliderValue.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-				SliderValue.PlaceholderText = "..."
-				SliderValue.Text = ""
-				SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
-				SliderValue.TextSize = 11.000
+      UICorner_14.CornerRadius = UDim.new(0, 2)
+      UICorner_14.Parent = SliderValue
 
-				UICorner_14.CornerRadius = UDim.new(0, 2)
-				UICorner_14.Parent = SliderValue
-				local SliderFunc = {Value = cfslider.Default}
-                local Dragging = false
-                local function Round(Number, Factor)
-                local Result = math.floor(Number / Factor + (math.sign(Number) * 0.5)) * Factor
-                  if Result < 0 then
-                    Result = Result + Factor
-                  end
-                  return Result
-                  end
-function SliderFunc:Set(Value)
-    Value = math.clamp(Round(Value, cfslider.Increment), cfslider.Min, cfslider.Max)
-    SliderFunc.Value = Value
-    SliderValue.Text = tostring(Value)
-    game:GetService("TweenService"):Create(
-        SliderDraggable,
-        TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-        { Size = UDim2.fromScale((Value - cfslider.Min) / (cfslider.Max - cfslider.Min), 1) }
-    ):Play()
-end
+      local SliderFunc = {Value = cfslider.Default}
+      local Dragging = false
 
-SliderFrame.InputBegan:Connect(function(Input)
-    if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-        Dragging = true
-    end
-end)
-SliderFrame.InputEnded:Connect(function(Input)
-    if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-        Dragging = false
-        cfslider.Callback(SliderFunc.Value)
-    end
-end)
-game:GetService("UserInputService").InputChanged:Connect(function(Input)
-    if Dragging and (Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch) then
-        local SizeScale = math.clamp(
-            (Input.Position.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X, 0, 1)
-        SliderFunc:Set(cfslider.Min + ((cfslider.Max - cfslider.Min) * SizeScale))
-    end
-end)
-SliderValue:GetPropertyChangedSignal("Text"):Connect(function()
-    local Valid = SliderValue.Text:gsub("[^%d%.%-]", "")
-    if Valid ~= "" then
-        local ValidNumber = math.min(tonumber(Valid) or 0, cfslider.Max)
-        SliderValue.Text = tostring(ValidNumber)
-    end
-end)
-            SliderValue.FocusLost:Connect(function()
-                 if SliderValue.Text ~= "" and tonumber(SliderValue.Text) then
-                    SliderFunc:Set(tonumber(SliderValue.Text))
-                 else
-                    SliderFunc:Set(cfslider.Min)
-                 end
-              end)
-              SliderFunc:Set(tonumber(cfslider.Default) or cfslider.Min)
-              return SliderFunc
+      local function Round(Number, Factor)
+        local Result = math.floor(Number / Factor + (math.sign(Number) * 0.5)) * Factor
+        return Result < 0 and Result + Factor or Result
+      end
+
+      function SliderFunc:Set(Value)
+        Value = math.clamp(Round(Value, cfslider.Increment), cfslider.Min, cfslider.Max)
+        SliderFunc.Value = Value
+        SliderValue.Text = tostring(Value)
+        local Percent = (Value - cfslider.Min) / (cfslider.Max - cfslider.Min)
+        game:GetService("TweenService"):Create(
+            SliderDraggable,
+            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+            { Size = UDim2.fromScale(Percent, 1) }
+        ):Play()
+      end
+
+      SliderFrame.InputBegan:Connect(function(Input)
+        if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+            Dragging = true
+        end
+      end)
+
+      game:GetService("UserInputService").InputEnded:Connect(function(Input)
+        if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+            if Dragging then
+                Dragging = false
+                cfslider.Callback(SliderFunc.Value)
             end
+        end
+      end)
+
+      game:GetService("UserInputService").InputChanged:Connect(function(Input)
+        if Dragging and (Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch) then
+            local SizeScale = math.clamp((Input.Position.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X, 0, 1)
+            SliderFunc:Set(cfslider.Min + ((cfslider.Max - cfslider.Min) * SizeScale))
+        end
+      end)
+
+      SliderValue.FocusLost:Connect(function()
+        local num = tonumber(SliderValue.Text:gsub("[^%d%.%-]", ""))
+        if num then
+            SliderFunc:Set(num)
+            cfslider.Callback(SliderFunc.Value)
+        else
+            SliderFunc:Set(SliderFunc.Value)
+        end
+      end)
+
+      SliderFunc:Set(cfslider.Default)
+        return SliderFunc
+      end
 			function SectionFunc:AddSeperator(args)
 				local Seperator = Instance.new("Frame")
 				local Title_5 = Instance.new("TextLabel")
@@ -1651,30 +1638,23 @@ end)
 	end
 	local G2L = {};
 
-	-- StarterGui.ScreenGui
 	G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 	G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 
-
-	-- StarterGui.ScreenGui.ImageButton
 	G2L["2"] = Instance.new("ImageButton", G2L["1"]);
 	G2L["2"]["BorderSizePixel"] = 0;
 	G2L["2"].Visible = true
 	self:MakeDraggable(G2L["2"],G2L["2"])
-	-- [ERROR] cannot convert ImageContent, please report to "https://github.com/uniquadev/GuiToLuaConverter/issues"
+	
 	G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 	G2L["2"]["Image"] = [[rbxassetid://124762714875426]];
 	G2L["2"]["Size"] = UDim2.new(0, 50, 0, 50);
 	G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["2"]["Position"] = UDim2.new(0.26651, 0, 0.43687, 0);
 
-
-	-- StarterGui.ScreenGui.ImageButton.UICorner
 	G2L["3"] = Instance.new("UICorner", G2L["2"]);
 	G2L["3"]["CornerRadius"] = UDim.new(1, 0);
 
-
-	-- StarterGui.ScreenGui.ImageButton.UIStroke
 	G2L["4"] = Instance.new("UIStroke", G2L["2"]);
 	G2L["4"]["Thickness"] = 2;
 	G2L["4"]["Color"] = Color3.fromRGB(0, 255, 0);

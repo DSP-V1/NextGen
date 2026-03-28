@@ -1607,64 +1607,71 @@ end)
 				Title_5.TextXAlignment = Enum.TextXAlignment.Left
 			end
 			function SectionFunc:AddParagraph(cfpara)
-				local cfpara = Library:MakeConfig({
-					Title = "Paragraph < Missing Title >",
-					Content = ""
-				}, cfpara or {})
-				local Paragraph = Instance.new("Frame")
-				local UICorner_16 = Instance.new("UICorner")
-				local Title_6 = Instance.new("TextLabel")
-				local Content_4 = Instance.new("TextLabel")
-				local ParaFunc = {}
-				Paragraph.Name = "Paragraph"
-				Paragraph.Parent = SectionList
-				Paragraph.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Paragraph.BackgroundTransparency = 0.950
-				Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Paragraph.BorderSizePixel = 0
-				Paragraph.Size = UDim2.new(1, 0, 0, 45)
+    local cfpara = Library:MakeConfig({
+        Title = "Paragraph < Missing Title >",
+        Content = ""
+    }, cfpara or {})
 
-				UICorner_16.CornerRadius = UDim.new(0, 3)
-				UICorner_16.Parent = Paragraph
+    local Paragraph = Instance.new("Frame")
+    local UICorner_16 = Instance.new("UICorner")
+    local Title_6 = Instance.new("TextLabel")
+    local Content_4 = Instance.new("TextLabel")
+    local ParaFunc = {}
 
-				Title_6.Name = "Title"
-				Title_6.Parent = Paragraph
-				Title_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Title_6.BackgroundTransparency = 1.000
-				Title_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Title_6.BorderSizePixel = 0
-				Title_6.Position = UDim2.new(0, 10, 0, 7)
-				Title_6.Size = UDim2.new(1, -60, 0, 16)
-				Title_6.Font = Enum.Font.GothamBold
-				Title_6.Text = cfpara.Title
-				Title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
-				Title_6.TextSize = 13.000
-				Title_6.TextXAlignment = Enum.TextXAlignment.Left
+    Paragraph.Name = "Paragraph"
+    Paragraph.Parent = SectionList
+    Paragraph.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Paragraph.BackgroundTransparency = 0.950
+    Paragraph.BorderSizePixel = 0
+    Paragraph.Size = UDim2.new(1, 0, 0, 45)
 
-				Content_4.Name = "Content"
-				Content_4.Parent = Paragraph
-				Content_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Content_4.BackgroundTransparency = 1.000
-				Content_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Content_4.BorderSizePixel = 0
-				Content_4.Position = UDim2.new(0, 10, 0, 22)
-				Content_4.Size = UDim2.new(1, -10, 1, 0)
-				Content_4.Font = Enum.Font.GothamBold
-				Content_4.Text = cfpara.Content
-				Content_4.TextColor3 = Color3.fromRGB(100, 100, 100)
-				Content_4.TextSize = 12.000
-				Content_4.TextXAlignment = Enum.TextXAlignment.Left
-				Content_4.TextYAlignment = Enum.TextYAlignment.Top
-				Library:UpdateContent(Content_4, Title_6, Paragraph)
-				function ParaFunc:SetTitle(args)
-					Title_6.Text = args
-				end
+    UICorner_16.CornerRadius = UDim.new(0, 3)
+    UICorner_16.Parent = Paragraph
 
-				function ParaFunc:SetDesc(args)
-					Content_4.Text = args
-				end
-				return ParaFunc
-			end
+    Title_6.Name = "Title"
+    Title_6.Parent = Paragraph
+    Title_6.BackgroundTransparency = 1.000
+    Title_6.Position = UDim2.new(0, 10, 0, 7)
+    Title_6.Size = UDim2.new(1, -20, 0, 16)
+    Title_6.Font = Enum.Font.GothamBold
+    Title_6.Text = cfpara.Title
+    Title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title_6.TextSize = 13.000
+    Title_6.TextXAlignment = Enum.TextXAlignment.Left
+
+    Content_4.Name = "Content"
+    Content_4.Parent = Paragraph
+    Content_4.BackgroundTransparency = 1.000
+    Content_4.Position = UDim2.new(0, 10, 0, 25)
+    Content_4.Size = UDim2.new(1, -20, 0, 0)
+    Content_4.Font = Enum.Font.GothamMedium
+    Content_4.Text = cfpara.Content
+    Content_4.TextColor3 = Color3.fromRGB(200, 200, 200)
+    Content_4.TextSize = 12.000
+    Content_4.TextXAlignment = Enum.TextXAlignment.Left
+    Content_4.TextYAlignment = Enum.TextYAlignment.Top
+    Content_4.TextWrapped = true
+
+    local function Resize()
+        local TextHeight = Content_4.TextBounds.Y
+        Content_4.Size = UDim2.new(1, -20, 0, TextHeight)
+        Paragraph.Size = UDim2.new(1, 0, 0, TextHeight + 35)
+    end
+
+    Content_4:GetPropertyChangedSignal("Text"):Connect(Resize)
+    Content_4:GetPropertyChangedSignal("AbsoluteSize"):Connect(Resize)
+    Resize()
+
+    function ParaFunc:SetTitle(args)
+        Title_6.Text = args
+    end
+
+    function ParaFunc:SetDesc(args)
+        Content_4.Text = args
+    end
+
+    return ParaFunc
+end
 			return SectionFunc
 		end
 

@@ -261,9 +261,9 @@ function Library:NewWindow(ConfigWindow)
 	Icon.ImageRectOffset = Vector2.new(288, 672)
 	Icon.ImageRectSize = Vector2.new(96, 96)
 
-    local OriginalSize = Frame.Size
-    local OriginalPosition = Frame.Position
-    local OriginalAnchorPoint = Frame.AnchorPoint
+    local OriginalSize = Main.Size
+    local OriginalPosition = Main.Position
+    local OriginalAnchorPoint = Main.AnchorPoint
     local IsFull = false
 
 	Large.Name = "Large"

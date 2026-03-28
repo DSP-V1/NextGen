@@ -669,7 +669,7 @@ end)
 		end)
 		AllLayouts = AllLayouts + 1
 		local TabFunc = {}
-		function TabFunc:AddSection(RealNameSection)
+		function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
 			local Section = Instance.new("Frame")
 			local UICorner_5 = Instance.new("UICorner")
 			local UIStroke_2 = Instance.new("UIStroke")

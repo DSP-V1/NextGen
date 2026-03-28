@@ -1482,8 +1482,8 @@ function Library:NewWindow(ConfigWindow)
 				Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				Circle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Circle.BorderSizePixel = 0
-				Circle.Position = UDim2.new(1, -6, 0, 0)
-				Circle.Size = UDim2.new(0, 12, 0, 12)
+				Circle.Position = UDim2.new(3, -8, 0, -2)
+				Circle.Size = UDim2.new(1, 24, 0, 14)
 
 				UICorner_13.CornerRadius = UDim.new(1, 0)
 				UICorner_13.Parent = Circle
@@ -1494,7 +1494,7 @@ function Library:NewWindow(ConfigWindow)
 				SliderValue.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 				SliderValue.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				SliderValue.BorderSizePixel = 0
-				SliderValue.Position = UDim2.new(1, -185, 0.5, 0)
+				SliderValue.Position = UDim2.new(1, -195, 0.5, 0)
 				SliderValue.Size = UDim2.new(0, 35, 0, 20)
 				SliderValue.Font = Enum.Font.GothamBold
 				SliderValue.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)

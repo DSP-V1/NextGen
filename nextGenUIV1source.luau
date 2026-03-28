@@ -261,9 +261,8 @@ function Library:NewWindow(ConfigWindow)
 	Icon.ImageRectOffset = Vector2.new(288, 672)
 	Icon.ImageRectSize = Vector2.new(96, 96)
 
-    local OriginalSize = Main.Size
-    local OriginalPosition = Main.Position
-    local OriginalAnchorPoint = Main.AnchorPoint
+    local OriginalSize = DropShadowHolder.Size
+    local OriginalPosition = DropShadowHolder.Position
     local IsFull = false
 
 	Large.Name = "Large"
@@ -278,25 +277,32 @@ function Library:NewWindow(ConfigWindow)
 	Large.Size = UDim2.new(0, 30, 0, 30)
 	Large.Text = ""
     Large.MouseButton1Down:Connect(function()
-	    local TweenService = game:GetService("TweenService")
-	    local TweenData = TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
-        if not IsFull then
-		IsFull = true
-		Main.AnchorPoint = Vector2.new(0, 0)
-		TweenService:Create(Frame, TweenData, {
-			Size = UDim2.new(1, 0, 1, 0),
-			Position = UDim2.new(0, 0, 0, 0)
-		}):Play()
-	else
-		IsFull = false
-		TweenService:Create(Frame, TweenData, {
-			Size = OriginalSize,
-			Position = OriginalPosition
-		}):Play()
-		task.delay(0.5, function()
-			Main.AnchorPoint = OriginalAnchorPoint
-		end)
-	end
+    local TweenService = game:GetService("TweenService")
+    local TweenData = TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+    if not IsFull then
+        IsFull = true
+        TweenService:Create(DropShadowHolder, TweenData, {
+            Size = UDim2.new(1, 0, 1, 0),
+            Position = UDim2.new(0.5, 0, 0.5, 0)
+        }):Play()
+        TweenService:Create(Main, TweenData, {
+            Size = UDim2.new(1, 0, 1, 0)
+        }):Play()
+        TweenService:Create(DropShadow, TweenData, {ImageTransparency = 1}):Play()
+    else
+        IsFull = false
+        
+        TweenService:Create(DropShadowHolder, TweenData, {
+            Size = OriginalSize,
+            Position = OriginalPosition
+        }):Play()
+
+        TweenService:Create(Main, TweenData, {
+            Size = UDim2.new(0, 555, 0, 350)
+        }):Play()
+        
+        TweenService:Create(DropShadow, TweenData, {ImageTransparency = 0.5}):Play()
+    end
 end)
 
 

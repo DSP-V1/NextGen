@@ -1506,62 +1506,60 @@ function Library:NewWindow(ConfigWindow)
 				UICorner_14.CornerRadius = UDim.new(0, 2)
 				UICorner_14.Parent = SliderValue
 				local SliderFunc = {Value = cfslider.Default}
-				local Dragging = false
-				local function Round(Number, Factor)
-					local Result = math.floor(Number / Factor + (math.sign(Number) * 0.5)) * Factor
-					if Result < 0 then
-						Result = Result + Factor
-					end
-					return Result
-				end
-				function SliderFunc:Set(Value)
-					Value = math.clamp(Round(Value, cfslider.Increment), cfslider.Min, cfslider.Max)
-					SliderFunc.Value = Value
-					SliderValue.Text = tostring(Value)
-					game:GetService("TweenService"):Create(
-						SliderDraggable,
-						TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{ Size = UDim2.fromScale((Value - cfslider.Min) / (cfslider.Max - cfslider.Min), 1) }
-					):Play()
-				end
+                local Dragging = false
+                local function Round(Number, Factor)
+                local Result = math.floor(Number / Factor + (math.sign(Number) * 0.5)) * Factor
+                  if Result < 0 then
+                    Result = Result + Factor
+                  end
+                  return Result
+                  end
+function SliderFunc:Set(Value)
+    Value = math.clamp(Round(Value, cfslider.Increment), cfslider.Min, cfslider.Max)
+    SliderFunc.Value = Value
+    SliderValue.Text = tostring(Value)
+    game:GetService("TweenService"):Create(
+        SliderDraggable,
+        TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        { Size = UDim2.fromScale((Value - cfslider.Min) / (cfslider.Max - cfslider.Min), 1) }
+    ):Play()
+end
 
-				SliderFrame.InputBegan:Connect(function(Input)
-					if Input.UserInputType == Enum.UserInputType.MouseButton1 then
-						Dragging = true
-					end
-				end)
-				SliderFrame.InputEnded:Connect(function(Input)
-					if Input.UserInputType == Enum.UserInputType.MouseButton1 then
-						Dragging = false
-						cfslider.Callback(SliderFunc.Value)
-					end
-				end)
-				game:GetService("UserInputService").InputChanged:Connect(function(Input)
-					if Dragging and Input.UserInputType == Enum.UserInputType.MouseMovement then
-						local SizeScale = math.clamp(
-							(Input.Position.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X, 0, 1)
-						SliderFunc:Set(cfslider.Min + ((cfslider.Max - cfslider.Min) * SizeScale))
-					end
-				end)
-				SliderValue:GetPropertyChangedSignal("Text"):Connect(function()
-					local Valid = SliderValue.Text:gsub("[^%d]", "")
-					if Valid ~= "" then
-						local ValidNumber = math.min(tonumber(Valid), cfslider.Max)
-						SliderValue.Text = tostring(ValidNumber)
-					else
-						SliderValue.Text = tostring(Valid)
-					end
-				end)
-				SliderValue.FocusLost:Connect(function()
-					if SliderValue.Text ~= "" then
-						SliderFunc:Set(tonumber(SliderValue.Text))
-					else
-						SliderFunc:Set(0)
-					end
-				end)
-				SliderFunc:Set(tonumber(cfslider.Default))
-				return SliderFunc
-			end
+SliderFrame.InputBegan:Connect(function(Input)
+    if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+        Dragging = true
+    end
+end)
+SliderFrame.InputEnded:Connect(function(Input)
+    if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+        Dragging = false
+        cfslider.Callback(SliderFunc.Value)
+    end
+end)
+game:GetService("UserInputService").InputChanged:Connect(function(Input)
+    if Dragging and (Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch) then
+        local SizeScale = math.clamp(
+            (Input.Position.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X, 0, 1)
+        SliderFunc:Set(cfslider.Min + ((cfslider.Max - cfslider.Min) * SizeScale))
+    end
+end)
+SliderValue:GetPropertyChangedSignal("Text"):Connect(function()
+    local Valid = SliderValue.Text:gsub("[^%d%.%-]", "")
+    if Valid ~= "" then
+        local ValidNumber = math.min(tonumber(Valid) or 0, cfslider.Max)
+        SliderValue.Text = tostring(ValidNumber)
+    end
+end)
+            SliderValue.FocusLost:Connect(function()
+                 if SliderValue.Text ~= "" and tonumber(SliderValue.Text) then
+                    SliderFunc:Set(tonumber(SliderValue.Text))
+                 else
+                    SliderFunc:Set(cfslider.Min)
+                 end
+              end)
+              SliderFunc:Set(tonumber(cfslider.Default) or cfslider.Min)
+              return SliderFunc
+            end
 			function SectionFunc:AddSeperator(args)
 				local Seperator = Instance.new("Frame")
 				local Title_5 = Instance.new("TextLabel")

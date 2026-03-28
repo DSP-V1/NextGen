@@ -766,8 +766,8 @@ function Library:NewWindow(ConfigWindow)
 				ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 				ToggleCheck.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				ToggleCheck.BorderSizePixel = 0
-				ToggleCheck.Position = UDim2.new(1, -50, 0.5, 0)
-				ToggleCheck.Size = UDim2.new(0, 40, 0, 22)
+				ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
+				ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
 
 				UICorner_7.CornerRadius = UDim.new(1, 0)
 				UICorner_7.Parent = ToggleCheck
@@ -779,7 +779,7 @@ function Library:NewWindow(ConfigWindow)
 				Check.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Check.BorderSizePixel = 0
 				Check.Position = UDim2.new(0, 3, 0.5, 0)
-				Check.Size = UDim2.new(0, 16, 0, 16)
+				Check.Size = UDim2.new(0, 30, 0, 16)
 
 				UICorner_8.CornerRadius = UDim.new(1, 0)
 				UICorner_8.Parent = Check

@@ -282,7 +282,7 @@ function Library:NewWindow(ConfigWindow)
 	    local TweenData = TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
         if not IsFull then
 		IsFull = true
-		Frame.AnchorPoint = Vector2.new(0, 0)
+		Main.AnchorPoint = Vector2.new(0, 0)
 		TweenService:Create(Frame, TweenData, {
 			Size = UDim2.new(1, 0, 1, 0),
 			Position = UDim2.new(0, 0, 0, 0)
@@ -294,7 +294,7 @@ function Library:NewWindow(ConfigWindow)
 			Position = OriginalPosition
 		}):Play()
 		task.delay(0.5, function()
-			Frame.AnchorPoint = OriginalAnchorPoint
+			Main.AnchorPoint = OriginalAnchorPoint
 		end)
 	end
 end)

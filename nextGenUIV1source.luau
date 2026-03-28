@@ -573,7 +573,7 @@ end)
 	self:MakeDraggable(Top, DropShadowHolder)
 	local AllLayouts = 0
 	local Tab = {}
-	function Tab:T(t)
+	function Tab:AddTab(t)
 		local TabDisable = Instance.new("Frame")
 		local Choose_2 = Instance.new("Frame")
 		local UICorner_4 = Instance.new("UICorner")

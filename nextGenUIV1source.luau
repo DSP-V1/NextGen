@@ -80,7 +80,7 @@ function Library:NewWindow(ConfigWindow)
 		Title = "King Rua Hub",
 		Description = "By _ng.shinichi",
 	}, ConfigWindow or {})
-	local KingRuaUI_Premium = Instance.new("ScreenGui")
+	local NextGenUI = Instance.new("ScreenGui")
 	local DropShadowHolder = Instance.new("Frame")
 	local DropShadow = Instance.new("ImageLabel")
 	local Main = Instance.new("Frame")
@@ -118,13 +118,13 @@ function Library:NewWindow(ConfigWindow)
 	local LayoutName = Instance.new("Frame")
 	local TextLabel = Instance.new("TextLabel")
 	local DropdownZone = Instance.new("Frame")
-	KingRuaUI_Premium.Name = "KingRuaUI_Premium"
-	KingRuaUI_Premium.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	KingRuaUI_Premium.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    KingRuaUI_Premium.IgnoreGuiInset = true
+	NextGenUI.Name = "NextGenUI"
+	NextGenUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	NextGenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    NextGenUI.IgnoreGuiInset = true
 
 	DropShadowHolder.Name = "DropShadowHolder"
-	DropShadowHolder.Parent = KingRuaUI_Premium
+	DropShadowHolder.Parent = NextGenUI
 	DropShadowHolder.AnchorPoint = Vector2.new(0.5, 0.5)
 	DropShadowHolder.BackgroundTransparency = 1.000
 	DropShadowHolder.BorderSizePixel = 0
@@ -379,7 +379,7 @@ end)
 		btnyes["Text"] = [[Yes]];
 		btnyes["Position"] = UDim2.new(0, 40, 1, -40);
 		btnyes.MouseButton1Down:Connect(function()
-			KingRuaUI_Premium:Destroy()
+			NextGenUI:Destroy()
 		end)
 
 		-- Players.noguchihyuga.PlayerGui.KingRuaUI_Premium.DropShadowHolder.Main.DropdownZone.Tat.TextButton.UICorner
@@ -1693,10 +1693,10 @@ end)
 	G2L["4"]["Thickness"] = 2;
 	G2L["4"]["Color"] = Color3.fromRGB(0, 255, 0);
 	G2L["2"].MouseButton1Click:Connect(function()
-		KingRuaUI_Premium.Enabled = not KingRuaUI_Premium.Enabled
+		NextGenUI.Enabled = not NextGenUI.Enabled
 	end)
 	Minize.MouseButton1Click:Connect(function()
-		KingRuaUI_Premium.Enabled = false
+		NextGenUI.Enabled = false
 	end)
 	return Tab
 end

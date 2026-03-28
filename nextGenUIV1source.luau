@@ -121,6 +121,7 @@ function Library:NewWindow(ConfigWindow)
 	KingRuaUI_Premium.Name = "KingRuaUI_Premium"
 	KingRuaUI_Premium.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	KingRuaUI_Premium.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    KingRuaUI_Premium.IgnoreGuiInset = true
 
 	DropShadowHolder.Name = "DropShadowHolder"
 	DropShadowHolder.Parent = KingRuaUI_Premium
@@ -260,6 +261,11 @@ function Library:NewWindow(ConfigWindow)
 	Icon.ImageRectOffset = Vector2.new(288, 672)
 	Icon.ImageRectSize = Vector2.new(96, 96)
 
+    local OriginalSize = Frame.Size
+    local OriginalPosition = Frame.Position
+    local OriginalAnchorPoint = Frame.AnchorPoint
+    local IsFull = false
+
 	Large.Name = "Large"
 	Large.Parent = Frame
 	Large.Active = false
@@ -271,6 +277,28 @@ function Library:NewWindow(ConfigWindow)
 	Large.Selectable = false
 	Large.Size = UDim2.new(0, 30, 0, 30)
 	Large.Text = ""
+    Large.MouseButton1Down:Connect(function()
+	    local TweenService = game:GetService("TweenService")
+	    local TweenData = TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+        if not IsFull then
+		IsFull = true
+		Frame.AnchorPoint = Vector2.new(0, 0)
+		TweenService:Create(Frame, TweenData, {
+			Size = UDim2.new(1, 0, 1, 0),
+			Position = UDim2.new(0, 0, 0, 0)
+		}):Play()
+	else
+		IsFull = false
+		TweenService:Create(Frame, TweenData, {
+			Size = OriginalSize,
+			Position = OriginalPosition
+		}):Play()
+		task.delay(0.5, function()
+			Frame.AnchorPoint = OriginalAnchorPoint
+		end)
+	end
+end)
+
 
 	Icon_2.Name = "Icon"
 	Icon_2.Parent = Large

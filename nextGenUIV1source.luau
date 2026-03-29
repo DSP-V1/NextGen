@@ -771,7 +771,7 @@ end)
     Title.Text = cfsection.Title
     Title.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title.TextSize = 14.000
-    Title.TextXAlignment = Enum.TextXAlignment.Left
+    Title.TextXAlignment = Enum.TextXAlignment.Center
 
     RightArrow.Name = "RightArrow"
     RightArrow.Parent = NameSection
@@ -780,7 +780,7 @@ end)
     RightArrow.BackgroundTransparency = 1.000
     RightArrow.Position = UDim2.new(1, -10, 0.5, 0)
     RightArrow.Size = UDim2.new(0, 16, 0, 16)
-    RightArrow.Image = "rbxassetid://100136819093667"
+    RightArrow.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=100136819093667"
     RightArrow.Visible = cfsection.Collapsible
     RightArrow.Rotation = IsCollapsed and -90 or 0
 

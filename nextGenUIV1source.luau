@@ -265,13 +265,13 @@ function Library:NewWindow(ConfigWindow)
 	G2L["2"]["Image"] = [[https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289]];
 	G2L["2"]["Size"] = UDim2.new(0, 50, 0, 50);
 	G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-	G2L["2"]["Position"] = UDim2.new(0.26651, 0, 0.43687, 0);
+	G2L["2"]["Position"] = UDim2.new(0.267, -171, 0.437, -115);
 
 	G2L["3"] = Instance.new("UICorner", G2L["2"]);
 	G2L["3"]["CornerRadius"] = UDim.new(0, 8);
 
 	G2L["4"] = Instance.new("UIStroke", G2L["2"]);
-	G2L["4"]["Thickness"] = 3;
+	G2L["4"]["Thickness"] = 2;
 	G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
 	G2L["2"].MouseButton1Click:Connect(function()
 		NextGenUI.Enabled = not NextGenUI.Enabled

@@ -200,7 +200,7 @@ function Library:NewWindow(ConfigWindow)
 	LogoHub.BorderSizePixel = 0
 	LogoHub.Position = UDim2.new(0, 10, 0, 5)
 	LogoHub.Size = UDim2.new(0, 40, 0, 35)
-	LogoHub.Image = "rbxassetid://75322827874289"
+	LogoHub.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
 
 	Desc.Name = "Desc"
 	Desc.Parent = Left
@@ -259,7 +259,7 @@ function Library:NewWindow(ConfigWindow)
 	self:MakeDraggable(G2L["2"],G2L["2"])
 	
 	G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-	G2L["2"]["Image"] = [[rbxassetid://75322827874289]];
+	G2L["2"]["Image"] = [[https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289]];
 	G2L["2"]["Size"] = UDim2.new(0, 50, 0, 50);
 	G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["2"]["Position"] = UDim2.new(0.26651, 0, 0.43687, 0);

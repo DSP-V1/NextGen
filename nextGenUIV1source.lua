@@ -77,8 +77,8 @@ end
 
 function Library:NewWindow(ConfigWindow)
 	local ConfigWindow = self:MakeConfig({
-		Title = "King Rua Hub",
-		Description = "By _ng.shinichi",
+		Title = "NextGen Hub",
+		Description = "By DSPV1",
 	}, ConfigWindow or {})
 	local NextGenUI = Instance.new("ScreenGui")
 	local DropShadowHolder = Instance.new("Frame")
@@ -248,6 +248,35 @@ function Library:NewWindow(ConfigWindow)
 	Minize.Size = UDim2.new(0, 30, 0, 30)
 	Minize.Text = ""
 
+		local G2L = {};
+
+	G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+	G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+	G2L["2"] = Instance.new("ImageButton", G2L["1"]);
+	G2L["2"]["BorderSizePixel"] = 0;
+	G2L["2"].Visible = true
+	self:MakeDraggable(G2L["2"],G2L["2"])
+	
+	G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+	G2L["2"]["Image"] = [[rbxassetid://75322827874289]];
+	G2L["2"]["Size"] = UDim2.new(0, 50, 0, 50);
+	G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+	G2L["2"]["Position"] = UDim2.new(0.26651, 0, 0.43687, 0);
+
+	G2L["3"] = Instance.new("UICorner", G2L["2"]);
+	G2L["3"]["CornerRadius"] = UDim.new(1, 0);
+
+	G2L["4"] = Instance.new("UIStroke", G2L["2"]);
+	G2L["4"]["Thickness"] = 2;
+	G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
+	G2L["2"].MouseButton1Click:Connect(function()
+		NextGenUI.Enabled = not NextGenUI.Enabled
+	end)
+	Minize.MouseButton1Click:Connect(function()
+		NextGenUI.Enabled = false
+	end)
+
 	Icon.Name = "Icon"
 	Icon.Parent = Minize
 	Icon.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -380,6 +409,7 @@ end)
 		btnyes["Position"] = UDim2.new(0, 40, 1, -40);
 		btnyes.MouseButton1Down:Connect(function()
 			NextGenUI:Destroy()
+			G2L:Destroy()
 		end)
 
 		-- Players.noguchihyuga.PlayerGui.KingRuaUI_Premium.DropShadowHolder.Main.DropdownZone.Tat.TextButton.UICorner
@@ -1667,34 +1697,6 @@ end
 
 		return TabFunc
 	end
-	local G2L = {};
-
-	G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
-	G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
-
-	G2L["2"] = Instance.new("ImageButton", G2L["1"]);
-	G2L["2"]["BorderSizePixel"] = 0;
-	G2L["2"].Visible = true
-	self:MakeDraggable(G2L["2"],G2L["2"])
-	
-	G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-	G2L["2"]["Image"] = [[rbxassetid://124762714875426]];
-	G2L["2"]["Size"] = UDim2.new(0, 50, 0, 50);
-	G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-	G2L["2"]["Position"] = UDim2.new(0.26651, 0, 0.43687, 0);
-
-	G2L["3"] = Instance.new("UICorner", G2L["2"]);
-	G2L["3"]["CornerRadius"] = UDim.new(1, 0);
-
-	G2L["4"] = Instance.new("UIStroke", G2L["2"]);
-	G2L["4"]["Thickness"] = 2;
-	G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
-	G2L["2"].MouseButton1Click:Connect(function()
-		NextGenUI.Enabled = not NextGenUI.Enabled
-	end)
-	Minize.MouseButton1Click:Connect(function()
-		NextGenUI.Enabled = false
-	end)
 	return Tab
 end
 

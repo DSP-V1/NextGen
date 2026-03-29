@@ -168,7 +168,7 @@ function Library:NewWindow(ConfigWindow)
 
 	Line.Name = "Line"
 	Line.Parent = Top
-	Line.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	Line.BackgroundColor3 = Color3.fromRGB(116,18,217)
 	Line.BackgroundTransparency = 0.500
 	Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Line.BorderSizePixel = 0
@@ -433,7 +433,7 @@ end)
 	Icon_3.ImageRectOffset = Vector2.new(480, 0)
 	Icon_3.ImageRectSize = Vector2.new(96, 96)
 
-	UIStroke.Color = Color3.fromRGB(0, 255, 0)
+	UIStroke.Color = Color3.fromRGB(116,18,217)
 	UIStroke.Transparency = 0.5
 	UIStroke.Parent = Main
 
@@ -448,7 +448,7 @@ end)
 
 	Line_2.Name = "Line"
 	Line_2.Parent = TabFrame
-	Line_2.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	Line_2.BackgroundColor3 = Color3.fromRGB(116,18,217)
 	Line_2.BackgroundTransparency = 0.500
 	Line_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Line_2.BorderSizePixel = 0
@@ -592,7 +592,7 @@ end)
 
 		Choose_2.Name = "Choose"
 		Choose_2.Parent = TabDisable
-		Choose_2.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+		Choose_2.BackgroundColor3 = Color3.fromRGB(116,18,217)
 		Choose_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Choose_2.BorderSizePixel = 0
 		Choose_2.Position = UDim2.new(0, 0, 0, 5)
@@ -848,7 +848,7 @@ end)
 				local ToggleFunc = { Value = cftoggle.Default }
 				function ToggleFunc:Set(Boolean)
 					if Boolean then
-						Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(0, 255, 0))
+						Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(116,18,217))
 						Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 22, 0.5, 0))
 						Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(255, 255, 255))
 					else
@@ -1281,7 +1281,7 @@ end)
 					Title_12.TextSize = 13.000
 					Title_12.TextTransparency = 0.500
 
-					UIGradient_3.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.51, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0)) }
+					UIGradient_3.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.51, Color3.fromRGB(116,18,217)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0)) }
 					UIGradient_3.Rotation = 0.9900000095367432
 					UIGradient_3.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.50), NumberSequenceKeypoint.new(0.50, 0.49), NumberSequenceKeypoint.new(1.00, 0.44) }
 					UIGradient_3.Parent = Option2
@@ -1492,7 +1492,7 @@ end)
 
       SliderDraggable.Name = "SliderDraggable"
       SliderDraggable.Parent = SliderFrame
-      SliderDraggable.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+      SliderDraggable.BackgroundColor3 = Color3.fromRGB(116,18,217)
       SliderDraggable.BorderSizePixel = 0
       SliderDraggable.Size = UDim2.new(0, 0, 1, 0)
 
@@ -1513,7 +1513,7 @@ end)
       SliderValue.Name = "SliderValue"
       SliderValue.Parent = Slider
       SliderValue.AnchorPoint = Vector2.new(0, 0.5)
-      SliderValue.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+      SliderValue.BackgroundColor3 = Color3.fromRGB(116,18,217)
       SliderValue.BorderSizePixel = 0
       SliderValue.Position = UDim2.new(1, -195, 0.5, 0)
       SliderValue.Size = UDim2.new(0, 35, 0, 20)
@@ -1688,7 +1688,7 @@ end
 
 	G2L["4"] = Instance.new("UIStroke", G2L["2"]);
 	G2L["4"]["Thickness"] = 2;
-	G2L["4"]["Color"] = Color3.fromRGB(0, 255, 0);
+	G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
 	G2L["2"].MouseButton1Click:Connect(function()
 		NextGenUI.Enabled = not NextGenUI.Enabled
 	end)

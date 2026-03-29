@@ -200,7 +200,7 @@ function Library:NewWindow(ConfigWindow)
 	LogoHub.BorderSizePixel = 0
 	LogoHub.Position = UDim2.new(0, 10, 0, 5)
 	LogoHub.Size = UDim2.new(0, 40, 0, 35)
-	LogoHub.Image = "rbxassetid://124762714875426"
+	LogoHub.Image = "rbxassetid://75322827874289"
 
 	Desc.Name = "Desc"
 	Desc.Parent = Left
@@ -409,7 +409,7 @@ end)
 		btnyes["Position"] = UDim2.new(0, 40, 1, -40);
 		btnyes.MouseButton1Down:Connect(function()
 			NextGenUI:Destroy()
-			G2L:Destroy()
+			G2L["1"]:Destroy()
 		end)
 
 		-- Players.noguchihyuga.PlayerGui.KingRuaUI_Premium.DropShadowHolder.Main.DropdownZone.Tat.TextButton.UICorner

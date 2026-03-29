@@ -202,6 +202,9 @@ function Library:NewWindow(ConfigWindow)
 	LogoHub.Size = UDim2.new(0, 40, 0, 35)
 	LogoHub.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
 
+    local UICornerForLogoHub = Instance.new("UICorner")
+    UICornerForLogoHub.Parent = LogoHub
+
 	Desc.Name = "Desc"
 	Desc.Parent = Left
 	Desc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -265,10 +268,10 @@ function Library:NewWindow(ConfigWindow)
 	G2L["2"]["Position"] = UDim2.new(0.26651, 0, 0.43687, 0);
 
 	G2L["3"] = Instance.new("UICorner", G2L["2"]);
-	G2L["3"]["CornerRadius"] = UDim.new(1, 0);
+	G2L["3"]["CornerRadius"] = UDim.new(0, 8);
 
 	G2L["4"] = Instance.new("UIStroke", G2L["2"]);
-	G2L["4"]["Thickness"] = 2;
+	G2L["4"]["Thickness"] = 3;
 	G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
 	G2L["2"].MouseButton1Click:Connect(function()
 		NextGenUI.Enabled = not NextGenUI.Enabled

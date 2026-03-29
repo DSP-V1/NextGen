@@ -1484,7 +1484,7 @@ end)
       SliderFrame.AnchorPoint = Vector2.new(0, 0.5)
       SliderFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
       SliderFrame.BorderSizePixel = 0
-      SliderFrame.Position = UDim2.new(1, -140, 0.5, 0)
+      SliderFrame.Position = UDim2.new(1, -145, 0.5, 0)
       SliderFrame.Size = UDim2.new(0, 130, 0, 8)
 
       UICorner_11.CornerRadius = UDim.new(1, 0)

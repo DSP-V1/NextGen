@@ -824,8 +824,6 @@ function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
             UpdateSize()
         end)
     end
-    SectionFunc.SectionList = SectionList
-end
 			local SectionFunc = {}
 			function SectionFunc:AddToggle(cftoggle)
 				local cftoggle = Library:MakeConfig({

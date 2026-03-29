@@ -699,8 +699,15 @@ end)
 		end)
 		AllLayouts = AllLayouts + 1
 		local TabFunc = {}
-function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
-    local IsCollapsed = false
+        function TabFunc:AddSection(cfsection)
+    local cfsection = Library:MakeConfig({
+        Title = "Section < Missing Title >",
+        Opened = false,
+        Collapsible = true,
+        Icon = ""
+    }, cfsection or {})
+
+    local IsCollapsed = not cfsection.Opened
     local Section = Instance.new("Frame")
     local UICorner_5 = Instance.new("UICorner")
     local UIStroke_2 = Instance.new("UIStroke")
@@ -721,7 +728,7 @@ function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
     Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Section.BorderSizePixel = 0
     Section.Position = UDim2.new(1.36775815, 0, 0.545454562, 0)
-    Section.Size = UDim2.new(1, 0, 0, 55)
+    Section.Size = IsCollapsed and UDim2.new(1, 0, 0, 35) or UDim2.new(1, 0, 0, 55)
     Section.ClipsDescendants = true
 
     UICorner_5.CornerRadius = UDim.new(0, 4)
@@ -749,8 +756,8 @@ function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
     LeftIcon.BackgroundTransparency = 1.000
     LeftIcon.Position = UDim2.new(0, 10, 0.5, 0)
     LeftIcon.Size = UDim2.new(0, 16, 0, 16)
-    LeftIcon.Image = Icon or ""
-    LeftIcon.Visible = (Icon ~= nil and Icon ~= "")
+    LeftIcon.Image = cfsection.Icon or ""
+    LeftIcon.Visible = (cfsection.Icon ~= nil and cfsection.Icon ~= "")
 
     Title.Name = "Title"
     Title.Parent = NameSection
@@ -758,12 +765,13 @@ function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
     Title.BackgroundTransparency = 1.000
     Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Title.BorderSizePixel = 0
-    Title.Position = UDim2.new(0, (Icon and Icon ~= "" and 32 or 0), 0, 0)
-    Title.Size = UDim2.new(1, (Icon and Icon ~= "" and -32 or 0), 1, 0)
+    Title.Position = UDim2.new(0, (cfsection.Icon ~= "" and 32 or 10), 0, 0)
+    Title.Size = UDim2.new(1, (cfsection.Icon ~= "" and -42 or -20), 1, 0)
     Title.Font = Enum.Font.GothamBold
-    Title.Text = RealNameSection
+    Title.Text = cfsection.Title
     Title.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title.TextSize = 14.000
+    Title.TextXAlignment = Enum.TextXAlignment.Left
 
     RightArrow.Name = "RightArrow"
     RightArrow.Parent = NameSection
@@ -773,7 +781,8 @@ function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
     RightArrow.Position = UDim2.new(1, -10, 0.5, 0)
     RightArrow.Size = UDim2.new(0, 16, 0, 16)
     RightArrow.Image = "rbxassetid://100136819093667"
-    RightArrow.Visible = Collapsible or false
+    RightArrow.Visible = cfsection.Collapsible
+    RightArrow.Rotation = IsCollapsed and -90 or 0
 
     Line_3.Name = "Line"
     Line_3.Parent = NameSection
@@ -807,16 +816,13 @@ function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
     UIListLayout_4.Padding = UDim.new(0, 6)
 
     local function UpdateSize()
-        if IsCollapsed then
-            game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, 35)}):Play()
-        else
-            game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, UIListLayout_4.AbsoluteContentSize.Y + 55)}):Play()
-        end
+        local TargetSize = IsCollapsed and 35 or (UIListLayout_4.AbsoluteContentSize.Y + 45)
+        game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, TargetSize)}):Play()
     end
 
     UIListLayout_4:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(UpdateSize)
 
-    if Collapsible then
+    if cfsection.Collapsible then
         NameSection.MouseButton1Click:Connect(function()
             IsCollapsed = not IsCollapsed
             local targetRot = IsCollapsed and -90 or 0

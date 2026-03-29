@@ -700,7 +700,6 @@ end)
 		AllLayouts = AllLayouts + 1
 		local TabFunc = {}
 function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
-    local SectionFunc = {}
     local IsCollapsed = false
     local Section = Instance.new("Frame")
     local UICorner_5 = Instance.new("UICorner")
@@ -825,9 +824,7 @@ function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
             UpdateSize()
         end)
     end
-
     SectionFunc.SectionList = SectionList
-    return SectionFunc
 end
 			local SectionFunc = {}
 			function SectionFunc:AddToggle(cftoggle)

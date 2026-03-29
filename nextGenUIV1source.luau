@@ -699,87 +699,136 @@ end)
 		end)
 		AllLayouts = AllLayouts + 1
 		local TabFunc = {}
-		function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
-			local Section = Instance.new("Frame")
-			local UICorner_5 = Instance.new("UICorner")
-			local UIStroke_2 = Instance.new("UIStroke")
-			local NameSection = Instance.new("Frame")
-			local Title = Instance.new("TextLabel")
-			local Line_3 = Instance.new("Frame")
-			local UIGradient = Instance.new("UIGradient")
-			local SectionList = Instance.new("Frame")
-			local UIPadding_4 = Instance.new("UIPadding")
-			local UIListLayout_4 = Instance.new("UIListLayout")
-			Section.Name = "Section"
-			Section.Parent = Layout
-			Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Section.BackgroundTransparency = 0.980
-			Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Section.BorderSizePixel = 0
-			Section.Position = UDim2.new(1.36775815, 0, 0.545454562, 0)
-			Section.Size = UDim2.new(1, 0, 0, 55)
+function TabFunc:AddSection(RealNameSection, Collapsible, Icon)
+    local SectionFunc = {}
+    local IsCollapsed = false
+    local Section = Instance.new("Frame")
+    local UICorner_5 = Instance.new("UICorner")
+    local UIStroke_2 = Instance.new("UIStroke")
+    local NameSection = Instance.new("TextButton")
+    local Title = Instance.new("TextLabel")
+    local Line_3 = Instance.new("Frame")
+    local UIGradient = Instance.new("UIGradient")
+    local SectionList = Instance.new("Frame")
+    local UIPadding_4 = Instance.new("UIPadding")
+    local UIListLayout_4 = Instance.new("UIListLayout")
+    local LeftIcon = Instance.new("ImageLabel")
+    local RightArrow = Instance.new("ImageLabel")
 
-			UICorner_5.CornerRadius = UDim.new(0, 4)
-			UICorner_5.Parent = Section
+    Section.Name = "Section"
+    Section.Parent = Layout
+    Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Section.BackgroundTransparency = 0.980
+    Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Section.BorderSizePixel = 0
+    Section.Position = UDim2.new(1.36775815, 0, 0.545454562, 0)
+    Section.Size = UDim2.new(1, 0, 0, 55)
+    Section.ClipsDescendants = true
 
-			UIStroke_2.Color = Color3.fromRGB(100, 100, 100)
-			UIStroke_2.Thickness = 2
-			UIStroke_2.Transparency = 0.9200000166893005
-			UIStroke_2.Parent = Section
+    UICorner_5.CornerRadius = UDim.new(0, 4)
+    UICorner_5.Parent = Section
 
-			NameSection.Name = "NameSection"
-			NameSection.Parent = Section
-			NameSection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			NameSection.BackgroundTransparency = 1.000
-			NameSection.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			NameSection.BorderSizePixel = 0
-			NameSection.Size = UDim2.new(1, 0, 0, 30)
+    UIStroke_2.Color = Color3.fromRGB(100, 100, 100)
+    UIStroke_2.Thickness = 2
+    UIStroke_2.Transparency = 0.9200000166893005
+    UIStroke_2.Parent = Section
 
-			Title.Name = "Title"
-			Title.Parent = NameSection
-			Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Title.BackgroundTransparency = 1.000
-			Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Title.BorderSizePixel = 0
-			Title.Size = UDim2.new(1, 0, 1, 0)
-			Title.Font = Enum.Font.GothamBold
-			Title.Text = RealNameSection
-			Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Title.TextSize = 14.000
+    NameSection.Name = "NameSection"
+    NameSection.Parent = Section
+    NameSection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    NameSection.BackgroundTransparency = 1.000
+    NameSection.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    NameSection.BorderSizePixel = 0
+    NameSection.Size = UDim2.new(1, 0, 0, 30)
+    NameSection.Text = ""
+    NameSection.AutoButtonColor = false
 
-			Line_3.Name = "Line"
-			Line_3.Parent = NameSection
-			Line_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Line_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Line_3.BorderSizePixel = 0
-			Line_3.Position = UDim2.new(0, 0, 1, -2)
-			Line_3.Size = UDim2.new(1, 0, 0, 2)
+    LeftIcon.Name = "LeftIcon"
+    LeftIcon.Parent = NameSection
+    LeftIcon.AnchorPoint = Vector2.new(0, 0.5)
+    LeftIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    LeftIcon.BackgroundTransparency = 1.000
+    LeftIcon.Position = UDim2.new(0, 10, 0.5, 0)
+    LeftIcon.Size = UDim2.new(0, 16, 0, 16)
+    LeftIcon.Image = Icon or ""
+    LeftIcon.Visible = (Icon ~= nil and Icon ~= "")
 
-			UIGradient.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)), ColorSequenceKeypoint.new(0.52, Color3.fromRGB(116,18,217)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25)) }
-			UIGradient.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.53), NumberSequenceKeypoint.new(0.51, 0.00), NumberSequenceKeypoint.new(1.00, 0.51) }
-			UIGradient.Parent = Line_3
+    Title.Name = "Title"
+    Title.Parent = NameSection
+    Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Title.BackgroundTransparency = 1.000
+    Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Title.BorderSizePixel = 0
+    Title.Position = UDim2.new(0, (Icon and Icon ~= "" and 32 or 0), 0, 0)
+    Title.Size = UDim2.new(1, (Icon and Icon ~= "" and -32 or 0), 1, 0)
+    Title.Font = Enum.Font.GothamBold
+    Title.Text = RealNameSection
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextSize = 14.000
 
-			SectionList.Name = "SectionList"
-			SectionList.Parent = Section
-			SectionList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			SectionList.BackgroundTransparency = 1.000
-			SectionList.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			SectionList.BorderSizePixel = 0
-			SectionList.Position = UDim2.new(0, 0, 0, 35)
-			SectionList.Size = UDim2.new(1, 0, 1, -35)
+    RightArrow.Name = "RightArrow"
+    RightArrow.Parent = NameSection
+    RightArrow.AnchorPoint = Vector2.new(1, 0.5)
+    RightArrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    RightArrow.BackgroundTransparency = 1.000
+    RightArrow.Position = UDim2.new(1, -10, 0.5, 0)
+    RightArrow.Size = UDim2.new(0, 16, 0, 16)
+    RightArrow.Image = "rbxassetid://100136819093667"
+    RightArrow.Visible = Collapsible or false
 
-			UIPadding_4.Parent = SectionList
-			UIPadding_4.PaddingBottom = UDim.new(0, 7)
-			UIPadding_4.PaddingLeft = UDim.new(0, 7)
-			UIPadding_4.PaddingRight = UDim.new(0, 7)
-			UIPadding_4.PaddingTop = UDim.new(0, 7)
+    Line_3.Name = "Line"
+    Line_3.Parent = NameSection
+    Line_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Line_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Line_3.BorderSizePixel = 0
+    Line_3.Position = UDim2.new(0, 0, 1, -2)
+    Line_3.Size = UDim2.new(1, 0, 0, 2)
 
-			UIListLayout_4.Parent = SectionList
-			UIListLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
-			UIListLayout_4.Padding = UDim.new(0, 6)
-			UIListLayout_4:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-				Section.Size = UDim2.new(1, 0, 0, UIListLayout_4.AbsoluteContentSize.Y + 55)
-			end)
+    UIGradient.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)), ColorSequenceKeypoint.new(0.52, Color3.fromRGB(116,18,217)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25)) }
+    UIGradient.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.53), NumberSequenceKeypoint.new(0.51, 0.00), NumberSequenceKeypoint.new(1.00, 0.51) }
+    UIGradient.Parent = Line_3
+
+    SectionList.Name = "SectionList"
+    SectionList.Parent = Section
+    SectionList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    SectionList.BackgroundTransparency = 1.000
+    SectionList.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    SectionList.BorderSizePixel = 0
+    SectionList.Position = UDim2.new(0, 0, 0, 35)
+    SectionList.Size = UDim2.new(1, 0, 1, -35)
+
+    UIPadding_4.Parent = SectionList
+    UIPadding_4.PaddingBottom = UDim.new(0, 7)
+    UIPadding_4.PaddingLeft = UDim.new(0, 7)
+    UIPadding_4.PaddingRight = UDim.new(0, 7)
+    UIPadding_4.PaddingTop = UDim.new(0, 7)
+
+    UIListLayout_4.Parent = SectionList
+    UIListLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout_4.Padding = UDim.new(0, 6)
+
+    local function UpdateSize()
+        if IsCollapsed then
+            game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, 35)}):Play()
+        else
+            game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, UIListLayout_4.AbsoluteContentSize.Y + 55)}):Play()
+        end
+    end
+
+    UIListLayout_4:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(UpdateSize)
+
+    if Collapsible then
+        NameSection.MouseButton1Click:Connect(function()
+            IsCollapsed = not IsCollapsed
+            local targetRot = IsCollapsed and -90 or 0
+            game:GetService("TweenService"):Create(RightArrow, TweenInfo.new(0.3), {Rotation = targetRot}):Play()
+            UpdateSize()
+        end)
+    end
+
+    SectionFunc.SectionList = SectionList
+    return SectionFunc
+end
 			local SectionFunc = {}
 			function SectionFunc:AddToggle(cftoggle)
 				local cftoggle = Library:MakeConfig({

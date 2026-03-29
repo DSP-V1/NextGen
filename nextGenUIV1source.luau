@@ -706,7 +706,6 @@ end)
         Collapsible = true,
         Icon = ""
     }, cfsection or {})
-
     local IsCollapsed = not cfsection.Opened
     local Section = Instance.new("Frame")
     local UICorner_5 = Instance.new("UICorner")
@@ -724,11 +723,11 @@ end)
     Section.Name = "Section"
     Section.Parent = Layout
     Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Section.BackgroundTransparency = 0.980
+    Section.BackgroundTransparency = 1.000
     Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Section.BorderSizePixel = 0
     Section.Position = UDim2.new(1.36775815, 0, 0.545454562, 0)
-    Section.Size = IsCollapsed and UDim2.new(1, 0, 0, 35) or UDim2.new(1, 0, 0, 55)
+    Section.Size = IsCollapsed and UDim2.new(1, 0, 0, 32) or UDim2.new(1, 0, 0, 55)
     Section.ClipsDescendants = true
 
     UICorner_5.CornerRadius = UDim.new(0, 4)
@@ -736,7 +735,7 @@ end)
 
     UIStroke_2.Color = Color3.fromRGB(100, 100, 100)
     UIStroke_2.Thickness = 2
-    UIStroke_2.Transparency = 0.9200000166893005
+    UIStroke_2.Transparency = 1.000
     UIStroke_2.Parent = Section
 
     NameSection.Name = "NameSection"
@@ -771,7 +770,7 @@ end)
     Title.Text = cfsection.Title
     Title.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title.TextSize = 14.000
-    Title.TextXAlignment = Enum.TextXAlignment.Center
+    Title.TextXAlignment = Enum.TextXAlignment.Left
 
     RightArrow.Name = "RightArrow"
     RightArrow.Parent = NameSection
@@ -816,7 +815,7 @@ end)
     UIListLayout_4.Padding = UDim.new(0, 6)
 
     local function UpdateSize()
-        local TargetSize = IsCollapsed and 35 or (UIListLayout_4.AbsoluteContentSize.Y + 45)
+        local TargetSize = IsCollapsed and 32 or (UIListLayout_4.AbsoluteContentSize.Y + 45)
         game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, TargetSize)}):Play()
     end
 

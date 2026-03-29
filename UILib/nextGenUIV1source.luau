@@ -122,6 +122,7 @@ function Library:NewWindow(ConfigWindow)
 	NextGenUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 	NextGenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     NextGenUI.IgnoreGuiInset = true
+    NextGenUI.ResetOnSpawn = false
 
 	DropShadowHolder.Name = "DropShadowHolder"
 	DropShadowHolder.Parent = NextGenUI

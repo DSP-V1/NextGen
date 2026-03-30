@@ -257,21 +257,31 @@ end
 local function ToggleFade(enabled)
     local tweenService = game:GetService("TweenService")
     local info = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-    local targetTransparency = enabled and 0.07 or 1
+    
+    local targetMainTrans = enabled and 0.07 or 1
     local shadowTransparency = enabled and 0.5 or 1
     
-    tweenService:Create(Main, info, {BackgroundTransparency = targetTransparency}):Play()
+    tweenService:Create(Main, info, {BackgroundTransparency = targetMainTrans}):Play()
     tweenService:Create(DropShadow, info, {ImageTransparency = shadowTransparency}):Play()
     
     for _, child in pairs(Main:GetDescendants()) do
         if child:IsA("TextLabel") or child:IsA("TextButton") or child:IsA("TextBox") then
-            tweenService:Create(child, info, {TextTransparency = enabled and 0 or 1}):Play()
+            local targetTrans = enabled and (child:GetAttribute("OriginalTrans") or 0) or 1
+            tweenService:Create(child, info, {TextTransparency = targetTrans}):Play()
+            
+            if child:IsA("TextButton") or child:IsA("TextBox") then
+                 local bgTrans = enabled and (child:GetAttribute("OriginalBgTrans") or 1) or 1
+                 tweenService:Create(child, info, {BackgroundTransparency = bgTrans}):Play()
+            end
         elseif child:IsA("ImageLabel") or child:IsA("ImageButton") then
-            tweenService:Create(child, info, {ImageTransparency = enabled and 0 or 1}):Play()
-        elseif child:IsA("Frame") and child.Name ~= "Main" then
-            tweenService:Create(child, info, {BackgroundTransparency = enabled and 0 or 1}):Play()
+            local targetTrans = enabled and (child:GetAttribute("OriginalTrans") or 0) or 1
+            tweenService:Create(child, info, {ImageTransparency = targetTrans}):Play()
+        elseif child:IsA("Frame") and child ~= Main then
+            local targetTrans = enabled and (child:GetAttribute("OriginalTrans") or 0.95) or 1
+            tweenService:Create(child, info, {BackgroundTransparency = targetTrans}):Play()
         elseif child:IsA("UIStroke") then
-            tweenService:Create(child, info, {Transparency = enabled and 0.5 or 1}):Play()
+            local targetTrans = enabled and (child:GetAttribute("OriginalTrans") or 0.5) or 1
+            tweenService:Create(child, info, {Transparency = targetTrans}):Play()
         end
     end
 end
@@ -395,9 +405,18 @@ G2L["4"] = Instance.new("UIStroke", G2L["2"]);
 G2L["4"]["Thickness"] = 2;
 G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
 G2L["2"].MouseButton1Click:Connect(function()
-    NextGenUI.Enabled = not NextGenUI.Enabled
+   if not NextGenUI.Enabled then
+        NextGenUI.Enabled = true
+        ToggleFade(true)
+    else
+        ToggleFade(false)
+        task.wait(0.3)
+        NextGenUI.Enabled = false
+    end 
 end)
 Minize.MouseButton1Click:Connect(function()
+    ToggleFade(false)
+    task.wait(0.3)
     NextGenUI.Enabled = false
 end)
 

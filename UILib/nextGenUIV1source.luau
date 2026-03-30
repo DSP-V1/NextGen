@@ -74,7 +74,6 @@ function Library:MakeDraggable(topbarobject, object)
 		end
 	end)
 end
-
 local NewWindow = {}
 function Library:NewWindow(ConfigWindow)
     local function GetIcon(input)
@@ -103,7 +102,7 @@ end
 
 local NextGenUI = Instance.new("ScreenGui")
 local DropShadowHolder = Instance.new("Frame")
-local DropShadow = Instance.new("ImageLabel")
+local DropShadow = Instance.new("ImageLbel")
 local Main = Instance.new("Frame")
 local Top = Instance.new("Frame")
 local Line = Instance.new("Frame")
@@ -761,7 +760,6 @@ DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
 local AllLayouts = 0
   return NewWindow
-end
 	local Tab = {}
     function Tab:AddTab(cfTab)
 	local cfTab = Library:MakeConfig({

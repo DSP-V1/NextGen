@@ -139,6 +139,7 @@ local LayoutName = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
 local DropdownZone = Instance.new("Frame")
 local ResizeHandle = Instance.new("TextButton")
+local ResizeCorner = Instance.new("UICorner")
 
 NextGenUI.Name = "NextGenUI"
 NextGenUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -184,22 +185,25 @@ ResizeHandle.Parent = Main
 ResizeHandle.AnchorPoint = Vector2.new(1, 1)
 ResizeHandle.Position = UDim2.new(1, 0, 1, 0)
 ResizeHandle.Size = UDim2.new(0, 20, 0, 20)
-ResizeHandle.BackgroundTransparency = 1
+ResizeHandle.BackgroundColor3 = Color3.fromRGB(116, 18, 217)
+ResizeHandle.BackgroundTransparency = 0.3
+ResizeHandle.BorderSizePixel = 0
 ResizeHandle.Text = ""
 ResizeHandle.ZIndex = 100
+
+ResizeCorner.CornerRadius = UDim.new(0, 2)
+ResizeCorner.Parent = ResizeHandle
 
 local UserInputService = game:GetService("UserInputService")
 local resizing = false
 local dragStart
 local startSize
-local startPos
 
 ResizeHandle.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         resizing = true
         dragStart = input.Position
         startSize = DropShadowHolder.AbsoluteSize
-        startPos = DropShadowHolder.Position
     end
 end)
 
@@ -207,21 +211,11 @@ UserInputService.InputChanged:Connect(function(input)
     if resizing and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
         local delta = input.Position - dragStart
         
-        local newWidth = math.clamp(startSize.X + delta.X, 400, 800)
-        local newHeight = math.clamp(startSize.Y + delta.Y, 250, 600)
-        
-        local actualDeltaX = newWidth - startSize.X
-        local actualDeltaY = newHeight - startSize.Y
+        local newWidth = math.clamp(startSize.X + (delta.X * 2), 400, 800)
+        local newHeight = math.clamp(startSize.Y + (delta.Y * 2), 250, 600)
         
         DropShadowHolder.Size = UDim2.new(0, newWidth, 0, newHeight)
         Main.Size = UDim2.new(0, newWidth, 0, newHeight)
-        
-        DropShadowHolder.Position = UDim2.new(
-            startPos.X.Scale,
-            startPos.X.Offset + (actualDeltaX / 2),
-            startPos.Y.Scale,
-            startPos.Y.Offset + (actualDeltaY / 2)
-        )
     end
 end)
 

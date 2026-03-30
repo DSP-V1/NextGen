@@ -727,7 +727,7 @@ end)
     Section.Name = "Section"
     Section.Parent = Layout
     Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Section.BackgroundTransparency = 0.7
+    Section.BackgroundTransparency = 1.000
     Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Section.BorderSizePixel = 0
     Section.Position = UDim2.new(1.36775815, 0, 0.545454562, 0)
@@ -739,7 +739,7 @@ end)
 
     UIStroke_2.Color = Color3.fromRGB(100, 100, 100)
     UIStroke_2.Thickness = 2
-    UIStroke_2.Transparency = 0.5
+    UIStroke_2.Transparency = 1.000
     UIStroke_2.Parent = Section
 
     NameSection.Name = "NameSection"
@@ -1689,6 +1689,20 @@ end)
 				Title_5.TextSize = 13.000
 				Title_5.TextXAlignment = Enum.TextXAlignment.Left
 			end
+            function SectionFunc:AddDivider()
+               local DividerLine = Instance.new("Frame")
+               local UIGradientttt = Instance.new("UIGradient")               DividerLine.Name = "Line"
+    DividerLine.Parent = SectionList
+    DividerLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DividerLine.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    DividerLine.BorderSizePixel = 0
+    DividerLine.Position = UDim2.new(0, 0, 1, -2)
+    DividerLine.Size = UDim2.new(1, 0, 0, 2)
+
+    UIGradientttt.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)), ColorSequenceKeypoint.new(0.52, Color3.fromRGB(116,18,217)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25)) }
+    UIGradientttt.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.53), NumberSequenceKeypoint.new(0.51, 0.00), NumberSequenceKeypoint.new(1.00, 0.51) }
+    UIGradientttt.Parent = DividerLine
+            end
 			function SectionFunc:AddParagraph(cfpara)
     local cfpara = Library:MakeConfig({
         Title = "Paragraph < Missing Title >",

@@ -1703,6 +1703,20 @@ end)
     UIGradientttt.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.53), NumberSequenceKeypoint.new(0.51, 0.00), NumberSequenceKeypoint.new(1.00, 0.51) }
     UIGradientttt.Parent = DividerLine
             end
+            function TabFunc:AddDividerTab()
+               local DividerLine_2 = Instance.new("Frame")
+               local UIGradientttt_2 = Instance.new("UIGradient")               DividerLine_2.Name = "Line"
+    DividerLine_2.Parent = Layout
+    DividerLine_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DividerLine_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    DividerLine_2.BorderSizePixel = 0
+    DividerLine_2.Position = UDim2.new(0, 0, 1, -2)
+    DividerLine_2.Size = UDim2.new(1, 0, 0, 2)
+
+    UIGradientttt_2.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)), ColorSequenceKeypoint.new(0.52, Color3.fromRGB(116,18,217)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25)) }
+    UIGradientttt_2.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.53), NumberSequenceKeypoint.new(0.51, 0.00), NumberSequenceKeypoint.new(1.00, 0.51) }
+    UIGradientttt_2.Parent = DividerLine_2
+            end
 			function SectionFunc:AddParagraph(cfpara)
     local cfpara = Library:MakeConfig({
         Title = "Paragraph < Missing Title >",

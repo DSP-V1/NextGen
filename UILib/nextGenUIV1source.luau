@@ -396,11 +396,9 @@ G2L["4"]["Thickness"] = 2;
 G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
 G2L["2"].MouseButton1Click:Connect(function()
     NextGenUI.Enabled = not NextGenUI.Enabled
-    ToggleFade(NextGenUI.Enabled)
 end)
 Minize.MouseButton1Click:Connect(function()
     NextGenUI.Enabled = false
-    ToggleFade(false)
 end)
 
 Icon.Name = "Icon"

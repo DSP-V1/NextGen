@@ -1745,6 +1745,7 @@ end)
     Title_6.Text = cfpara.Title
     Title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title_6.TextSize = 13.000
+    Title_6.RichText = true
     Title_6.TextXAlignment = Enum.TextXAlignment.Left
     Content_4.Name = "Content"
     Content_4.Parent = Paragraph
@@ -1755,6 +1756,7 @@ end)
     Content_4.Text = cfpara.Content
     Content_4.TextColor3 = Color3.fromRGB(100, 100, 100)
     Content_4.TextSize = 12.000
+    Content_4.RichText = true
     Content_4.TextXAlignment = Enum.TextXAlignment.Left
     Content_4.TextYAlignment = Enum.TextYAlignment.Top
     Content_4.TextWrapped = true

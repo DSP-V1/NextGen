@@ -814,7 +814,7 @@ end)
 	RightArrow.BackgroundTransparency = 1.000
 	RightArrow.Position = UDim2.new(1, -10, 0.5, 0)
 	RightArrow.Size = UDim2.new(0, 12, 0, 12)
-	RightArrow.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=6034829308"
+	RightArrow.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=100136819093667"
 	RightArrow.Visible = cfsection.Collapsible
 	RightArrow.Rotation = IsCollapsed and -90 or 0
 

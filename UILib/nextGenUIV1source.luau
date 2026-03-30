@@ -75,8 +75,6 @@ function Library:MakeDraggable(topbarobject, object)
 	end)
 end
 
-
-
 function Library:NewWindow(ConfigWindow)
     local function GetIcon(input)
 	if not input then return "" end
@@ -2128,8 +2126,7 @@ end
     function WindowFunctions:SetTitle(newTitle)
         NameHub.Text = newTitle
     end
-    return WindowFunctions
-  end
+    return WindowFunction
 end
 
 return Library

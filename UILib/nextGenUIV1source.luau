@@ -2116,13 +2116,20 @@ end
 end
 			return SectionFunc
 		end
-
 		return TabFunc
 	end
 	return Tab
-end
-function Library:SetBackgroundTransparency(value)
-    Main.BackgroundTransparency = value
+    local WindowFunctions = {}
+
+    function WindowFunctions:SetBackgroundTransparency(value)
+        Main.BackgroundTransparency = value
+    end
+
+    function WindowFunctions:SetTitle(newTitle)
+        NameHub.Text = newTitle
+    end
+    return WindowFunctions
+  end
 end
 
 return Library

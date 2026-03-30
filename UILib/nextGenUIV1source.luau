@@ -727,7 +727,7 @@ end)
     Section.Name = "Section"
     Section.Parent = Layout
     Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Section.BackgroundTransparency = 1.000
+    Section.BackgroundTransparency = 0.7
     Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Section.BorderSizePixel = 0
     Section.Position = UDim2.new(1.36775815, 0, 0.545454562, 0)
@@ -739,7 +739,7 @@ end)
 
     UIStroke_2.Color = Color3.fromRGB(100, 100, 100)
     UIStroke_2.Thickness = 2
-    UIStroke_2.Transparency = 1.000
+    UIStroke_2.Transparency = 0.5
     UIStroke_2.Parent = Section
 
     NameSection.Name = "NameSection"

@@ -185,7 +185,7 @@ Main.Size = UDim2.new(0, 555, 0, 350)
 
 GlassStroke.Parent = Main
 GlassStroke.Color = Color3.fromRGB(255, 255, 255)
-GlassStroke.Transparency = 0.8
+GlassStroke.Transparency = 0.095
 GlassStroke.Thickness = 1
 GlassStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
@@ -204,7 +204,7 @@ NoiseOverlay.Parent = Main
 NoiseOverlay.Size = UDim2.new(1, 0, 1, 0)
 NoiseOverlay.BackgroundTransparency = 1
 NoiseOverlay.Image = "rbxassetid://13511130634"
-NoiseOverlay.ImageTransparency = 0.85
+NoiseOverlay.ImageTransparency = 0.095
 NoiseOverlay.ScaleType = Enum.ScaleType.Tile
 NoiseOverlay.TileSize = UDim2.new(0, 128, 0, 128)
 NoiseOverlay.ZIndex = 1

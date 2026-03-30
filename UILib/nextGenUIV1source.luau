@@ -754,8 +754,7 @@ DropdownZone.BorderSizePixel = 0
 DropdownZone.Size = UDim2.new(1, 0, 1, 0)
 DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
-local AllLayouts = 0
-    local NewWindow = {}
+local NewWindow = {}
     
     function NewWindow:SetBackgroundTransparency(value)
         Main.BackgroundTransparency = value
@@ -763,6 +762,7 @@ local AllLayouts = 0
     
     return NewWindow 
 end
+local AllLayouts = 0
 	local Tab = {}
     function Tab:AddTab(cfTab)
 	local cfTab = Library:MakeConfig({

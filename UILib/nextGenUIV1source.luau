@@ -1076,10 +1076,10 @@ local AllLayouts = 0
 
 	ToggleCheck.Name = "ToggleCheck"
 	ToggleCheck.Parent = Toggle
-	ToggleCheck.AnchorPoint = Vector2.new(1, 0.5)
+	ToggleCheck.AnchorPoint = Vector2.new(0, 0.5)
 	ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 	ToggleCheck.BorderSizePixel = 0
-	ToggleCheck.Position = UDim2.new(1, -7, 0.5, 0)
+	ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
 	ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
 	ToggleCheck.ZIndex = 6
 
@@ -1088,12 +1088,12 @@ local AllLayouts = 0
 
 	Check.Name = "Check"
 	Check.Parent = ToggleCheck
-	Check.AnchorPoint = Vector2.new(0.5, 0.5)
-	Check.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Check.BackgroundTransparency = 0.6
+	Check.AnchorPoint = Vector2.new(0, 0.5)
+	Check.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+	Check.BackgroundTransparency = 0
 	Check.BorderSizePixel = 0
-	Check.Position = UDim2.new(0, 11, 0.5, 0)
-	Check.Size = UDim2.new(0, 16, 0, 16)
+	Check.Position = UDim2.new(0, 3, 0.5, 0)
+	Check.Size = UDim2.new(0, 30, 0, 16)
 	Check.ZIndex = 8
 
 	UICorner_8.CornerRadius = UDim.new(1, 0)
@@ -1104,8 +1104,6 @@ local AllLayouts = 0
 
 	GlassOverlay.Name = "GlassOverlay"
 	GlassOverlay.Parent = Check
-	GlassOverlay.AnchorPoint = Vector2.new(0.5, 0.5)
-	GlassOverlay.Position = UDim2.new(0.5, 0, 0.5, 0)
 	GlassOverlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	GlassOverlay.BackgroundTransparency = 1.000
 	GlassOverlay.Size = UDim2.new(1, 0, 1, 0)
@@ -1168,7 +1166,7 @@ local AllLayouts = 0
 	LockLabel.AnchorPoint = Vector2.new(0, 0.5)
 	LockLabel.BackgroundTransparency = 1.000
 	LockLabel.Position = UDim2.new(0.5, -15, 0.5, 0)
-	LockLabel.Size = UDim2.new(0, 100, 0, 20)
+	LockLabel.Size = UDim2.new(0, 150, 0, 20)
 	LockLabel.Font = Enum.Font.GothamBold
 	LockLabel.Text = (type(cftoggle.LockedTitle) == "string" and cftoggle.LockedTitle ~= "") and cftoggle.LockedTitle or "Locked"
 	LockLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1183,10 +1181,12 @@ local AllLayouts = 0
 	function ToggleFunc:Set(Boolean)
 		if Boolean then
 			Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(116,18,217))
-			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 44, 0.5, 0))
+			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 22, 0.5, 0))
+			Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(255, 255, 255))
 		else
 			Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(60, 60, 60))
-			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 11, 0.5, 0))
+			Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(200, 200, 200))
+			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 3, 0.5, 0))
 		end
 		self.Value = Boolean
 		if cftoggle.Callback then
@@ -1220,6 +1220,10 @@ local AllLayouts = 0
 		LockLabel.Text = (newText ~= "") and newText or "Locked"
 	end
 
+	function ToggleFunc:Unlock()
+		self:SetLocked(false)
+	end
+
 	function ToggleFunc:Destroy()
 		Toggle:Destroy()
 	end
@@ -1237,8 +1241,8 @@ local AllLayouts = 0
 				isHolding = true
 				dragStartPos = input.Position.X
 				Library:TweenInstance(UIScale, 0.2, "Scale", 1.2)
-				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 0.4)
 				Library:TweenInstance(Check, 0.2, "BackgroundTransparency", 0.6)
+				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 0.4)
 			end
 		end
 	end)
@@ -1263,8 +1267,8 @@ local AllLayouts = 0
 			if isHolding then
 				isHolding = false
 				Library:TweenInstance(UIScale, 0.2, "Scale", 1.0)
+				Library:TweenInstance(Check, 0.2, "BackgroundTransparency", 0)
 				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 1)
-				Library:TweenInstance(Check, 0.2, "BackgroundTransparency", 0.6)
 			end
 		end
 	end)

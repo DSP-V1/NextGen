@@ -191,7 +191,7 @@ ResizeHandle.BorderSizePixel = 0
 ResizeHandle.Text = ""
 ResizeHandle.ZIndex = 100
 
-ResizeCorner.CornerRadius = UDim.new(0, 2)
+ResizeCorner.CornerRadius = UDim.new(0, 4)
 ResizeCorner.Parent = ResizeHandle
 
 local UserInputService = game:GetService("UserInputService")

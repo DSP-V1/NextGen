@@ -1023,120 +1023,256 @@ local AllLayouts = 0
 		end)
 	end
 			local SectionFunc = {}
-			function SectionFunc:AddToggle(cftoggle)
-				local cftoggle = Library:MakeConfig({
-					Title = "Toggle < Missing Title >",
-					Description = "",
-					Default = false,
-					Callback = function()
+            function SectionFunc:AddToggle(cftoggle)
+	local cftoggle = Library:MakeConfig({
+		Title = "Toggle < Missing Title >",
+		Description = "",
+		Default = false,
+		["iOS-26"] = true,
+		Locked = false,
+		LockedTitle = "Locked"
+	}, cftoggle or {})
+	
+	local Toggle = Instance.new("Frame")
+	local UICorner_6 = Instance.new("UICorner")
+	local Title_2 = Instance.new("TextLabel")
+	local ToggleCheck = Instance.new("Frame")
+	local UICorner_7 = Instance.new("UICorner")
+	local Check = Instance.new("Frame")
+	local UICorner_8 = Instance.new("UICorner")
+	local Toggle_Click = Instance.new("TextButton")
+	local Content = Instance.new("TextLabel")
+	local UIScale = Instance.new("UIScale")
+	
+	local GlassOverlay = Instance.new("ImageLabel")
+	local LockOverlay = Instance.new("Frame")
+	local LockCorner = Instance.new("UICorner")
+	local LockIcon = Instance.new("ImageLabel")
+	local LockLabel = Instance.new("TextLabel")
 
-					end
-				}, cftoggle or {})
-				local Toggle = Instance.new("Frame")
-				local UICorner_6 = Instance.new("UICorner")
-				local Title_2 = Instance.new("TextLabel")
-				local ToggleCheck = Instance.new("Frame")
-				local UICorner_7 = Instance.new("UICorner")
-				local Check = Instance.new("Frame")
-				local UICorner_8 = Instance.new("UICorner")
-				local Toggle_Click = Instance.new("TextButton")
-				local Content = Instance.new("TextLabel")
-				Toggle.Name = "Toggle"
-				Toggle.Parent = SectionList
-				Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Toggle.BackgroundTransparency = 0.950
-				Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Toggle.BorderSizePixel = 0
-				Toggle.Size = UDim2.new(1, 0, 0, 35)
+	Toggle.Name = "Toggle"
+	Toggle.Parent = SectionList
+	Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Toggle.BackgroundTransparency = 0.950
+	Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Toggle.BorderSizePixel = 0
+	Toggle.Size = UDim2.new(1, 0, 0, 35)
 
-				UICorner_6.CornerRadius = UDim.new(0, 3)
-				UICorner_6.Parent = Toggle
+	UICorner_6.CornerRadius = UDim.new(0, 3)
+	UICorner_6.Parent = Toggle
 
-				Title_2.Name = "Title"
-				Title_2.Parent = Toggle
-				Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Title_2.BackgroundTransparency = 1.000
-				Title_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Title_2.BorderSizePixel = 0
-				Title_2.Position = UDim2.new(0, 10, 0, 0)
-				Title_2.Size = UDim2.new(1, -60, 1, 0)
-				Title_2.Font = Enum.Font.GothamBold
-				Title_2.Text = cftoggle.Title
-				Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-				Title_2.TextSize = 13.000
-				Title_2.TextXAlignment = Enum.TextXAlignment.Left
+	UIScale.Parent = Toggle
+	UIScale.Scale = 1
 
-				ToggleCheck.Name = "ToggleCheck"
-				ToggleCheck.Parent = Toggle
-				ToggleCheck.AnchorPoint = Vector2.new(0, 0.5)
-				ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-				ToggleCheck.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				ToggleCheck.BorderSizePixel = 0
-				ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
-				ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
+	GlassOverlay.Name = "GlassOverlay"
+	GlassOverlay.Parent = Toggle
+	GlassOverlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	GlassOverlay.BackgroundTransparency = 1.000
+	GlassOverlay.Size = UDim2.new(1, 0, 1, 0)
+	GlassOverlay.Image = "rbxassetid://15623004952"
+	GlassOverlay.ImageTransparency = 1
+	GlassOverlay.ZIndex = 0
 
-				UICorner_7.CornerRadius = UDim.new(1, 0)
-				UICorner_7.Parent = ToggleCheck
+	local GlassCorner = Instance.new("UICorner")
+	GlassCorner.CornerRadius = UDim.new(0, 3)
+	GlassCorner.Parent = GlassOverlay
 
-				Check.Name = "Check"
-				Check.Parent = ToggleCheck
-				Check.AnchorPoint = Vector2.new(0, 0.5)
-				Check.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
-				Check.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Check.BorderSizePixel = 0
-				Check.Position = UDim2.new(0, 3, 0.5, 0)
-				Check.Size = UDim2.new(0, 30, 0, 16)
+	Title_2.Name = "Title"
+	Title_2.Parent = Toggle
+	Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Title_2.BackgroundTransparency = 1.000
+	Title_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Title_2.BorderSizePixel = 0
+	Title_2.Position = UDim2.new(0, 10, 0, 0)
+	Title_2.Size = UDim2.new(1, -60, 1, 0)
+	Title_2.Font = Enum.Font.GothamBold
+	Title_2.Text = cftoggle.Title
+	Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title_2.TextSize = 13.000
+	Title_2.TextXAlignment = Enum.TextXAlignment.Left
 
-				UICorner_8.CornerRadius = UDim.new(1, 0)
-				UICorner_8.Parent = Check
+	ToggleCheck.Name = "ToggleCheck"
+	ToggleCheck.Parent = Toggle
+	ToggleCheck.AnchorPoint = Vector2.new(0, 0.5)
+	ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+	ToggleCheck.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ToggleCheck.BorderSizePixel = 0
+	ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
+	ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
 
-				Toggle_Click.Name = "Toggle_Click"
-				Toggle_Click.Parent = Toggle
-				Toggle_Click.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Toggle_Click.BackgroundTransparency = 1.000
-				Toggle_Click.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Toggle_Click.BorderSizePixel = 0
-				Toggle_Click.Size = UDim2.new(1, 0, 1, 0)
-				Toggle_Click.Font = Enum.Font.SourceSans
-				Toggle_Click.Text = ""
-				Toggle_Click.TextColor3 = Color3.fromRGB(0, 0, 0)
-				Toggle_Click.TextSize = 14.000
+	UICorner_7.CornerRadius = UDim.new(1, 0)
+	UICorner_7.Parent = ToggleCheck
 
-				Content.Name = "Content"
-				Content.Parent = Toggle
-				Content.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Content.BackgroundTransparency = 1.000
-				Content.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Content.BorderSizePixel = 0
-				Content.Position = UDim2.new(0, 10, 0, 22)
-				Content.Size = UDim2.new(1, -60, 1, 0)
-				Content.Font = Enum.Font.GothamBold
-				Content.Text = cftoggle.Description
-				Content.TextColor3 = Color3.fromRGB(100, 100, 100)
-				Content.TextSize = 12.000
-				Content.TextXAlignment = Enum.TextXAlignment.Left
-				Content.TextYAlignment = Enum.TextYAlignment.Top
-				Library:UpdateContent(Content, Title_2, Toggle)
-				local ToggleFunc = { Value = cftoggle.Default }
-				function ToggleFunc:Set(Boolean)
-					if Boolean then
-						Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(116,18,217))
-						Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 22, 0.5, 0))
-						Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(255, 255, 255))
-					else
-						Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(60, 60, 60))
-						Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(200, 200, 200))
-						Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 3, 0.5, 0))
-					end
-					self.Value = Boolean
-					cftoggle.Callback(Boolean)
-				end
+	Check.Name = "Check"
+	Check.Parent = ToggleCheck
+	Check.AnchorPoint = Vector2.new(0, 0.5)
+	Check.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+	Check.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Check.BorderSizePixel = 0
+	Check.Position = UDim2.new(0, 3, 0.5, 0)
+	Check.Size = UDim2.new(0, 30, 0, 16)
 
-				ToggleFunc:Set(ToggleFunc.Value)
-				Toggle_Click.Activated:Connect(function()
-					ToggleFunc:Set(not ToggleFunc.Value)
-				end)
+	UICorner_8.CornerRadius = UDim.new(1, 0)
+	UICorner_8.Parent = Check
+
+	Toggle_Click.Name = "Toggle_Click"
+	Toggle_Click.Parent = Toggle
+	Toggle_Click.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Toggle_Click.BackgroundTransparency = 1.000
+	Toggle_Click.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Toggle_Click.BorderSizePixel = 0
+	Toggle_Click.Size = UDim2.new(1, 0, 1, 0)
+	Toggle_Click.Font = Enum.Font.SourceSans
+	Toggle_Click.Text = ""
+	Toggle_Click.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Toggle_Click.TextSize = 14.000
+	Toggle_Click.ZIndex = 5
+
+	Content.Name = "Content"
+	Content.Parent = Toggle
+	Content.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Content.BackgroundTransparency = 1.000
+	Content.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Content.BorderSizePixel = 0
+	Content.Position = UDim2.new(0, 10, 0, 22)
+	Content.Size = UDim2.new(1, -60, 1, 0)
+	Content.Font = Enum.Font.GothamBold
+	Content.Text = cftoggle.Description
+	Content.TextColor3 = Color3.fromRGB(100, 100, 100)
+	Content.TextSize = 12.000
+	Content.TextXAlignment = Enum.TextXAlignment.Left
+	Content.TextYAlignment = Enum.TextYAlignment.Top
+
+	LockOverlay.Name = "LockOverlay"
+	LockOverlay.Parent = Toggle
+	LockOverlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	LockOverlay.BackgroundTransparency = 0.4
+	LockOverlay.Size = UDim2.new(1, 0, 1, 0)
+	LockOverlay.ZIndex = 10
+	LockOverlay.Visible = cftoggle.Locked
+
+	LockCorner.CornerRadius = UDim.new(0, 3)
+	LockCorner.Parent = LockOverlay
+
+	LockIcon.Name = "LockIcon"
+	LockIcon.Parent = LockOverlay
+	LockIcon.AnchorPoint = Vector2.new(0, 0.5)
+	LockIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	LockIcon.BackgroundTransparency = 1.000
+	LockIcon.Position = UDim2.new(0.5, -40, 0.5, 0)
+	LockIcon.Size = UDim2.new(0, 18, 0, 18)
+	LockIcon.Image = "rbxassetid://7733658504"
+	LockIcon.ZIndex = 11
+
+	LockLabel.Name = "LockLabel"
+	LockLabel.Parent = LockOverlay
+	LockLabel.AnchorPoint = Vector2.new(0, 0.5)
+	LockLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	LockLabel.BackgroundTransparency = 1.000
+	LockLabel.Position = UDim2.new(0.5, -15, 0.5, 0)
+	LockLabel.Size = UDim2.new(0, 100, 0, 20)
+	LockLabel.Font = Enum.Font.GothamBold
+	LockLabel.Text = cftoggle.LockedTitle ~= "" and cftoggle.LockedTitle or "Locked"
+	LockLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	LockLabel.TextSize = 13.000
+	LockLabel.TextXAlignment = Enum.TextXAlignment.Left
+	LockLabel.ZIndex = 11
+
+	Library:UpdateContent(Content, Title_2, Toggle)
+	local ToggleFunc = { Value = cftoggle.Default }
+
+	function ToggleFunc:Set(Boolean)
+		if Boolean then
+			Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(116,18,217))
+			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 22, 0.5, 0))
+			Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(255, 255, 255))
+		else
+			Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(60, 60, 60))
+			Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(200, 200, 200))
+			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 3, 0.5, 0))
+		end
+		self.Value = Boolean
+		if cftoggle.Callback then
+			cftoggle.Callback(Boolean)
+		end
+	end
+
+	function ToggleFunc:SetTitle(text)
+		Title_2.Text = text
+		cftoggle.Title = text
+	end
+
+	function ToggleFunc:SetDescription(text)
+		Content.Text = text
+		cftoggle.Description = text
+		Library:UpdateContent(Content, Title_2, Toggle)
+	end
+
+	function ToggleFunc:SetValue(val)
+		self:Set(val)
+	end
+
+	function ToggleFunc:SetLocked(val)
+		cftoggle.Locked = val
+		LockOverlay.Visible = val
+	end
+
+	function ToggleFunc:SetLockedTitle(text)
+		cftoggle.LockedTitle = text
+		LockLabel.Text = text ~= "" and text or "Locked"
+	end
+
+	function ToggleFunc:Destroy()
+		Toggle:Destroy()
+	end
+
+	ToggleFunc:Set(ToggleFunc.Value)
+
+	local UserInputService = game:GetService("UserInputService")
+	local isHolding = false
+	local dragStartPos = nil
+
+	Toggle_Click.InputBegan:Connect(function(input)
+		if cftoggle.Locked then return end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			if cftoggle["iOS-26"] then
+				isHolding = true
+				dragStartPos = input.Position.X
+				Library:TweenInstance(UIScale, 0.2, "Scale", 1.2)
+				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 0.6)
+				Library:TweenInstance(Toggle, 0.2, "BackgroundTransparency", 0.7)
 			end
+		end
+	end)
+
+	UserInputService.InputChanged:Connect(function(input)
+		if isHolding and cftoggle["iOS-26"] and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+			local delta = input.Position.X - dragStartPos
+			if math.abs(delta) > 30 then
+				local desiredState = delta > 0
+				if ToggleFunc.Value ~= desiredState then
+					ToggleFunc:Set(desiredState)
+					dragStartPos = input.Position.X
+				end
+			end
+		end
+	end)
+
+	UserInputService.InputEnded:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			if isHolding then
+				isHolding = false
+				Library:TweenInstance(UIScale, 0.2, "Scale", 1.0)
+				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 1)
+				Library:TweenInstance(Toggle, 0.2, "BackgroundTransparency", 0.950)
+			end
+		end
+	end)
+
+	Toggle_Click.Activated:Connect(function()
+		if cftoggle.Locked then return end
+		ToggleFunc:Set(not ToggleFunc.Value)
+	end)
 
 			function SectionFunc:AddButton(cfbutton)
 				local cfbutton = Library:MakeConfig({

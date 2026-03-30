@@ -617,101 +617,124 @@ end)
 	self:MakeDraggable(Top, DropShadowHolder)
 	local AllLayouts = 0
 	local Tab = {}
-	function Tab:AddTab(t)
-		local TabDisable = Instance.new("Frame")
-		local Choose_2 = Instance.new("Frame")
-		local UICorner_4 = Instance.new("UICorner")
-		local NameTab_2 = Instance.new("TextLabel")
-		local Click_Tab_2 = Instance.new("TextButton")
-		local Layout = Instance.new("ScrollingFrame")
-		local UIPadding_3 = Instance.new("UIPadding")
-		local UIListLayout_3 = Instance.new("UIListLayout")
-		TabDisable.Name = "TabDisable"
-		TabDisable.Parent = ScrollingTab
-		TabDisable.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		TabDisable.BackgroundTransparency = 1.000
-		TabDisable.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		TabDisable.BorderSizePixel = 0
-		TabDisable.Size = UDim2.new(1, 0, 0, 25)
+    function Tab:AddTab(cfTab)
+	local cfTab = Library:MakeConfig({
+		Title = "Tab < Missing Title >",
+		Border = true,
+		Icon = ""
+	}, cfTab or {})
+	local t = cfTab.Title
+	local TabDisable = Instance.new("Frame")
+	local Choose_2 = Instance.new("Frame")
+	local UICorner_4 = Instance.new("UICorner")
+	local NameTab_2 = Instance.new("TextLabel")
+	local Click_Tab_2 = Instance.new("TextButton")
+	local Layout = Instance.new("ScrollingFrame")
+	local UIPadding_3 = Instance.new("UIPadding")
+	local UIListLayout_3 = Instance.new("UIListLayout")
+	local TabIcon = Instance.new("ImageLabel")
+	local TabStroke = Instance.new("UIStroke")
 
-		Choose_2.Name = "Choose"
-		Choose_2.Parent = TabDisable
-		Choose_2.BackgroundColor3 = Color3.fromRGB(116,18,217)
-		Choose_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Choose_2.BorderSizePixel = 0
-		Choose_2.Position = UDim2.new(0, 0, 0, 5)
-		Choose_2.Size = UDim2.new(0, 4, 0, 15)
-		Choose_2.Visible = false
+	TabDisable.Name = "TabDisable"
+	TabDisable.Parent = ScrollingTab
+	TabDisable.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	TabDisable.BackgroundTransparency = 1.000
+	TabDisable.BorderSizePixel = 0
+	TabDisable.Size = UDim2.new(1, -10, 0, 30)
 
-		UICorner_4.CornerRadius = UDim.new(1, 0)
-		UICorner_4.Parent = Choose_2
+	TabStroke.Parent = TabDisable
+	TabStroke.Thickness = 1
+	TabStroke.Color = Color3.fromRGB(255, 255, 255)
+	TabStroke.Transparency = 0.8
+	TabStroke.Enabled = cfTab.Border
 
-		NameTab_2.Name = "NameTab"
-		NameTab_2.Parent = TabDisable
-		NameTab_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		NameTab_2.BackgroundTransparency = 1.000
-		NameTab_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		NameTab_2.BorderSizePixel = 0
+	Choose_2.Name = "Choose"
+	Choose_2.Parent = TabDisable
+	Choose_2.BackgroundColor3 = Color3.fromRGB(116, 18, 217)
+	Choose_2.BorderSizePixel = 0
+	Choose_2.Position = UDim2.new(0, 2, 0, 7)
+	Choose_2.Size = UDim2.new(0, 3, 0, 16)
+	Choose_2.Visible = false
+	UICorner_4.CornerRadius = UDim.new(1, 0)
+	UICorner_4.Parent = Choose_2
+
+	local iconAsset = GetIcon(cfTab.Icon)
+	if iconAsset then
+		TabIcon.Name = "TabIcon"
+		TabIcon.Parent = TabDisable
+		TabIcon.BackgroundTransparency = 1.000
+		TabIcon.Position = UDim2.new(0, 12, 0, 7)
+		TabIcon.Size = UDim2.new(0, 16, 0, 16)
+		TabIcon.Image = iconAsset
+		TabIcon.ImageTransparency = 0.3
+		NameTab_2.Position = UDim2.new(0, 35, 0, 0)
+		NameTab_2.Size = UDim2.new(1, -35, 1, 0)
+	else
 		NameTab_2.Position = UDim2.new(0, 15, 0, 0)
 		NameTab_2.Size = UDim2.new(1, -15, 1, 0)
-		NameTab_2.Font = Enum.Font.GothamBold
-		NameTab_2.Text = t
-		NameTab_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-		NameTab_2.TextSize = 12.000
-		NameTab_2.TextTransparency = 0.300
-		NameTab_2.TextXAlignment = Enum.TextXAlignment.Left
+	end
 
-		Click_Tab_2.Name = "Click_Tab"
-		Click_Tab_2.Parent = TabDisable
-		Click_Tab_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Click_Tab_2.BackgroundTransparency = 1.000
-		Click_Tab_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Click_Tab_2.BorderSizePixel = 0
-		Click_Tab_2.Size = UDim2.new(1, 0, 1, 0)
-		Click_Tab_2.Font = Enum.Font.SourceSans
-		Click_Tab_2.Text = ""
-		Click_Tab_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-		Click_Tab_2.TextSize = 14.000
+	NameTab_2.Name = "NameTab"
+	NameTab_2.Parent = TabDisable
+	NameTab_2.BackgroundTransparency = 1.000
+	NameTab_2.Font = Enum.Font.GothamBold
+	NameTab_2.Text = t
+	NameTab_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+	NameTab_2.TextSize = 12.000
+	NameTab_2.TextTransparency = 0.300
+	NameTab_2.TextXAlignment = Enum.TextXAlignment.Left
 
-		Layout.Name = "Layout"
-		Layout.Parent = LayoutList
-		Layout.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Layout.BackgroundTransparency = 1.000
-		Layout.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Layout.BorderSizePixel = 0
-		Layout.Selectable = false
-		Layout.Size = UDim2.new(1, 0, 1, 0)
-		Layout.CanvasSize = UDim2.new(0, 0, 1, 0)
-		Layout.ScrollBarThickness = 0
-		Layout.LayoutOrder = AllLayouts
-		Library:UpdateScrolling(Layout, UIListLayout_3)
-		UIPadding_3.Parent = Layout
-		UIPadding_3.PaddingBottom = UDim.new(0, 7)
-		UIPadding_3.PaddingLeft = UDim.new(0, 10)
-		UIPadding_3.PaddingRight = UDim.new(0, 7)
+	Click_Tab_2.Name = "Click_Tab"
+	Click_Tab_2.Parent = TabDisable
+	Click_Tab_2.BackgroundTransparency = 1.000
+	Click_Tab_2.Size = UDim2.new(1, 0, 1, 0)
+	Click_Tab_2.Text = ""
 
-		UIListLayout_3.Parent = Layout
-		UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout_3.Padding = UDim.new(0, 10)
-		if AllLayouts == 0 then
-			NameTab_2.TextTransparency = 0
-			Choose_2.Visible = true
-			UIPageLayout:JumpToIndex(0)
-			TextLabel.Text = t
-		end
-		Click_Tab_2.Activated:Connect(function()
-			TextLabel.Text = t
-			for i, v in next, ScrollingTab:GetChildren() do
-				if v:IsA("Frame") then
-					Library:TweenInstance(v.NameTab, 0.3, "TextTransparency", 0.3)
-					v.Choose.Visible = false
+	Layout.Name = "Layout"
+	Layout.Parent = LayoutList
+	Layout.BackgroundTransparency = 1.000
+	Layout.BorderSizePixel = 0
+	Layout.Size = UDim2.new(1, 0, 1, 0)
+	Layout.CanvasSize = UDim2.new(0, 0, 0, 0)
+	Layout.ScrollBarThickness = 0
+	Layout.LayoutOrder = AllLayouts
+	Library:UpdateScrolling(Layout, UIListLayout_3)
+
+	UIPadding_3.Parent = Layout
+	UIPadding_3.PaddingBottom = UDim.new(0, 7)
+	UIPadding_3.PaddingLeft = UDim.new(0, 10)
+	UIPadding_3.PaddingRight = UDim.new(0, 7)
+
+	UIListLayout_3.Parent = Layout
+	UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayout_3.Padding = UDim.new(0, 10)
+
+	if AllLayouts == 0 then
+		NameTab_2.TextTransparency = 0
+		if TabIcon then TabIcon.ImageTransparency = 0 end
+		Choose_2.Visible = true
+		UIPageLayout:JumpToIndex(0)
+		TextLabel.Text = t
+	end
+
+	Click_Tab_2.Activated:Connect(function()
+		TextLabel.Text = t
+		for i, v in next, ScrollingTab:GetChildren() do
+			if v:IsA("Frame") and v:FindFirstChild("NameTab") then
+				Library:TweenInstance(v.NameTab, 0.3, "TextTransparency", 0.3)
+				if v:FindFirstChild("TabIcon") then
+					Library:TweenInstance(v.TabIcon, 0.3, "ImageTransparency", 0.3)
 				end
+				v.Choose.Visible = false
 			end
-			Library:TweenInstance(NameTab_2, 0.2, "TextTransparency", 0)
-			UIPageLayout:JumpToIndex(Layout.LayoutOrder)
-			Choose_2.Visible = true
-		end)
-		AllLayouts = AllLayouts + 1
+		end
+		Library:TweenInstance(NameTab_2, 0.2, "TextTransparency", 0)
+		if TabIcon then Library:TweenInstance(TabIcon, 0.2, "ImageTransparency", 0) end
+		UIPageLayout:JumpToIndex(Layout.LayoutOrder)
+		Choose_2.Visible = true
+	end)
+
+	AllLayouts = AllLayouts + 1
 		local TabFunc = {}
         function TabFunc:AddSection(cfsection)
     local cfsection = Library:MakeConfig({

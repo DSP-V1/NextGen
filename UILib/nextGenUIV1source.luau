@@ -1284,8 +1284,6 @@ local AllLayouts = 0
 			ToggleFunc:Set(not ToggleFunc.Value)
 		end
 	end)
-
-	return ToggleFunc
 			function SectionFunc:AddButton(cfbutton)
 				local cfbutton = Library:MakeConfig({
 					Title = "Button < Missing Title >",
@@ -2111,6 +2109,7 @@ local AllLayouts = 0
         Content_4.Text = args
     end
     return ParaFunc
+    return ToggleFunc
 end
 			return SectionFunc
 		end

@@ -2117,16 +2117,16 @@ end
 		return TabFunc
 	end
 	return Tab
-    local WindowFunctions = {}
+    local ConfigWindow = {}
 
-    function WindowFunctions:SetBackgroundTransparency(value)
+    function ConfigWindow:SetBackgroundTransparency(value)
         Main.BackgroundTransparency = value
     end
 
-    function WindowFunctions:SetTitle(newTitle)
+    function ConfigWindow:SetTitle(newTitle)
         NameHub.Text = newTitle
     end
-    return WindowFunction
+    return ConfigWindow
 end
 
 return Library

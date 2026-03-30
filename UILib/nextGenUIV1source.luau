@@ -518,7 +518,7 @@ end)
 	IconSearch.BackgroundTransparency = 1.000
 	IconSearch.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	IconSearch.BorderSizePixel = 0
-	IconSearch.Position = UDim2.new(0, 10, 0.5, 0)
+	IconSearch.Position = UDim2.new(0, 5, 0.5, 0)
 	IconSearch.Size = UDim2.new(0, 15, 0, 15)
 	IconSearch.Image = "rbxassetid://71309835376233"
 
@@ -529,8 +529,8 @@ end)
 	SearchBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	SearchBox.BorderSizePixel = 0
 	SearchBox.ClipsDescendants = true
-	SearchBox.Position = UDim2.new(0, 35, 0, 0)
-	SearchBox.Size = UDim2.new(1, -35, 1, 0)
+	SearchBox.Position = UDim2.new(0, 23, 0, 0)
+	SearchBox.Size = UDim2.new(1, -25, 1, 0)
 	SearchBox.Font = Enum.Font.GothamBold
 	SearchBox.PlaceholderText = "Search section or function"
 	SearchBox.Text = ""
@@ -641,15 +641,16 @@ end)
 	TabDisable.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	TabDisable.BackgroundTransparency = 1.000
 	TabDisable.BorderSizePixel = 0
-	TabDisable.Size = UDim2.new(1, -10, 0, 30)
+	TabDisable.Size = UDim2.new(1, 0, 0, 30)
 
     TabUICorner.Name = "TabUICorner"
     TabUICorner.Parent = TabDisable
+    TabUICorner.CornerRadius = UDim.new(0, 4)
 
 	TabStroke.Parent = TabDisable
 	TabStroke.Thickness = 1
-	TabStroke.Color = Color3.fromRGB(129, 129, 129)
-	TabStroke.Transparency = 0.8
+	TabStroke.Color = Color3.fromRGB(120, 120, 120)
+	TabStroke.Transparency = 0.9
 	TabStroke.Enabled = cfTab.Border
 
 	Choose_2.Name = "Choose"
@@ -776,7 +777,7 @@ end)
 
     UIStroke_2.Color = Color3.fromRGB(100, 100, 100)
     UIStroke_2.Thickness = 2
-    UIStroke_2.Transparency = 1.000
+    UIStroke_2.Transparency = 0.9
     UIStroke_2.Parent = Section
 
     NameSection.Name = "NameSection"

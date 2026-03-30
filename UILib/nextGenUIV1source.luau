@@ -102,7 +102,7 @@ end
 
 local NextGenUI = Instance.new("ScreenGui")
 local DropShadowHolder = Instance.new("Frame")
-local DropShadow = Instance.new("ImageLbel")
+local DropShadow = Instance.new("ImageLabel")
 local Main = Instance.new("Frame")
 local Top = Instance.new("Frame")
 local Line = Instance.new("Frame")
@@ -183,7 +183,7 @@ Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 555, 0, 350)
 
-local function NewWindow:SetBackgroundTransparency(value)
+function NewWindow:SetBackgroundTransparency(value)
 	Main.BackgroundTransparency = value
 end
 
@@ -760,6 +760,7 @@ DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
 local AllLayouts = 0
   return NewWindow
+end
 	local Tab = {}
     function Tab:AddTab(cfTab)
 	local cfTab = Library:MakeConfig({

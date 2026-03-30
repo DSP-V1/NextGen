@@ -85,8 +85,8 @@ function Library:NewWindow(ConfigWindow)
 	return input
 end
 	local ConfigWindow = self:MakeConfig({
-		Title = Config.Title or "NextGen Hub",
-		Description = Config.Description or "By DSPV1",
+		Title = "NextGen Hub",
+		Description = "By DSPV1",
         Icon = GetIcon(Config.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
 	}, ConfigWindow or {})
 	local NextGenUI = Instance.new("ScreenGui")

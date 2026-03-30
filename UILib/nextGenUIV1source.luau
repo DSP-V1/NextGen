@@ -1030,7 +1030,8 @@ local AllLayouts = 0
 		Default = false,
 		["iOS-26"] = true,
 		Locked = false,
-		LockedTitle = "Locked"
+		LockedTitle = "This is not locked",
+		Callback = function() end
 	}, cftoggle or {})
 	
 	local Toggle = Instance.new("Frame")
@@ -1045,6 +1046,7 @@ local AllLayouts = 0
 	local UIScale = Instance.new("UIScale")
 	
 	local GlassOverlay = Instance.new("ImageLabel")
+	local GlassCorner = Instance.new("UICorner")
 	local LockOverlay = Instance.new("Frame")
 	local LockCorner = Instance.new("UICorner")
 	local LockIcon = Instance.new("ImageLabel")
@@ -1073,7 +1075,6 @@ local AllLayouts = 0
 	GlassOverlay.ImageTransparency = 1
 	GlassOverlay.ZIndex = 0
 
-	local GlassCorner = Instance.new("UICorner")
 	GlassCorner.CornerRadius = UDim.new(0, 3)
 	GlassCorner.Parent = GlassOverlay
 
@@ -1086,7 +1087,7 @@ local AllLayouts = 0
 	Title_2.Position = UDim2.new(0, 10, 0, 0)
 	Title_2.Size = UDim2.new(1, -60, 1, 0)
 	Title_2.Font = Enum.Font.GothamBold
-	Title_2.Text = cftoggle.Title
+	Title_2.Text = cftoggle.Title or ""
 	Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Title_2.TextSize = 13.000
 	Title_2.TextXAlignment = Enum.TextXAlignment.Left
@@ -1137,7 +1138,7 @@ local AllLayouts = 0
 	Content.Position = UDim2.new(0, 10, 0, 22)
 	Content.Size = UDim2.new(1, -60, 1, 0)
 	Content.Font = Enum.Font.GothamBold
-	Content.Text = cftoggle.Description
+	Content.Text = cftoggle.Description or ""
 	Content.TextColor3 = Color3.fromRGB(100, 100, 100)
 	Content.TextSize = 12.000
 	Content.TextXAlignment = Enum.TextXAlignment.Left
@@ -1149,7 +1150,7 @@ local AllLayouts = 0
 	LockOverlay.BackgroundTransparency = 0.4
 	LockOverlay.Size = UDim2.new(1, 0, 1, 0)
 	LockOverlay.ZIndex = 10
-	LockOverlay.Visible = cftoggle.Locked
+	LockOverlay.Visible = cftoggle.Locked == true
 
 	LockCorner.CornerRadius = UDim.new(0, 3)
 	LockCorner.Parent = LockOverlay
@@ -1172,14 +1173,20 @@ local AllLayouts = 0
 	LockLabel.Position = UDim2.new(0.5, -15, 0.5, 0)
 	LockLabel.Size = UDim2.new(0, 100, 0, 20)
 	LockLabel.Font = Enum.Font.GothamBold
-	LockLabel.Text = cftoggle.LockedTitle ~= "" and cftoggle.LockedTitle or "Locked"
+	
+	local safeLockedTitle = cftoggle.LockedTitle
+	if type(safeLockedTitle) ~= "string" or safeLockedTitle == "" then
+		safeLockedTitle = "Locked"
+	end
+	LockLabel.Text = safeLockedTitle
 	LockLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	LockLabel.TextSize = 13.000
 	LockLabel.TextXAlignment = Enum.TextXAlignment.Left
 	LockLabel.ZIndex = 11
 
 	Library:UpdateContent(Content, Title_2, Toggle)
-	local ToggleFunc = { Value = cftoggle.Default }
+	
+	local ToggleFunc = { Value = cftoggle.Default == true }
 
 	function ToggleFunc:Set(Boolean)
 		if Boolean then
@@ -1198,28 +1205,29 @@ local AllLayouts = 0
 	end
 
 	function ToggleFunc:SetTitle(text)
-		Title_2.Text = text
-		cftoggle.Title = text
+		Title_2.Text = tostring(text)
+		cftoggle.Title = tostring(text)
 	end
 
 	function ToggleFunc:SetDescription(text)
-		Content.Text = text
-		cftoggle.Description = text
+		Content.Text = tostring(text)
+		cftoggle.Description = tostring(text)
 		Library:UpdateContent(Content, Title_2, Toggle)
 	end
 
 	function ToggleFunc:SetValue(val)
-		self:Set(val)
+		self:Set(val == true)
 	end
 
 	function ToggleFunc:SetLocked(val)
-		cftoggle.Locked = val
-		LockOverlay.Visible = val
+		cftoggle.Locked = val == true
+		LockOverlay.Visible = cftoggle.Locked
 	end
 
 	function ToggleFunc:SetLockedTitle(text)
-		cftoggle.LockedTitle = text
-		LockLabel.Text = text ~= "" and text or "Locked"
+		local newText = tostring(text)
+		cftoggle.LockedTitle = newText
+		LockLabel.Text = (newText ~= "") and newText or "Locked"
 	end
 
 	function ToggleFunc:Destroy()
@@ -1230,7 +1238,7 @@ local AllLayouts = 0
 
 	local UserInputService = game:GetService("UserInputService")
 	local isHolding = false
-	local dragStartPos = nil
+	local dragStartPos = 0
 
 	Toggle_Click.InputBegan:Connect(function(input)
 		if cftoggle.Locked then return end
@@ -1247,12 +1255,14 @@ local AllLayouts = 0
 
 	UserInputService.InputChanged:Connect(function(input)
 		if isHolding and cftoggle["iOS-26"] and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-			local delta = input.Position.X - dragStartPos
-			if math.abs(delta) > 30 then
-				local desiredState = delta > 0
-				if ToggleFunc.Value ~= desiredState then
-					ToggleFunc:Set(desiredState)
-					dragStartPos = input.Position.X
+			if input.Position then
+				local delta = input.Position.X - dragStartPos
+				if math.abs(delta) > 30 then
+					local desiredState = delta > 0
+					if ToggleFunc.Value ~= desiredState then
+						ToggleFunc:Set(desiredState)
+						dragStartPos = input.Position.X
+					end
 				end
 			end
 		end
@@ -1273,7 +1283,7 @@ local AllLayouts = 0
 		if cftoggle.Locked then return end
 		ToggleFunc:Set(not ToggleFunc.Value)
 	end)
-
+end
 			function SectionFunc:AddButton(cfbutton)
 				local cfbutton = Library:MakeConfig({
 					Title = "Button < Missing Title >",

@@ -814,23 +814,21 @@ end)
 	RightArrow.BackgroundTransparency = 1.000
 	RightArrow.Position = UDim2.new(1, -10, 0.5, 0)
 	RightArrow.Size = UDim2.new(0, 12, 0, 12)
-	RightArrow.Image = "rbxassetid://6034829308"
+	RightArrow.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=6034829308"
 	RightArrow.Visible = cfsection.Collapsible
 	RightArrow.Rotation = IsCollapsed and -90 or 0
 
 	Line_3.Name = "Line"
-	Line_3.Parent = NameSection
-	Line_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Line_3.BorderSizePixel = 0
-	Line_3.Position = UDim2.new(0, 0, 1, -1)
-	Line_3.Size = UDim2.new(1, 0, 0, 1)
+    Line_3.Parent = NameSection
+    Line_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Line_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Line_3.BorderSizePixel = 0
+    Line_3.Position = UDim2.new(0, 0, 1, -2)
+    Line_3.Size = UDim2.new(1, 0, 0, 2)
 
-	UIGradient.Color = ColorSequence.new{
-		ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)),
-		ColorSequenceKeypoint.new(0.5, Color3.fromRGB(116, 18, 217)),
-		ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25))
-	}
-	UIGradient.Parent = Line_3
+    UIGradient.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)), ColorSequenceKeypoint.new(0.52, Color3.fromRGB(116,18,217)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25)) }
+    UIGradient.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.53), NumberSequenceKeypoint.new(0.51, 0.00), NumberSequenceKeypoint.new(1.00, 0.51) }
+    UIGradient.Parent = Line_3
 
 	SectionList.Name = "SectionList"
 	SectionList.Parent = Section

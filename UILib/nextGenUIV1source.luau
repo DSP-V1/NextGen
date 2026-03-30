@@ -769,7 +769,7 @@ end)
 	Section.BackgroundTransparency = 1.000
 	Section.BorderSizePixel = 0
 	Section.ClipsDescendants = true
-	Section.Size = IsCollapsed and UDim2.new(1, 0, 0, 32) or UDim2.new(1, 0, 0, 32)
+	Section.Size = UDim2.new(1, 0, 0, 32)
 
 	UICorner_5.CornerRadius = UDim.new(0, 4)
 	UICorner_5.Parent = Section
@@ -825,15 +825,19 @@ end)
 	Line_3.Position = UDim2.new(0, 0, 1, -1)
 	Line_3.Size = UDim2.new(1, 0, 0, 1)
 
-	UIGradient.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)), ColorSequenceKeypoint.new(0.52, Color3.fromRGB(116,18,217)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25)) }
-    UIGradient.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.53), NumberSequenceKeypoint.new(0.51, 0.00), NumberSequenceKeypoint.new(1.00, 0.51) }
-    UIGradient.Parent = Line_3
+	UIGradient.Color = ColorSequence.new{
+		ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)),
+		ColorSequenceKeypoint.new(0.5, Color3.fromRGB(116, 18, 217)),
+		ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25))
+	}
+	UIGradient.Parent = Line_3
 
 	SectionList.Name = "SectionList"
 	SectionList.Parent = Section
 	SectionList.BackgroundTransparency = 1.000
 	SectionList.Position = UDim2.new(0, 0, 0, 32)
 	SectionList.Size = UDim2.new(1, 0, 0, 0)
+	SectionList.AutomaticSize = Enum.AutomaticSize.Y
 	SectionList.ClipsDescendants = true
 	SectionList.Visible = not IsCollapsed
 
@@ -849,10 +853,14 @@ end)
 
 	local function UpdateSize()
 		local TargetSize = IsCollapsed and 32 or (UIListLayout_4.AbsoluteContentSize.Y + 45)
-		if not IsCollapsed then SectionList.Visible = true end
+		if not IsCollapsed then 
+			SectionList.Visible = true 
+		end
 		game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, TargetSize)}):Play()
 		task.delay(0.3, function()
-			if IsCollapsed then SectionList.Visible = false end
+			if IsCollapsed then 
+				SectionList.Visible = false 
+			end
 		end)
 	end
 
@@ -872,9 +880,11 @@ end)
 	end
 	
 	if not IsCollapsed then
-		task.spawn(UpdateSize)
+		task.spawn(function()
+			task.wait()
+			UpdateSize()
+		end)
 	end
-
 			local SectionFunc = {}
 			function SectionFunc:AddToggle(cftoggle)
 				local cftoggle = Library:MakeConfig({

@@ -87,7 +87,7 @@ end
 	local ConfigWindow = self:MakeConfig({
 		Title = "NextGen Hub",
 		Description = "By DSPV1",
-        Icon = GetIcon(Config.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
+        Icon = GetIcon(ConfigWindow.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
 	}, ConfigWindow or {})
 	local NextGenUI = Instance.new("ScreenGui")
 	local DropShadowHolder = Instance.new("Frame")
@@ -210,7 +210,7 @@ end
 	LogoHub.BorderSizePixel = 0
 	LogoHub.Position = UDim2.new(0, 10, 0, 5)
 	LogoHub.Size = UDim2.new(0, 40, 0, 35)
-	LogoHub.Image = GetIcon(Config.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
+	LogoHub.Image = GetIcon(ConfigWindow.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
 
     local UICornerForLogoHub = Instance.new("UICorner")
     UICornerForLogoHub.Parent = LogoHub

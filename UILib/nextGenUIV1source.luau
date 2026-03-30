@@ -185,10 +185,10 @@ if ConfigWindow.Watermark then
     local WM_Padding = Instance.new("UIPadding")
 
     WatermarkFrame.Name = "Watermark"
-    WatermarkFrame.Parent = wm_cfg.OnGui and NextGenUI or Main
+    WatermarkFrame.Parent = wm_cfg.OnGui and Main or NextGenUI
     WatermarkFrame.BackgroundTransparency = 1
     WatermarkFrame.AutomaticSize = Enum.AutomaticSize.XY
-    WatermarkFrame.ZIndex = 10
+    WatermarkFrame.ZIndex = 100
 
     WM_Layout.Parent = WatermarkFrame
     WM_Layout.FillDirection = Enum.FillDirection.Horizontal
@@ -226,6 +226,7 @@ if ConfigWindow.Watermark then
         WM_IconImg.Size = UDim2.new(0, wm_cfg.Size or 14, 0, wm_cfg.Size or 14)
         WM_IconImg.Image = wm_cfg.IconImage or ""
         WM_IconImg.ImageTransparency = 1 - (wm_cfg.Opacity or 1)
+        WM_IconImg.ZIndex = 101
 
         local WM_Sep = Instance.new("TextLabel")
         WM_Sep.Name = "Separator"
@@ -237,6 +238,7 @@ if ConfigWindow.Watermark then
         WM_Sep.Font = Enum.Font.GothamBold
         WM_Sep.AutomaticSize = Enum.AutomaticSize.XY
         WM_Sep.TextTransparency = 1 - (wm_cfg.Opacity or 1)
+        WM_Sep.ZIndex = 101
     end
 
     local WM_TextLbl = Instance.new("TextLabel")
@@ -249,6 +251,29 @@ if ConfigWindow.Watermark then
     WM_TextLbl.Font = Enum.Font.GothamBold
     WM_TextLbl.AutomaticSize = Enum.AutomaticSize.XY
     WM_TextLbl.TextTransparency = 1 - (wm_cfg.Opacity or 1)
+    WM_TextLbl.ZIndex = 101
+end
+
+local function ToggleFade(enabled)
+    local tweenService = game:GetService("TweenService")
+    local info = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    local targetTransparency = enabled and 0.07 or 1
+    local shadowTransparency = enabled and 0.5 or 1
+    
+    tweenService:Create(Main, info, {BackgroundTransparency = targetTransparency}):Play()
+    tweenService:Create(DropShadow, info, {ImageTransparency = shadowTransparency}):Play()
+    
+    for _, child in pairs(Main:GetDescendants()) do
+        if child:IsA("TextLabel") or child:IsA("TextButton") or child:IsA("TextBox") then
+            tweenService:Create(child, info, {TextTransparency = enabled and 0 or 1}):Play()
+        elseif child:IsA("ImageLabel") or child:IsA("ImageButton") then
+            tweenService:Create(child, info, {ImageTransparency = enabled and 0 or 1}):Play()
+        elseif child:IsA("Frame") and child.Name ~= "Main" then
+            tweenService:Create(child, info, {BackgroundTransparency = enabled and 0 or 1}):Play()
+        elseif child:IsA("UIStroke") then
+            tweenService:Create(child, info, {Transparency = enabled and 0.5 or 1}):Play()
+        end
+    end
 end
 
 UICorner.Parent = Main
@@ -371,9 +396,11 @@ G2L["4"]["Thickness"] = 2;
 G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
 G2L["2"].MouseButton1Click:Connect(function()
     NextGenUI.Enabled = not NextGenUI.Enabled
+    ToggleFade(NextGenUI.Enabled)
 end)
 Minize.MouseButton1Click:Connect(function()
     NextGenUI.Enabled = false
+    ToggleFade(false)
 end)
 
 Icon.Name = "Icon"

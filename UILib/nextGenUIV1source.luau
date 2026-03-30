@@ -75,6 +75,7 @@ function Library:MakeDraggable(topbarobject, object)
 	end)
 end
 
+local NewWindow = {}
 function Library:NewWindow(ConfigWindow)
     local function GetIcon(input)
 	if not input then return "" end
@@ -182,8 +183,6 @@ Main.BorderColor3 = Color3.fromRGB(255, 255, 255)
 Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 555, 0, 350)
-
-local NewWindow = {}
 
 local function NewWindow:SetBackgroundTransparency(value)
 	Main.BackgroundTransparency = value
@@ -2124,6 +2123,8 @@ end
 		return TabFunc
 	end
 	return Tab
+end
+return NewWindow
 end
 
 return Library

@@ -634,6 +634,7 @@ end)
 	local UIListLayout_3 = Instance.new("UIListLayout")
 	local TabIcon = Instance.new("ImageLabel")
 	local TabStroke = Instance.new("UIStroke")
+    local TabUICorner = Instance.new("UICorner")
 
 	TabDisable.Name = "TabDisable"
 	TabDisable.Parent = ScrollingTab
@@ -642,9 +643,12 @@ end)
 	TabDisable.BorderSizePixel = 0
 	TabDisable.Size = UDim2.new(1, -10, 0, 30)
 
+    TabUICorner.Name = "TabUICorner"
+    TabUICorner.Parent = TabDisable
+
 	TabStroke.Parent = TabDisable
 	TabStroke.Thickness = 1
-	TabStroke.Color = Color3.fromRGB(255, 255, 255)
+	TabStroke.Color = Color3.fromRGB(129, 129, 129)
 	TabStroke.Transparency = 0.8
 	TabStroke.Enabled = cfTab.Border
 

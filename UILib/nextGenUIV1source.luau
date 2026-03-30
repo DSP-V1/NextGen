@@ -1285,6 +1285,8 @@ local AllLayouts = 0
 		end
 	end)
 end
+return ToggleFunc
+end
 			function SectionFunc:AddButton(cfbutton)
 				local cfbutton = Library:MakeConfig({
 					Title = "Button < Missing Title >",

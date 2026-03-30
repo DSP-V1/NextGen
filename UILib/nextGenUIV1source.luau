@@ -183,6 +183,8 @@ Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 555, 0, 350)
 
+local NewWindow = {}
+
 local function NewWindow:SetBackgroundTransparency(value)
 	Main.BackgroundTransparency = value
 end

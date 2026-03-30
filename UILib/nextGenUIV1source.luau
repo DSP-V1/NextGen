@@ -177,7 +177,7 @@ Main.Name = "Main"
 Main.Parent = DropShadowHolder
 Main.AnchorPoint = Vector2.new(0.5, 0.5)
 Main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Main.BackgroundTransparency = 0.250
+Main.BackgroundTransparency = 0.095
 Main.BorderColor3 = Color3.fromRGB(255, 255, 255)
 Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -2117,16 +2117,6 @@ end
 		return TabFunc
 	end
 	return Tab
-    local ConfigWindow = {}
-
-    function ConfigWindow:SetBackgroundTransparency(value)
-        Main.BackgroundTransparency = value
-    end
-
-    function ConfigWindow:SetTitle(newTitle)
-        NameHub.Text = newTitle
-    end
-    return ConfigWindow
 end
 
 return Library

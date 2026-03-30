@@ -768,8 +768,8 @@ end)
 	Section.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	Section.BackgroundTransparency = 1.000
 	Section.BorderSizePixel = 0
-	Section.Size = IsCollapsed and UDim2.new(1, 0, 0, 32) or UDim2.new(1, 0, 0, 55)
 	Section.ClipsDescendants = true
+	Section.Size = IsCollapsed and UDim2.new(1, 0, 0, 32) or UDim2.new(1, 0, 0, 32)
 
 	UICorner_5.CornerRadius = UDim.new(0, 4)
 	UICorner_5.Parent = Section
@@ -777,6 +777,7 @@ end)
 	UIStroke_2.Color = Color3.fromRGB(100, 100, 100)
 	UIStroke_2.Thickness = 1
 	UIStroke_2.Transparency = 0.8
+	UIStroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	UIStroke_2.Parent = Section
 
 	NameSection.Name = "NameSection"
@@ -787,15 +788,14 @@ end)
 	NameSection.Text = ""
 	NameSection.AutoButtonColor = false
 
-	local iconAsset = GetIcon(cfsection.Icon)
 	LeftIcon.Name = "LeftIcon"
 	LeftIcon.Parent = NameSection
 	LeftIcon.AnchorPoint = Vector2.new(0, 0.5)
 	LeftIcon.BackgroundTransparency = 1.000
 	LeftIcon.Position = UDim2.new(0, 10, 0.5, 0)
 	LeftIcon.Size = UDim2.new(0, 16, 0, 16)
-	LeftIcon.Image = iconAsset or ""
-	LeftIcon.Visible = (iconAsset ~= nil)
+	LeftIcon.Image = cfsection.Icon
+	LeftIcon.Visible = (cfsection.Icon ~= "")
 
 	Title.Name = "Title"
 	Title.Parent = NameSection
@@ -825,18 +825,16 @@ end)
 	Line_3.Position = UDim2.new(0, 0, 1, -1)
 	Line_3.Size = UDim2.new(1, 0, 0, 1)
 
-	UIGradient.Color = ColorSequence.new{
-		ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)),
-		ColorSequenceKeypoint.new(0.5, Color3.fromRGB(116, 18, 217)),
-		ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25))
-	}
-	UIGradient.Parent = Line_3
+	UIGradient.Color = ColorSequence.new { ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)), ColorSequenceKeypoint.new(0.52, Color3.fromRGB(116,18,217)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25)) }
+    UIGradient.Transparency = NumberSequence.new { NumberSequenceKeypoint.new(0.00, 0.53), NumberSequenceKeypoint.new(0.51, 0.00), NumberSequenceKeypoint.new(1.00, 0.51) }
+    UIGradient.Parent = Line_3
 
 	SectionList.Name = "SectionList"
 	SectionList.Parent = Section
 	SectionList.BackgroundTransparency = 1.000
 	SectionList.Position = UDim2.new(0, 0, 0, 32)
 	SectionList.Size = UDim2.new(1, 0, 0, 0)
+	SectionList.ClipsDescendants = true
 	SectionList.Visible = not IsCollapsed
 
 	UIPadding_4.Parent = SectionList
@@ -850,8 +848,8 @@ end)
 	UIListLayout_4.Padding = UDim.new(0, 6)
 
 	local function UpdateSize()
-		local TargetSize = IsCollapsed and 32 or (UIListLayout_4.AbsoluteContentSize.Y + 42)
-		SectionList.Visible = true
+		local TargetSize = IsCollapsed and 32 or (UIListLayout_4.AbsoluteContentSize.Y + 45)
+		if not IsCollapsed then SectionList.Visible = true end
 		game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, TargetSize)}):Play()
 		task.delay(0.3, function()
 			if IsCollapsed then SectionList.Visible = false end
@@ -872,6 +870,11 @@ end)
 			UpdateSize()
 		end)
 	end
+	
+	if not IsCollapsed then
+		task.spawn(UpdateSize)
+	end
+
 			local SectionFunc = {}
 			function SectionFunc:AddToggle(cftoggle)
 				local cftoggle = Library:MakeConfig({

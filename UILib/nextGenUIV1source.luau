@@ -1043,10 +1043,11 @@ local AllLayouts = 0
 	local UICorner_8 = Instance.new("UICorner")
 	local Toggle_Click = Instance.new("TextButton")
 	local Content = Instance.new("TextLabel")
-	local UIScale = Instance.new("UIScale")
 	
+	local UIScale = Instance.new("UIScale")
 	local GlassOverlay = Instance.new("ImageLabel")
 	local GlassCorner = Instance.new("UICorner")
+	
 	local LockOverlay = Instance.new("Frame")
 	local LockCorner = Instance.new("UICorner")
 	local LockIcon = Instance.new("ImageLabel")
@@ -1062,21 +1063,6 @@ local AllLayouts = 0
 	UICorner_6.CornerRadius = UDim.new(0, 3)
 	UICorner_6.Parent = Toggle
 
-	UIScale.Parent = Toggle
-	UIScale.Scale = 1
-
-	GlassOverlay.Name = "GlassOverlay"
-	GlassOverlay.Parent = Toggle
-	GlassOverlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	GlassOverlay.BackgroundTransparency = 1.000
-	GlassOverlay.Size = UDim2.new(1, 0, 1, 0)
-	GlassOverlay.Image = "rbxassetid://15623004952"
-	GlassOverlay.ImageTransparency = 1
-	GlassOverlay.ZIndex = 0
-
-	GlassCorner.CornerRadius = UDim.new(0, 3)
-	GlassCorner.Parent = GlassOverlay
-
 	Title_2.Name = "Title"
 	Title_2.Parent = Toggle
 	Title_2.BackgroundTransparency = 1.000
@@ -1090,15 +1076,30 @@ local AllLayouts = 0
 
 	ToggleCheck.Name = "ToggleCheck"
 	ToggleCheck.Parent = Toggle
-	ToggleCheck.AnchorPoint = Vector2.new(0, 0.5)
+	ToggleCheck.AnchorPoint = Vector2.new(0.5, 0.5)
 	ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 	ToggleCheck.BorderSizePixel = 0
-	ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
+	ToggleCheck.Position = UDim2.new(1, -35, 0.5, 0)
 	ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
 	ToggleCheck.ZIndex = 6
 
 	UICorner_7.CornerRadius = UDim.new(1, 0)
 	UICorner_7.Parent = ToggleCheck
+
+	UIScale.Parent = ToggleCheck
+	UIScale.Scale = 1
+
+	GlassOverlay.Name = "GlassOverlay"
+	GlassOverlay.Parent = ToggleCheck
+	GlassOverlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	GlassOverlay.BackgroundTransparency = 1.000
+	GlassOverlay.Size = UDim2.new(1, 0, 1, 0)
+	GlassOverlay.Image = "rbxassetid://15623004952"
+	GlassOverlay.ImageTransparency = 1
+	GlassOverlay.ZIndex = 7
+
+	GlassCorner.CornerRadius = UDim.new(1, 0)
+	GlassCorner.Parent = GlassOverlay
 
 	local Check_Click = Instance.new("TextButton")
 	Check_Click.Name = "Check_Click"
@@ -1106,7 +1107,7 @@ local AllLayouts = 0
 	Check_Click.BackgroundTransparency = 1
 	Check_Click.Size = UDim2.new(1, 0, 1, 0)
 	Check_Click.Text = ""
-	Check_Click.ZIndex = 7
+	Check_Click.ZIndex = 10
 
 	Check.Name = "Check"
 	Check.Parent = ToggleCheck
@@ -1123,7 +1124,7 @@ local AllLayouts = 0
 	Toggle_Click.Name = "Toggle_Click"
 	Toggle_Click.Parent = Toggle
 	Toggle_Click.BackgroundTransparency = 1.000
-	Toggle_Click.Size = UDim2.new(1, 0, 1, 0)
+	Toggle_Click.Size = UDim2.new(1, -65, 1, 0)
 	Toggle_Click.Text = ""
 	Toggle_Click.ZIndex = 5
 
@@ -1144,7 +1145,7 @@ local AllLayouts = 0
 	LockOverlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	LockOverlay.BackgroundTransparency = 0.4
 	LockOverlay.Size = UDim2.new(1, 0, 1, 0)
-	LockOverlay.ZIndex = 10
+	LockOverlay.ZIndex = 20
 	LockOverlay.Visible = cftoggle.Locked == true
 
 	LockCorner.CornerRadius = UDim.new(0, 3)
@@ -1157,7 +1158,7 @@ local AllLayouts = 0
 	LockIcon.Position = UDim2.new(0.5, -40, 0.5, 0)
 	LockIcon.Size = UDim2.new(0, 18, 0, 18)
 	LockIcon.Image = "rbxassetid://7733658504"
-	LockIcon.ZIndex = 11
+	LockIcon.ZIndex = 21
 
 	LockLabel.Name = "LockLabel"
 	LockLabel.Parent = LockOverlay
@@ -1170,7 +1171,7 @@ local AllLayouts = 0
 	LockLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	LockLabel.TextSize = 13.000
 	LockLabel.TextXAlignment = Enum.TextXAlignment.Left
-	LockLabel.ZIndex = 11
+	LockLabel.ZIndex = 21
 
 	Library:UpdateContent(Content, Title_2, Toggle)
 	
@@ -1236,7 +1237,7 @@ local AllLayouts = 0
 				dragStartPos = input.Position.X
 				Library:TweenInstance(UIScale, 0.2, "Scale", 1.2)
 				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 0.6)
-				Library:TweenInstance(Toggle, 0.2, "BackgroundTransparency", 0.7)
+				Library:TweenInstance(ToggleCheck, 0.2, "BackgroundTransparency", 0.3)
 			end
 		end
 	end)
@@ -1262,7 +1263,7 @@ local AllLayouts = 0
 				isHolding = false
 				Library:TweenInstance(UIScale, 0.2, "Scale", 1.0)
 				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 1)
-				Library:TweenInstance(Toggle, 0.2, "BackgroundTransparency", 0.950)
+				Library:TweenInstance(ToggleCheck, 0.2, "BackgroundTransparency", 0)
 			end
 		end
 	end)

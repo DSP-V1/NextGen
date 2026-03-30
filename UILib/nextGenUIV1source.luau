@@ -760,6 +760,8 @@ DropdownZone.Size = UDim2.new(1, 0, 1, 0)
 DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
 local AllLayouts = 0
+  return NewWindow
+end
 	local Tab = {}
     function Tab:AddTab(cfTab)
 	local cfTab = Library:MakeConfig({
@@ -2123,8 +2125,6 @@ end
 		return TabFunc
 	end
 	return Tab
-end
-return NewWindow
 end
 
 return Library

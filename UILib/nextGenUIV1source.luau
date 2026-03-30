@@ -1076,27 +1076,42 @@ local AllLayouts = 0
 
 	ToggleCheck.Name = "ToggleCheck"
 	ToggleCheck.Parent = Toggle
-	ToggleCheck.AnchorPoint = Vector2.new(0.5, 0.5)
+	ToggleCheck.AnchorPoint = Vector2.new(1, 0.5)
 	ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 	ToggleCheck.BorderSizePixel = 0
-	ToggleCheck.Position = UDim2.new(1, -35, 0.5, 0)
+	ToggleCheck.Position = UDim2.new(1, -7, 0.5, 0)
 	ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
 	ToggleCheck.ZIndex = 6
 
 	UICorner_7.CornerRadius = UDim.new(1, 0)
 	UICorner_7.Parent = ToggleCheck
 
-	UIScale.Parent = ToggleCheck
+	Check.Name = "Check"
+	Check.Parent = ToggleCheck
+	Check.AnchorPoint = Vector2.new(0.5, 0.5)
+	Check.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Check.BackgroundTransparency = 0.6
+	Check.BorderSizePixel = 0
+	Check.Position = UDim2.new(0, 11, 0.5, 0)
+	Check.Size = UDim2.new(0, 16, 0, 16)
+	Check.ZIndex = 8
+
+	UICorner_8.CornerRadius = UDim.new(1, 0)
+	UICorner_8.Parent = Check
+
+	UIScale.Parent = Check
 	UIScale.Scale = 1
 
 	GlassOverlay.Name = "GlassOverlay"
-	GlassOverlay.Parent = ToggleCheck
+	GlassOverlay.Parent = Check
+	GlassOverlay.AnchorPoint = Vector2.new(0.5, 0.5)
+	GlassOverlay.Position = UDim2.new(0.5, 0, 0.5, 0)
 	GlassOverlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	GlassOverlay.BackgroundTransparency = 1.000
 	GlassOverlay.Size = UDim2.new(1, 0, 1, 0)
 	GlassOverlay.Image = "rbxassetid://15623004952"
 	GlassOverlay.ImageTransparency = 1
-	GlassOverlay.ZIndex = 7
+	GlassOverlay.ZIndex = 9
 
 	GlassCorner.CornerRadius = UDim.new(1, 0)
 	GlassCorner.Parent = GlassOverlay
@@ -1108,18 +1123,6 @@ local AllLayouts = 0
 	Check_Click.Size = UDim2.new(1, 0, 1, 0)
 	Check_Click.Text = ""
 	Check_Click.ZIndex = 10
-
-	Check.Name = "Check"
-	Check.Parent = ToggleCheck
-	Check.AnchorPoint = Vector2.new(0, 0.5)
-	Check.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
-	Check.BorderSizePixel = 0
-	Check.Position = UDim2.new(0, 3, 0.5, 0)
-	Check.Size = UDim2.new(0, 30, 0, 16)
-	Check.ZIndex = 8
-
-	UICorner_8.CornerRadius = UDim.new(1, 0)
-	UICorner_8.Parent = Check
 
 	Toggle_Click.Name = "Toggle_Click"
 	Toggle_Click.Parent = Toggle
@@ -1180,12 +1183,10 @@ local AllLayouts = 0
 	function ToggleFunc:Set(Boolean)
 		if Boolean then
 			Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(116,18,217))
-			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 22, 0.5, 0))
-			Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(255, 255, 255))
+			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 44, 0.5, 0))
 		else
 			Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(60, 60, 60))
-			Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(200, 200, 200))
-			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 3, 0.5, 0))
+			Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 11, 0.5, 0))
 		end
 		self.Value = Boolean
 		if cftoggle.Callback then
@@ -1236,8 +1237,8 @@ local AllLayouts = 0
 				isHolding = true
 				dragStartPos = input.Position.X
 				Library:TweenInstance(UIScale, 0.2, "Scale", 1.2)
-				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 0.6)
-				Library:TweenInstance(ToggleCheck, 0.2, "BackgroundTransparency", 0.3)
+				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 0.4)
+				Library:TweenInstance(Check, 0.2, "BackgroundTransparency", 0.6)
 			end
 		end
 	end)
@@ -1246,7 +1247,7 @@ local AllLayouts = 0
 		if isHolding and cftoggle["iOS-26"] and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
 			if input.Position then
 				local delta = input.Position.X - dragStartPos
-				if math.abs(delta) > 30 then
+				if math.abs(delta) > 25 then
 					local desiredState = delta > 0
 					if ToggleFunc.Value ~= desiredState then
 						ToggleFunc:Set(desiredState)
@@ -1263,7 +1264,7 @@ local AllLayouts = 0
 				isHolding = false
 				Library:TweenInstance(UIScale, 0.2, "Scale", 1.0)
 				Library:TweenInstance(GlassOverlay, 0.2, "ImageTransparency", 1)
-				Library:TweenInstance(ToggleCheck, 0.2, "BackgroundTransparency", 0)
+				Library:TweenInstance(Check, 0.2, "BackgroundTransparency", 0.6)
 			end
 		end
 	end)

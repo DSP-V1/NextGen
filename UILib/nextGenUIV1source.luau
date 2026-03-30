@@ -1056,7 +1056,6 @@ local AllLayouts = 0
 	Toggle.Parent = SectionList
 	Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Toggle.BackgroundTransparency = 0.950
-	Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Toggle.BorderSizePixel = 0
 	Toggle.Size = UDim2.new(1, 0, 0, 35)
 
@@ -1080,10 +1079,7 @@ local AllLayouts = 0
 
 	Title_2.Name = "Title"
 	Title_2.Parent = Toggle
-	Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Title_2.BackgroundTransparency = 1.000
-	Title_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Title_2.BorderSizePixel = 0
 	Title_2.Position = UDim2.new(0, 10, 0, 0)
 	Title_2.Size = UDim2.new(1, -60, 1, 0)
 	Title_2.Font = Enum.Font.GothamBold
@@ -1096,45 +1092,44 @@ local AllLayouts = 0
 	ToggleCheck.Parent = Toggle
 	ToggleCheck.AnchorPoint = Vector2.new(0, 0.5)
 	ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-	ToggleCheck.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	ToggleCheck.BorderSizePixel = 0
 	ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
 	ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
+	ToggleCheck.ZIndex = 6
 
 	UICorner_7.CornerRadius = UDim.new(1, 0)
 	UICorner_7.Parent = ToggleCheck
+
+	local Check_Click = Instance.new("TextButton")
+	Check_Click.Name = "Check_Click"
+	Check_Click.Parent = ToggleCheck
+	Check_Click.BackgroundTransparency = 1
+	Check_Click.Size = UDim2.new(1, 0, 1, 0)
+	Check_Click.Text = ""
+	Check_Click.ZIndex = 7
 
 	Check.Name = "Check"
 	Check.Parent = ToggleCheck
 	Check.AnchorPoint = Vector2.new(0, 0.5)
 	Check.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
-	Check.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Check.BorderSizePixel = 0
 	Check.Position = UDim2.new(0, 3, 0.5, 0)
 	Check.Size = UDim2.new(0, 30, 0, 16)
+	Check.ZIndex = 8
 
 	UICorner_8.CornerRadius = UDim.new(1, 0)
 	UICorner_8.Parent = Check
 
 	Toggle_Click.Name = "Toggle_Click"
 	Toggle_Click.Parent = Toggle
-	Toggle_Click.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Toggle_Click.BackgroundTransparency = 1.000
-	Toggle_Click.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Toggle_Click.BorderSizePixel = 0
 	Toggle_Click.Size = UDim2.new(1, 0, 1, 0)
-	Toggle_Click.Font = Enum.Font.SourceSans
 	Toggle_Click.Text = ""
-	Toggle_Click.TextColor3 = Color3.fromRGB(0, 0, 0)
-	Toggle_Click.TextSize = 14.000
 	Toggle_Click.ZIndex = 5
 
 	Content.Name = "Content"
 	Content.Parent = Toggle
-	Content.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Content.BackgroundTransparency = 1.000
-	Content.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Content.BorderSizePixel = 0
 	Content.Position = UDim2.new(0, 10, 0, 22)
 	Content.Size = UDim2.new(1, -60, 1, 0)
 	Content.Font = Enum.Font.GothamBold
@@ -1158,7 +1153,6 @@ local AllLayouts = 0
 	LockIcon.Name = "LockIcon"
 	LockIcon.Parent = LockOverlay
 	LockIcon.AnchorPoint = Vector2.new(0, 0.5)
-	LockIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	LockIcon.BackgroundTransparency = 1.000
 	LockIcon.Position = UDim2.new(0.5, -40, 0.5, 0)
 	LockIcon.Size = UDim2.new(0, 18, 0, 18)
@@ -1168,17 +1162,11 @@ local AllLayouts = 0
 	LockLabel.Name = "LockLabel"
 	LockLabel.Parent = LockOverlay
 	LockLabel.AnchorPoint = Vector2.new(0, 0.5)
-	LockLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	LockLabel.BackgroundTransparency = 1.000
 	LockLabel.Position = UDim2.new(0.5, -15, 0.5, 0)
 	LockLabel.Size = UDim2.new(0, 100, 0, 20)
 	LockLabel.Font = Enum.Font.GothamBold
-	
-	local safeLockedTitle = cftoggle.LockedTitle
-	if type(safeLockedTitle) ~= "string" or safeLockedTitle == "" then
-		safeLockedTitle = "Locked"
-	end
-	LockLabel.Text = safeLockedTitle
+	LockLabel.Text = (type(cftoggle.LockedTitle) == "string" and cftoggle.LockedTitle ~= "") and cftoggle.LockedTitle or "Locked"
 	LockLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	LockLabel.TextSize = 13.000
 	LockLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -1240,7 +1228,7 @@ local AllLayouts = 0
 	local isHolding = false
 	local dragStartPos = 0
 
-	Toggle_Click.InputBegan:Connect(function(input)
+	Check_Click.InputBegan:Connect(function(input)
 		if cftoggle.Locked then return end
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			if cftoggle["iOS-26"] then
@@ -1282,6 +1270,13 @@ local AllLayouts = 0
 	Toggle_Click.Activated:Connect(function()
 		if cftoggle.Locked then return end
 		ToggleFunc:Set(not ToggleFunc.Value)
+	end)
+	
+	Check_Click.Activated:Connect(function()
+		if cftoggle.Locked then return end
+		if not cftoggle["iOS-26"] then
+			ToggleFunc:Set(not ToggleFunc.Value)
+		end
 	end)
 end
 			function SectionFunc:AddButton(cfbutton)

@@ -104,7 +104,6 @@ local NextGenUI = Instance.new("ScreenGui")
 local DropShadowHolder = Instance.new("Frame")
 local DropShadow = Instance.new("ImageLabel")
 local Main = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
 local Top = Instance.new("Frame")
 local Line = Instance.new("Frame")
 local Left = Instance.new("Folder")
@@ -140,6 +139,10 @@ local TextLabel = Instance.new("TextLabel")
 local DropdownZone = Instance.new("Frame")
 local ResizeHandle = Instance.new("TextButton")
 local ResizeCorner = Instance.new("UICorner")
+local GlassStroke = Instance.new("UIStroke")
+local GlassCorner = Instance.new("UICorner")
+local GlassGradient = Instance.new("UIGradient")
+local Blur = Instance.new("BlurEffect")
 
 NextGenUI.Name = "NextGenUI"
 NextGenUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -173,12 +176,31 @@ DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
 Main.Name = "Main"
 Main.Parent = DropShadowHolder
 Main.AnchorPoint = Vector2.new(0.5, 0.5)
-Main.BackgroundColor3 = Color3.fromRGB(9,9,9)
-Main.BackgroundTransparency = 0.070
-Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Main.BackgroundTransparency = 0.250
+Main.BorderColor3 = Color3.fromRGB(255, 255, 255)
 Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 555, 0, 350)
+
+GlassStroke.Parent = Main
+GlassStroke.Color = Color3.fromRGB(255, 255, 255)
+GlassStroke.Transparency = 0.8
+GlassStroke.Thickness = 1
+GlassStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+GlassCorner.Parent = Main
+
+GlassGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(150, 150, 150))
+})
+GlassGradient.Rotation = 45
+GlassGradient.Transparency = NumberSequence.new(0.2, 0.5)
+GlassGradient.Parent = Main
+
+Blur.Parent = game:GetService("Lighting")
+Blur.Size = 10
 
 ResizeHandle.Name = "ResizeHandle"
 ResizeHandle.Parent = Main
@@ -300,8 +322,6 @@ if ConfigWindow.Watermark then
     WM_TextLbl.TextTransparency = 1 - (wm_cfg.Opacity or 1)
     WM_TextLbl.ZIndex = 101
 end
-
-UICorner.Parent = Main
 
 Top.Name = "Top"
 Top.Parent = Main

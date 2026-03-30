@@ -87,7 +87,7 @@ end
 	local ConfigWindow = self:MakeConfig({
     Title = "NextGen Hub",
     Description = "By DSPV1",
-    Icon = GetIcon(ConfigWindow.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289",
+    Icon = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289",
     Watermark = {
         Text = "Watermark!",
         Position = "bottom-left",
@@ -95,7 +95,8 @@ end
         Opacity = 1,
         Padding = 10,
         Icon = true,
-        IconImage = GetIcon(ConfigWindow.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
+        IconImage = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289",
+        OnGui = true
     }
 }, ConfigWindow or {})
 
@@ -144,6 +145,39 @@ NextGenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NextGenUI.IgnoreGuiInset = true
 NextGenUI.ResetOnSpawn = false
 
+DropShadowHolder.Name = "DropShadowHolder"
+DropShadowHolder.Parent = NextGenUI
+DropShadowHolder.AnchorPoint = Vector2.new(0.5, 0.5)
+DropShadowHolder.BackgroundTransparency = 1.000
+DropShadowHolder.BorderSizePixel = 0
+DropShadowHolder.Position = UDim2.new(0.5, 0, 0.5, 0)
+DropShadowHolder.Size = UDim2.new(0, 555, 0, 350)
+DropShadowHolder.ZIndex = 0
+
+DropShadow.Name = "DropShadow"
+DropShadow.Parent = DropShadowHolder
+DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+DropShadow.BackgroundTransparency = 1.000
+DropShadow.BorderSizePixel = 0
+DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+DropShadow.Size = UDim2.new(1, 47, 1, 47)
+DropShadow.ZIndex = 0
+DropShadow.Image = "rbxassetid://6015897843"
+DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+DropShadow.ImageTransparency = 0.500
+DropShadow.ScaleType = Enum.ScaleType.Slice
+DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+
+Main.Name = "Main"
+Main.Parent = DropShadowHolder
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.fromRGB(9,9,9)
+Main.BackgroundTransparency = 0.070
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0.5, 0, 0.5, 0)
+Main.Size = UDim2.new(0, 555, 0, 350)
+
 if ConfigWindow.Watermark then
     local wm_cfg = ConfigWindow.Watermark
     local WatermarkFrame = Instance.new("Frame")
@@ -151,9 +185,10 @@ if ConfigWindow.Watermark then
     local WM_Padding = Instance.new("UIPadding")
 
     WatermarkFrame.Name = "Watermark"
-    WatermarkFrame.Parent = NextGenUI
+    WatermarkFrame.Parent = wm_cfg.OnGui and NextGenUI or Main
     WatermarkFrame.BackgroundTransparency = 1
     WatermarkFrame.AutomaticSize = Enum.AutomaticSize.XY
+    WatermarkFrame.ZIndex = 10
 
     WM_Layout.Parent = WatermarkFrame
     WM_Layout.FillDirection = Enum.FillDirection.Horizontal
@@ -216,39 +251,6 @@ if ConfigWindow.Watermark then
     WM_TextLbl.TextTransparency = 1 - (wm_cfg.Opacity or 1)
 end
 
-DropShadowHolder.Name = "DropShadowHolder"
-DropShadowHolder.Parent = NextGenUI
-DropShadowHolder.AnchorPoint = Vector2.new(0.5, 0.5)
-DropShadowHolder.BackgroundTransparency = 1.000
-DropShadowHolder.BorderSizePixel = 0
-DropShadowHolder.Position = UDim2.new(0.5, 0, 0.5, 0)
-DropShadowHolder.Size = UDim2.new(0, 555, 0, 350)
-DropShadowHolder.ZIndex = 0
-
-DropShadow.Name = "DropShadow"
-DropShadow.Parent = DropShadowHolder
-DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
-DropShadow.BackgroundTransparency = 1.000
-DropShadow.BorderSizePixel = 0
-DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-DropShadow.Size = UDim2.new(1, 47, 1, 47)
-DropShadow.ZIndex = 0
-DropShadow.Image = "rbxassetid://6015897843"
-DropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-DropShadow.ImageTransparency = 0.500
-DropShadow.ScaleType = Enum.ScaleType.Slice
-DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
-
-Main.Name = "Main"
-Main.Parent = DropShadowHolder
-Main.AnchorPoint = Vector2.new(0.5, 0.5)
-Main.BackgroundColor3 = Color3.fromRGB(9,9,9)
-Main.BackgroundTransparency = 0.070
-Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Main.BorderSizePixel = 0
-Main.Position = UDim2.new(0.5, 0, 0.5, 0)
-Main.Size = UDim2.new(0, 555, 0, 350)
-
 UICorner.Parent = Main
 
 Top.Name = "Top"
@@ -293,7 +295,7 @@ LogoHub.BorderColor3 = Color3.fromRGB(0, 0, 0)
 LogoHub.BorderSizePixel = 0
 LogoHub.Position = UDim2.new(0, 10, 0, 5)
 LogoHub.Size = UDim2.new(0, 40, 0, 35)
-LogoHub.Image = GetIcon(ConfigWindow.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
+LogoHub.Image = ConfigWindow.Icon
 
 local UICornerForLogoHub = Instance.new("UICorner")
 UICornerForLogoHub.Parent = LogoHub

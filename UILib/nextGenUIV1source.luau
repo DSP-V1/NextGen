@@ -76,9 +76,18 @@ function Library:MakeDraggable(topbarobject, object)
 end
 
 function Library:NewWindow(ConfigWindow)
+    local function GetIcon(input)
+	if not input then return "" end
+	local id = tostring(input):match("%d+")
+	if id and not tostring(input):find("http") then
+		return "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=" .. id
+	end
+	return input
+end
 	local ConfigWindow = self:MakeConfig({
-		Title = "NextGen Hub",
-		Description = "By DSPV1",
+		Title = Config.Title or "NextGen Hub",
+		Description = Config.Description or "By DSPV1",
+        Icon = GetIcon(Config.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
 	}, ConfigWindow or {})
 	local NextGenUI = Instance.new("ScreenGui")
 	local DropShadowHolder = Instance.new("Frame")
@@ -201,7 +210,7 @@ function Library:NewWindow(ConfigWindow)
 	LogoHub.BorderSizePixel = 0
 	LogoHub.Position = UDim2.new(0, 10, 0, 5)
 	LogoHub.Size = UDim2.new(0, 40, 0, 35)
-	LogoHub.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
+	LogoHub.Image = GetIcon(Config.Icon) or "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289"
 
     local UICornerForLogoHub = Instance.new("UICorner")
     UICornerForLogoHub.Parent = LogoHub

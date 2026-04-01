@@ -1761,6 +1761,7 @@ end)
           Min = 1,
           Increment = 1,
           Default = 1,
+          iOS = true,
           Callback = function() end
         }, cfslider or {})
       local Slider = Instance.new("Frame")
@@ -1835,7 +1836,11 @@ end)
       Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
       Circle.BorderSizePixel = 0
       Circle.Position = UDim2.new(1, 0, 0.5, 0)
-      Circle.Size = UDim2.new(0, 18, 0, 10)
+      if cfslider.iOS == true then
+        Circle.Size = UDim2.new(0, 18, 0, 10)
+      else
+        Circle.Size = UDim2.new(0, 14, 0, 14)
+      end
 
       UICorner_13.CornerRadius = UDim.new(1, 0)
       UICorner_13.Parent = Circle

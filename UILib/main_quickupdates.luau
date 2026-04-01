@@ -1079,7 +1079,7 @@ local AllLayouts = 0
     ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
     ToggleCheck.BorderSizePixel = 0
 
-    if cftoggle.iOS then
+    if cftoggle.iOS == true then
         ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
         ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
     else
@@ -1096,13 +1096,12 @@ local AllLayouts = 0
     Check.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
     Check.BorderSizePixel = 0
 
-    if cftoggle.iOS then
+    if cftoggle.iOS == true then
         Check.Size = UDim2.new(0, 30, 0, 16)
-        Check.Position = UDim2.new(0, 3, 0.5, 0)
     else
         Check.Size = UDim2.new(0, 16, 0, 16)
-        Check.Position = UDim2.new(0, 3, 0.5, 0)
     end
+    Check.Position = UDim2.new(0, 3, 0.5, 0)
 
     UICorner_8.CornerRadius = UDim.new(1, 0)
     UICorner_8.Parent = Check
@@ -1122,13 +1121,13 @@ local AllLayouts = 0
     local ToggleFunc = { Value = cftoggle.Default }
 
     function ToggleFunc:Set(Boolean)
-        local OnPos, OffPos
-        if cftoggle.iOS then
+        local OnPos
+        local OffPos = UDim2.new(0, 3, 0.5, 0)
+
+        if cftoggle.iOS == true then
             OnPos = UDim2.new(0, 22, 0.5, 0)
-            OffPos = UDim2.new(0, 3, 0.5, 0)
         else
-            OnPos = UDim2.new(0, 21, 0.5, 0)
-            OffPos = UDim2.new(0, 3, 0.5, 0)
+            OnPos = UDim2.new(1, -19, 0.5, 0)
         end
 
         if Boolean then

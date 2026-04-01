@@ -668,6 +668,7 @@ UIPadding_2.PaddingRight = UDim.new(0, 7)
 UIPadding_2.PaddingTop = UDim.new(0, 3)
 
 UIListLayout_2.Parent = ScrollingTab
+UIListLayout_2.Padding = UDim.new(0,5)
 UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 
 LayoutFrame.Name = "LayoutFrame"

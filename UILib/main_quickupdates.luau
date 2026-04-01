@@ -1945,6 +1945,23 @@ local AllLayouts = 0
 
     return ParaFunc
 end
+function SectionFunc:AddSpace(space)
+    local Space = Instance.new("Frame")
+    Space.Name = "Space"
+    Space.Parent = SectionList
+    Space.BackgroundTransparency = 1.000
+    Space.BorderSizePixel = 0
+    Space.Size = UDim2.new(1, 0, 0, space or 5)
+end
+
+function TabFunc:AddSpaceTab(space)
+    local Space2 = Instance.new("Frame")
+    Space2.Name = "Space"
+    Space2.Parent = Layout
+    Space2.BackgroundTransparency = 1.000
+    Space2.BorderSizePixel = 0
+    Space2.Size = UDim2.new(1, 0, 0, space or 5)
+end
 			return SectionFunc
 		end
 

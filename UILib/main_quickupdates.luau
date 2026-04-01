@@ -29,7 +29,7 @@ end
 
 function Library:MakeConfig(Config, NewConfig)
 	for i, v in next, Config do
-		if not NewConfig[i] then
+		if NewConfig[i] == nil then
 			NewConfig[i] = v
 		end
 	end

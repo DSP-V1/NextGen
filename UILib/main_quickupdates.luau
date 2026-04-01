@@ -728,15 +728,13 @@ DropdownZone.Size = UDim2.new(1, 0, 1, 0)
 DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
 local AllLayouts = 0
-local Tab = {}
-
-function Tab:AddTab(cfTab)
+	local Tab = {}
+    function Tab:AddTab(cfTab)
 	local cfTab = Library:MakeConfig({
 		Title = "Tab < Missing Title >",
 		Border = true,
 		Icon = ""
 	}, cfTab or {})
-	
 	local t = cfTab.Title
 	local TabDisable = Instance.new("Frame")
 	local Choose_2 = Instance.new("Frame")
@@ -748,26 +746,18 @@ function Tab:AddTab(cfTab)
 	local UIListLayout_3 = Instance.new("UIListLayout")
 	local TabIcon = Instance.new("ImageLabel")
 	local TabStroke = Instance.new("UIStroke")
-	local TabUICorner = Instance.new("UICorner")
-
-	local tabLayout = ScrollingTab:FindFirstChildOfClass("UIListLayout")
-	if not tabLayout then
-		tabLayout = Instance.new("UIListLayout")
-		tabLayout.Parent = ScrollingTab
-		tabLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	end
-	tabLayout.Padding = UDim.new(0, 8)
+    local TabUICorner = Instance.new("UICorner")
 
 	TabDisable.Name = "TabDisable"
 	TabDisable.Parent = ScrollingTab
 	TabDisable.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	TabDisable.BackgroundTransparency = 1.000
 	TabDisable.BorderSizePixel = 0
-	TabDisable.Size = UDim2.new(1, -10, 0, 32)
+	TabDisable.Size = UDim2.new(1, 0, 0, 30)
 
-	TabUICorner.Name = "TabUICorner"
-	TabUICorner.Parent = TabDisable
-	TabUICorner.CornerRadius = UDim.new(0, 6)
+    TabUICorner.Name = "TabUICorner"
+    TabUICorner.Parent = TabDisable
+    TabUICorner.CornerRadius = UDim.new(0, 4)
 
 	TabStroke.Parent = TabDisable
 	TabStroke.Thickness = 1
@@ -779,7 +769,7 @@ function Tab:AddTab(cfTab)
 	Choose_2.Parent = TabDisable
 	Choose_2.BackgroundColor3 = Color3.fromRGB(116, 18, 217)
 	Choose_2.BorderSizePixel = 0
-	Choose_2.Position = UDim2.new(0, 2, 0, 8)
+	Choose_2.Position = UDim2.new(0, 2, 0, 7)
 	Choose_2.Size = UDim2.new(0, 3, 0, 16)
 	Choose_2.Visible = false
 	UICorner_4.CornerRadius = UDim.new(1, 0)
@@ -790,12 +780,12 @@ function Tab:AddTab(cfTab)
 		TabIcon.Name = "TabIcon"
 		TabIcon.Parent = TabDisable
 		TabIcon.BackgroundTransparency = 1.000
-		TabIcon.Position = UDim2.new(0, 12, 0, 8)
+		TabIcon.Position = UDim2.new(0, 12, 0, 7)
 		TabIcon.Size = UDim2.new(0, 16, 0, 16)
 		TabIcon.Image = iconAsset
 		TabIcon.ImageTransparency = 0.3
-		NameTab_2.Position = UDim2.new(0, 38, 0, 0)
-		NameTab_2.Size = UDim2.new(1, -38, 1, 0)
+		NameTab_2.Position = UDim2.new(0, 35, 0, 0)
+		NameTab_2.Size = UDim2.new(1, -35, 1, 0)
 	else
 		NameTab_2.Position = UDim2.new(0, 15, 0, 0)
 		NameTab_2.Size = UDim2.new(1, -15, 1, 0)
@@ -807,7 +797,7 @@ function Tab:AddTab(cfTab)
 	NameTab_2.Font = Enum.Font.GothamBold
 	NameTab_2.Text = t
 	NameTab_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-	NameTab_2.TextSize = 13.000
+	NameTab_2.TextSize = 12.000
 	NameTab_2.TextTransparency = 0.300
 	NameTab_2.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -852,9 +842,7 @@ function Tab:AddTab(cfTab)
 				if v:FindFirstChild("TabIcon") then
 					Library:TweenInstance(v.TabIcon, 0.3, "ImageTransparency", 0.3)
 				end
-				if v:FindFirstChild("Choose") then
-					v.Choose.Visible = false
-				end
+				v.Choose.Visible = false
 			end
 		end
 		Library:TweenInstance(NameTab_2, 0.2, "TextTransparency", 0)
@@ -862,8 +850,7 @@ function Tab:AddTab(cfTab)
 		UIPageLayout:JumpToIndex(Layout.LayoutOrder)
 		Choose_2.Visible = true
 	end)
-end
-AllLayouts = AllLayouts + 1
+    AllLayouts = AllLayouts + 1
 		local TabFunc = {}
         function TabFunc:AddSection(cfsection)
 	local cfsection = Library:MakeConfig({

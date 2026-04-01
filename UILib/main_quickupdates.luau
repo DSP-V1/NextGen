@@ -728,13 +728,15 @@ DropdownZone.Size = UDim2.new(1, 0, 1, 0)
 DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
 local AllLayouts = 0
-	local Tab = {}
-    function Tab:AddTab(cfTab)
+local Tab = {}
+
+function Tab:AddTab(cfTab)
 	local cfTab = Library:MakeConfig({
 		Title = "Tab < Missing Title >",
 		Border = true,
 		Icon = ""
 	}, cfTab or {})
+	
 	local t = cfTab.Title
 	local TabDisable = Instance.new("Frame")
 	local Choose_2 = Instance.new("Frame")
@@ -746,7 +748,12 @@ local AllLayouts = 0
 	local UIListLayout_3 = Instance.new("UIListLayout")
 	local TabIcon = Instance.new("ImageLabel")
 	local TabStroke = Instance.new("UIStroke")
-    local TabUICorner = Instance.new("UICorner")
+	local TabUICorner = Instance.new("UICorner")
+
+	local tabLayout = ScrollingTab:FindFirstChildWhichIsA("UIListLayout")
+	if tabLayout then
+		tabLayout.Padding = UDim.new(0, 6)
+	end
 
 	TabDisable.Name = "TabDisable"
 	TabDisable.Parent = ScrollingTab
@@ -755,9 +762,9 @@ local AllLayouts = 0
 	TabDisable.BorderSizePixel = 0
 	TabDisable.Size = UDim2.new(1, 0, 0, 30)
 
-    TabUICorner.Name = "TabUICorner"
-    TabUICorner.Parent = TabDisable
-    TabUICorner.CornerRadius = UDim.new(0, 4)
+	TabUICorner.Name = "TabUICorner"
+	TabUICorner.Parent = TabDisable
+	TabUICorner.CornerRadius = UDim.new(0, 4)
 
 	TabStroke.Parent = TabDisable
 	TabStroke.Thickness = 1
@@ -852,6 +859,7 @@ local AllLayouts = 0
 	end)
 
 	AllLayouts = AllLayouts + 1
+end
 		local TabFunc = {}
         function TabFunc:AddSection(cfsection)
 	local cfsection = Library:MakeConfig({

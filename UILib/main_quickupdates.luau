@@ -1141,69 +1141,83 @@ local AllLayouts = 0
     }, cfbutton or {})
 
     local Button = Instance.new("Frame")
-    local UICorner = Instance.new("UICorner")
-    local Title = Instance.new("TextLabel")
+    local UICorner_9 = Instance.new("UICorner")
+    local Title_3 = Instance.new("TextLabel")
     local Button_Click = Instance.new("TextButton")
-    local Content = Instance.new("TextLabel")
+    local Content_2 = Instance.new("TextLabel")
     local ImageLabel = Instance.new("ImageLabel")
-    local UIPadding = Instance.new("UIPadding")
-    local ButFunc = {}
+    local ParaFunc = {}
 
     Button.Name = "Button"
     Button.Parent = SectionList
     Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Button.BackgroundTransparency = 0.950
+    Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Button.BorderSizePixel = 0
-    Button.Size = UDim2.new(1, 0, 0, 0)
+    Button.Size = UDim2.new(1, 0, 0, 35)
     Button.AutomaticSize = Enum.AutomaticSize.Y
 
-    UICorner.CornerRadius = UDim.new(0, 3)
-    UICorner.Parent = Button
+    UICorner_9.CornerRadius = UDim.new(0, 3)
+    UICorner_9.Parent = Button
 
-    UIPadding.Parent = Button
-    UIPadding.PaddingLeft = UDim.new(0, 10)
-    UIPadding.PaddingRight = UDim.new(0, 40)
-    UIPadding.PaddingTop = UDim.new(0, 8)
-    UIPadding.PaddingBottom = UDim.new(0, 8)
-
-    Title.Name = "Title"
-    Title.Parent = Button
-    Title.BackgroundTransparency = 1.000
-    Title.Size = UDim2.new(1, 0, 0, 16)
-    Title.Font = Enum.Font.GothamBold
-    Title.Text = cfbutton.Title
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title.TextSize = 13.000
-    Title.TextXAlignment = Enum.TextXAlignment.Left
-
-    Content.Name = "Content"
-    Content.Parent = Button
-    Content.BackgroundTransparency = 1.000
-    Content.Position = UDim2.new(0, 0, 0, 18)
-    Content.Size = UDim2.new(1, 0, 0, 0)
-    Content.AutomaticSize = Enum.AutomaticSize.Y
-    Content.Font = Enum.Font.GothamBold
-    Content.Text = cfbutton.Description
-    Content.TextColor3 = Color3.fromRGB(100, 100, 100)
-    Content.TextSize = 12.000
-    Content.TextXAlignment = Enum.TextXAlignment.Left
-    Content.TextYAlignment = Enum.TextYAlignment.Top
-    Content.TextWrapped = true
-
-    ImageLabel.Name = "Icon"
-    ImageLabel.Parent = Button
-    ImageLabel.AnchorPoint = Vector2.new(1, 0.5)
-    ImageLabel.BackgroundTransparency = 1.000
-    ImageLabel.Position = UDim2.new(1, 32, 0.5, 0)
-    ImageLabel.Size = UDim2.new(0, 22, 0, 22)
-    ImageLabel.Image = (cfbutton.ButtonIcon ~= "" and cfbutton.ButtonIcon) or "rbxassetid://85905776508942"
+    Title_3.Name = "Title"
+    Title_3.Parent = Button
+    Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Title_3.BackgroundTransparency = 1.000
+    Title_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Title_3.BorderSizePixel = 0
+    Title_3.Position = UDim2.new(0, 10, 0, 7)
+    Title_3.Size = UDim2.new(1, -60, 0, 16)
+    Title_3.Font = Enum.Font.GothamBold
+    Title_3.Text = cfbutton.Title
+    Title_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title_3.TextSize = 13.000
+    Title_3.TextXAlignment = Enum.TextXAlignment.Left
 
     Button_Click.Name = "Button_Click"
     Button_Click.Parent = Button
+    Button_Click.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Button_Click.BackgroundTransparency = 1.000
-    Button_Click.Position = UDim2.new(0, -10, 0, -8)
-    Button_Click.Size = UDim2.new(1, 40, 1, 16)
+    Button_Click.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Button_Click.BorderSizePixel = 0
+    Button_Click.Size = UDim2.new(1, 0, 1, 0)
+    Button_Click.Font = Enum.Font.SourceSans
     Button_Click.Text = ""
+    Button_Click.TextColor3 = Color3.fromRGB(0, 0, 0)
+    Button_Click.TextSize = 14.000
+    Button_Click.ZIndex = 5
+
+    Content_2.Name = "Content"
+    Content_2.Parent = Button
+    Content_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Content_2.BackgroundTransparency = 1.000
+    Content_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Content_2.BorderSizePixel = 0
+    Content_2.Position = UDim2.new(0, 10, 0, 25)
+    Content_2.Size = UDim2.new(1, -60, 0, 0)
+    Content_2.AutomaticSize = Enum.AutomaticSize.Y
+    Content_2.Font = Enum.Font.GothamBold
+    Content_2.Text = cfbutton.Description
+    Content_2.TextColor3 = Color3.fromRGB(100, 100, 100)
+    Content_2.TextSize = 12.000
+    Content_2.TextXAlignment = Enum.TextXAlignment.Left
+    Content_2.TextYAlignment = Enum.TextYAlignment.Top
+    Content_2.TextWrapped = true
+
+    ImageLabel.Parent = Button
+    ImageLabel.AnchorPoint = Vector2.new(0, 0.5)
+    ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ImageLabel.BackgroundTransparency = 1.000
+    ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    ImageLabel.BorderSizePixel = 0
+    ImageLabel.Position = UDim2.new(1, -35, 0.5, 0)
+    ImageLabel.Size = UDim2.new(0, 24, 0, 24)
+    ImageLabel.Image = cfbutton.ButtonIcon
+
+    local function UpdatePadding()
+        local hasDesc = Content_2.Text ~= ""
+        Button.Size = UDim2.new(1, 0, 0, hasDesc and 45 or 35)
+    end
 
     Button_Click.Activated:Connect(function()
         Button.BackgroundTransparency = 0.970
@@ -1211,21 +1225,21 @@ local AllLayouts = 0
         Library:TweenInstance(Button, 0.2, "BackgroundTransparency", 0.950)
     end)
 
-    function ButFunc:SetTitle(text)
-        Title.Text = text
+    function ParaFunc:SetTitle(text)
+        Title_3.Text = text
     end
 
-    function ButFunc:SetDescription(text)
-        Content.Text = text
+    function ParaFunc:SetDescription(text)
+        Content_2.Text = text
+        UpdatePadding()
     end
 
-    function ButFunc:SetIcon(id)
+    function ParaFunc:SetIcon(id)
         ImageLabel.Image = id
     end
 
-    Library:UpdateContent(Content, Title, Button)
-
-    return ButFunc
+    UpdatePadding()
+    return ParaFunc
 end
 			function SectionFunc:AddDropdown(cfdropdown)
 				local cfdropdown = Library:MakeConfig({

@@ -1884,35 +1884,48 @@ local AllLayouts = 0
         Title = "Paragraph < Missing Title >",
         Content = ""
     }, cfpara or {})
+
     local Paragraph = Instance.new("Frame")
     local UICorner_16 = Instance.new("UICorner")
     local Title_6 = Instance.new("TextLabel")
     local Content_4 = Instance.new("TextLabel")
+    local UIPadding = Instance.new("UIPadding")
     local ParaFunc = {}
+
     Paragraph.Name = "Paragraph"
     Paragraph.Parent = SectionList
     Paragraph.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Paragraph.BackgroundTransparency = 0.950
     Paragraph.BorderSizePixel = 0
-    Paragraph.Size = UDim2.new(1, 0, 0, 45)
+    Paragraph.Size = UDim2.new(1, 0, 0, 0)
+    Paragraph.AutomaticSize = Enum.AutomaticSize.Y
+
     UICorner_16.CornerRadius = UDim.new(0, 3)
     UICorner_16.Parent = Paragraph
+
+    UIPadding.Parent = Paragraph
+    UIPadding.PaddingLeft = UDim.new(0, 10)
+    UIPadding.PaddingRight = UDim.new(0, 10)
+    UIPadding.PaddingTop = UDim.new(0, 7)
+    UIPadding.PaddingBottom = UDim.new(0, 10)
+
     Title_6.Name = "Title"
     Title_6.Parent = Paragraph
     Title_6.BackgroundTransparency = 1.000
-    Title_6.Position = UDim2.new(0, 10, 0, 7)
-    Title_6.Size = UDim2.new(1, -20, 0, 16)
+    Title_6.Size = UDim2.new(1, 0, 0, 16)
     Title_6.Font = Enum.Font.GothamBold
     Title_6.Text = cfpara.Title
     Title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title_6.TextSize = 13.000
     Title_6.RichText = true
     Title_6.TextXAlignment = Enum.TextXAlignment.Left
+
     Content_4.Name = "Content"
     Content_4.Parent = Paragraph
     Content_4.BackgroundTransparency = 1.000
-    Content_4.Position = UDim2.new(0, 10, 0, 25)
-    Content_4.Size = UDim2.new(1, -20, 0, 0)
+    Content_4.Position = UDim2.new(0, 0, 0, 18)
+    Content_4.Size = UDim2.new(1, 0, 0, 0)
+    Content_4.AutomaticSize = Enum.AutomaticSize.Y
     Content_4.Font = Enum.Font.GothamBold
     Content_4.Text = cfpara.Content
     Content_4.TextColor3 = Color3.fromRGB(100, 100, 100)
@@ -1921,20 +1934,15 @@ local AllLayouts = 0
     Content_4.TextXAlignment = Enum.TextXAlignment.Left
     Content_4.TextYAlignment = Enum.TextYAlignment.Top
     Content_4.TextWrapped = true
-    local function Resize()
-        local TextSize = Content_4.TextBounds.Y
-        Content_4.Size = UDim2.new(1, -20, 0, TextSize)
-        Paragraph.Size = UDim2.new(1, 0, 0, TextSize + 35)
-    end
-    Content_4:GetPropertyChangedSignal("Text"):Connect(Resize)
-    Content_4:GetPropertyChangedSignal("AbsoluteSize"):Connect(Resize)
-    Resize()
+
     function ParaFunc:SetTitle(args)
         Title_6.Text = args
     end
+
     function ParaFunc:SetDesc(args)
         Content_4.Text = args
     end
+
     return ParaFunc
 end
 			return SectionFunc

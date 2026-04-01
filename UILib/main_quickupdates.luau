@@ -1019,119 +1019,149 @@ local AllLayouts = 0
             end
 			local SectionFunc = {}
 			function SectionFunc:AddToggle(cftoggle)
-				local cftoggle = Library:MakeConfig({
-					Title = "Toggle < Missing Title >",
-					Description = "",
-					Default = false,
-					Callback = function()
+    local cftoggle = Library:MakeConfig({
+        Title = "Toggle < Missing Title >",
+        Description = "",
+        Default = false,
+        iOS = true,
+        Callback = function() end
+    }, cftoggle or {})
 
-					end
-				}, cftoggle or {})
-				local Toggle = Instance.new("Frame")
-				local UICorner_6 = Instance.new("UICorner")
-				local Title_2 = Instance.new("TextLabel")
-				local ToggleCheck = Instance.new("Frame")
-				local UICorner_7 = Instance.new("UICorner")
-				local Check = Instance.new("Frame")
-				local UICorner_8 = Instance.new("UICorner")
-				local Toggle_Click = Instance.new("TextButton")
-				local Content = Instance.new("TextLabel")
-				Toggle.Name = "Toggle"
-				Toggle.Parent = SectionList
-				Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Toggle.BackgroundTransparency = 0.950
-				Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Toggle.BorderSizePixel = 0
-				Toggle.Size = UDim2.new(1, 0, 0, 35)
+    local Toggle = Instance.new("Frame")
+    local UICorner_6 = Instance.new("UICorner")
+    local Title_2 = Instance.new("TextLabel")
+    local ToggleCheck = Instance.new("Frame")
+    local UICorner_7 = Instance.new("UICorner")
+    local Check = Instance.new("Frame")
+    local UICorner_8 = Instance.new("UICorner")
+    local Toggle_Click = Instance.new("TextButton")
+    local Content = Instance.new("TextLabel")
 
-				UICorner_6.CornerRadius = UDim.new(0, 3)
-				UICorner_6.Parent = Toggle
+    Toggle.Name = "Toggle"
+    Toggle.Parent = SectionList
+    Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Toggle.BackgroundTransparency = 0.950
+    Toggle.BorderSizePixel = 0
+    Toggle.Size = UDim2.new(1, 0, 0, 35)
+    Toggle.AutomaticSize = Enum.AutomaticSize.Y
 
-				Title_2.Name = "Title"
-				Title_2.Parent = Toggle
-				Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Title_2.BackgroundTransparency = 1.000
-				Title_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Title_2.BorderSizePixel = 0
-				Title_2.Position = UDim2.new(0, 10, 0, 0)
-				Title_2.Size = UDim2.new(1, -60, 1, 0)
-				Title_2.Font = Enum.Font.GothamBold
-				Title_2.Text = cftoggle.Title
-				Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-				Title_2.TextSize = 13.000
-				Title_2.TextXAlignment = Enum.TextXAlignment.Left
+    UICorner_6.CornerRadius = UDim.new(0, 3)
+    UICorner_6.Parent = Toggle
 
-				ToggleCheck.Name = "ToggleCheck"
-				ToggleCheck.Parent = Toggle
-				ToggleCheck.AnchorPoint = Vector2.new(0, 0.5)
-				ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-				ToggleCheck.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				ToggleCheck.BorderSizePixel = 0
-				ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
-				ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
+    Title_2.Name = "Title"
+    Title_2.Parent = Toggle
+    Title_2.BackgroundTransparency = 1.000
+    Title_2.Position = UDim2.new(0, 10, 0, 7)
+    Title_2.Size = UDim2.new(1, -70, 0, 16)
+    Title_2.Font = Enum.Font.GothamBold
+    Title_2.Text = cftoggle.Title
+    Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title_2.TextSize = 13.000
+    Title_2.TextXAlignment = Enum.TextXAlignment.Left
 
-				UICorner_7.CornerRadius = UDim.new(1, 0)
-				UICorner_7.Parent = ToggleCheck
+    Content.Name = "Content"
+    Content.Parent = Toggle
+    Content.BackgroundTransparency = 1.000
+    Content.Position = UDim2.new(0, 10, 0, 25)
+    Content.Size = UDim2.new(1, -70, 0, 0)
+    Content.AutomaticSize = Enum.AutomaticSize.Y
+    Content.Font = Enum.Font.GothamBold
+    Content.Text = cftoggle.Description
+    Content.TextColor3 = Color3.fromRGB(100, 100, 100)
+    Content.TextSize = 12.000
+    Content.TextXAlignment = Enum.TextXAlignment.Left
+    Content.TextYAlignment = Enum.TextYAlignment.Top
+    Content.TextWrapped = true
 
-				Check.Name = "Check"
-				Check.Parent = ToggleCheck
-				Check.AnchorPoint = Vector2.new(0, 0.5)
-				Check.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
-				Check.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Check.BorderSizePixel = 0
-				Check.Position = UDim2.new(0, 3, 0.5, 0)
-				Check.Size = UDim2.new(0, 30, 0, 16)
+    ToggleCheck.Name = "ToggleCheck"
+    ToggleCheck.Parent = Toggle
+    ToggleCheck.AnchorPoint = Vector2.new(0, 0.5)
+    ToggleCheck.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    ToggleCheck.BorderSizePixel = 0
 
-				UICorner_8.CornerRadius = UDim.new(1, 0)
-				UICorner_8.Parent = Check
+    if cftoggle.iOS then
+        ToggleCheck.Size = UDim2.new(0, 55, 0, 22)
+        ToggleCheck.Position = UDim2.new(1, -62, 0.5, 0)
+    else
+        ToggleCheck.Size = UDim2.new(0, 40, 0, 22)
+        ToggleCheck.Position = UDim2.new(1, -50, 0.5, 0)
+    end
 
-				Toggle_Click.Name = "Toggle_Click"
-				Toggle_Click.Parent = Toggle
-				Toggle_Click.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Toggle_Click.BackgroundTransparency = 1.000
-				Toggle_Click.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Toggle_Click.BorderSizePixel = 0
-				Toggle_Click.Size = UDim2.new(1, 0, 1, 0)
-				Toggle_Click.Font = Enum.Font.SourceSans
-				Toggle_Click.Text = ""
-				Toggle_Click.TextColor3 = Color3.fromRGB(0, 0, 0)
-				Toggle_Click.TextSize = 14.000
+    UICorner_7.CornerRadius = UDim.new(1, 0)
+    UICorner_7.Parent = ToggleCheck
 
-				Content.Name = "Content"
-				Content.Parent = Toggle
-				Content.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Content.BackgroundTransparency = 1.000
-				Content.BorderColor3 = Color3.fromRGB(0, 0, 0)
-				Content.BorderSizePixel = 0
-				Content.Position = UDim2.new(0, 10, 0, 22)
-				Content.Size = UDim2.new(1, -60, 1, 0)
-				Content.Font = Enum.Font.GothamBold
-				Content.Text = cftoggle.Description
-				Content.TextColor3 = Color3.fromRGB(100, 100, 100)
-				Content.TextSize = 12.000
-				Content.TextXAlignment = Enum.TextXAlignment.Left
-				Content.TextYAlignment = Enum.TextYAlignment.Top
-				Library:UpdateContent(Content, Title_2, Toggle)
-				local ToggleFunc = { Value = cftoggle.Default }
-				function ToggleFunc:Set(Boolean)
-					if Boolean then
-						Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(116,18,217))
-						Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 22, 0.5, 0))
-						Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(255, 255, 255))
-					else
-						Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(60, 60, 60))
-						Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(200, 200, 200))
-						Library:TweenInstance(Check, 0.3, "Position", UDim2.new(0, 3, 0.5, 0))
-					end
-					self.Value = Boolean
-					cftoggle.Callback(Boolean)
-				end
+    Check.Name = "Check"
+    Check.Parent = ToggleCheck
+    Check.AnchorPoint = Vector2.new(0, 0.5)
+    Check.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+    Check.BorderSizePixel = 0
 
-				ToggleFunc:Set(ToggleFunc.Value)
-				Toggle_Click.Activated:Connect(function()
-					ToggleFunc:Set(not ToggleFunc.Value)
-				end)
-			end
+    if cftoggle.iOS then
+        Check.Size = UDim2.new(0, 30, 0, 16)
+        Check.Position = UDim2.new(0, 3, 0.5, 0)
+    else
+        Check.Size = UDim2.new(0, 16, 0, 16)
+        Check.Position = UDim2.new(0, 3, 0.5, 0)
+    end
+
+    UICorner_8.CornerRadius = UDim.new(1, 0)
+    UICorner_8.Parent = Check
+
+    Toggle_Click.Name = "Toggle_Click"
+    Toggle_Click.Parent = Toggle
+    Toggle_Click.BackgroundTransparency = 1.000
+    Toggle_Click.Size = UDim2.new(1, 0, 1, 0)
+    Toggle_Click.Text = ""
+    Toggle_Click.ZIndex = 5
+
+    local function UpdatePadding()
+        local hasDesc = Content.Text ~= ""
+        Toggle.Size = UDim2.new(1, 0, 0, hasDesc and 45 or 35)
+    end
+
+    local ToggleFunc = { Value = cftoggle.Default }
+
+    function ToggleFunc:Set(Boolean)
+        local OnPos, OffPos
+        if cftoggle.iOS then
+            OnPos = UDim2.new(0, 22, 0.5, 0)
+            OffPos = UDim2.new(0, 3, 0.5, 0)
+        else
+            OnPos = UDim2.new(0, 21, 0.5, 0)
+            OffPos = UDim2.new(0, 3, 0.5, 0)
+        end
+
+        if Boolean then
+            Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(116, 18, 217))
+            Library:TweenInstance(Check, 0.3, "Position", OnPos)
+            Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(255, 255, 255))
+        else
+            Library:TweenInstance(ToggleCheck, 0.3, "BackgroundColor3", Color3.fromRGB(60, 60, 60))
+            Library:TweenInstance(Check, 0.3, "BackgroundColor3", Color3.fromRGB(200, 200, 200))
+            Library:TweenInstance(Check, 0.3, "Position", OffPos)
+        end
+        self.Value = Boolean
+        cftoggle.Callback(Boolean)
+    end
+
+    function ToggleFunc:SetTitle(text)
+        Title_2.Text = text
+    end
+
+    function ToggleFunc:SetDescription(text)
+        Content.Text = text
+        UpdatePadding()
+    end
+
+    ToggleFunc:Set(ToggleFunc.Value)
+    UpdatePadding()
+
+    Toggle_Click.Activated:Connect(function()
+        ToggleFunc:Set(not ToggleFunc.Value)
+    end)
+
+    return ToggleFunc
+end
             function SectionFunc:AddButton(cfbutton)
     local cfbutton = Library:MakeConfig({
         Title = "Button < Missing Title >",

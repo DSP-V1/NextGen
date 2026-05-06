@@ -23,7 +23,7 @@ local Window = Library:NewWindow({
 local MainTab = Window:AddTab({
     Title = "Main",
     Border = true,
-    Icon = ""
+    Icon = componentsIcon
 })
 
 -- create new Icons

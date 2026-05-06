@@ -16,7 +16,11 @@ local Window = Library:NewWindow({
 })
 
 -- create tab
-local MainTab = Window:AddTab("Main")
+local MainTab = Window:AddTab({
+    Title = "Main",
+    Border = true,
+    Icon = ""
+})
 
 -- create new Icons
 local componentsIcon = IconsV2.GetIcon("circle-plus")

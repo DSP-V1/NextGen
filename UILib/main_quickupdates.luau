@@ -86,10 +86,12 @@ function Library:NewWindow(ConfigWindow)
 end
 	local ConfigWindow = self:MakeConfig({
     Title = "NextGen Hub",
-    Description = "By DSPV1",
-    ButtonIcon = "rbxassetid://1234567890",
-    ButtonColorStroke = Color3.fromRGB(116, 18, 217),
+    Description = "By DSPV1",   
     Icon = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289",
+    ReopenButton = {
+        ButtonIcon = "rbxassetid://1234567890",
+        ButtonColorStroke = Color3.fromRGB(116, 18, 217)
+    },
     Watermark = {
         Text = "Watermark!",
         Position = "bottom-left",
@@ -134,9 +136,10 @@ local ScrollingTab = Instance.new("ScrollingFrame")
 local UIPadding_2 = Instance.new("UIPadding")
 local UIListLayout_2 = Instance.new("UIListLayout")
 local LayoutFrame = Instance.new("Frame")
-local RealLayout = Instance.new("Frame")
+local RealLayout= Instance.new("Frame")
 local LayoutList = Instance.new("Folder")
-local UIPageLayout = Instance.new("UIPageLayout")
+local UIPageLayout = Instance.
+ ew("UIPageLayout")
 local LayoutName = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
 local DropdownZone = Instance.new("Frame")
@@ -398,6 +401,7 @@ Minize.Selectable = false
 Minize.Size = UDim2.new(0, 30, 0, 30)
 Minize.Text = ""
 
+local reOp_But = ConfigWindow.ReopenButton
 local G2L = {};
 
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
@@ -409,7 +413,7 @@ G2L["2"]["BorderSizePixel"] = 0;
 G2L["2"].Visible = true
 self:MakeDraggable(G2L["2"],G2L["2"])
 G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["2"]["Image"] = ConfigWindow.ButtonIcon;
+G2L["2"]["Image"] = reOp_But.ButtonIcon;
 G2L["2"]["Size"] = UDim2.new(0, 50, 0, 50);
 G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["2"]["Position"] = UDim2.new(0.267, -171, 0.437, -115);
@@ -419,7 +423,7 @@ G2L["3"]["CornerRadius"] = UDim.new(0, 8);
 
 G2L["4"] = Instance.new("UIStroke", G2L["2"]);
 G2L["4"]["Thickness"] = 2;
-G2L["4"]["Color"] = ConfigWindow.ButtonColorStroke;
+G2L["4"]["Color"] = reOp_But.ButtonColorStroke;
 G2L["2"].MouseButton1Click:Connect(function()
     NextGenUI.Enabled = not NextGenUI.Enabled
 end)

@@ -87,6 +87,8 @@ end
 	local ConfigWindow = self:MakeConfig({
     Title = "NextGen Hub",
     Description = "By DSPV1",
+    ButtonIcon = "rbxassetid://1234567890",
+    ButtonColorStroke = Color3.fromRGB(116, 18, 217),
     Icon = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289",
     Watermark = {
         Text = "Watermark!",
@@ -406,9 +408,8 @@ G2L["2"] = Instance.new("ImageButton", G2L["1"]);
 G2L["2"]["BorderSizePixel"] = 0;
 G2L["2"].Visible = true
 self:MakeDraggable(G2L["2"],G2L["2"])
-
 G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["2"]["Image"] = [[https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289]];
+G2L["2"]["Image"] = ConfigWindow.ButtonIcon;
 G2L["2"]["Size"] = UDim2.new(0, 50, 0, 50);
 G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 G2L["2"]["Position"] = UDim2.new(0.267, -171, 0.437, -115);
@@ -418,7 +419,7 @@ G2L["3"]["CornerRadius"] = UDim.new(0, 8);
 
 G2L["4"] = Instance.new("UIStroke", G2L["2"]);
 G2L["4"]["Thickness"] = 2;
-G2L["4"]["Color"] = Color3.fromRGB(116,18,217);
+G2L["4"]["Color"] = ConfigWindow.ButtonColorStroke;
 G2L["2"].MouseButton1Click:Connect(function()
     NextGenUI.Enabled = not NextGenUI.Enabled
 end)

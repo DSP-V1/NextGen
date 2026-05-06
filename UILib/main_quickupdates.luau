@@ -88,6 +88,7 @@ end
     Title = "NextGen UI",
     Description = "By DSPV1 & T0X1C",
     Icon = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289",
+    Resizable = true,
     ReopenButton = {
       ButtonIcon = "rbxassetid://1234567890",
       ButtonColorStroke = Color3.fromRGB(116, 18, 217)
@@ -184,6 +185,7 @@ Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 Main.Size = UDim2.new(0, 555, 0, 350)
 
+if Resizable == true then
 ResizeHandle.Name = "ResizeHandle"
 ResizeHandle.Parent = Main
 ResizeHandle.AnchorPoint = Vector2.new(1, 1)
@@ -228,6 +230,9 @@ UserInputService.InputEnded:Connect(function(input)
         resizing = false
     end
 end)
+else
+print("Resizing disabled")
+end
 
 if ConfigWindow.Watermark then
     local wm_cfg = ConfigWindow.Watermark
@@ -338,6 +343,7 @@ NameHub.Size = UDim2.new(0, 470, 0, 20)
 NameHub.Font = Enum.Font.GothamBold
 NameHub.Text = ConfigWindow.Title
 NameHub.TextColor3 = Color3.fromRGB(255, 255, 255)
+NameHub.RichText = true
 NameHub.TextSize = 14.000
 NameHub.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -366,6 +372,7 @@ Desc.Font = Enum.Font.GothamBold
 Desc.Text = ConfigWindow.Description
 Desc.TextColor3 = Color3.fromRGB(100, 100, 100)
 Desc.TextSize = 12.000
+Desc.RichText = true
 Desc.TextXAlignment = Enum.TextXAlignment.Left
 Desc.TextYAlignment = Enum.TextYAlignment.Top
 

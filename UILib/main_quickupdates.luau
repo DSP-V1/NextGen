@@ -968,12 +968,14 @@ local AllLayouts = 0
 	local function UpdateSize()
 		local TargetSize = IsCollapsed and 32 or (UIListLayout_4.AbsoluteContentSize.Y + 45)
 		if not IsCollapsed then 
-			SectionList.Visible = true 
+			SectionList.Visible = true
+            Line_3.Visible = true
 		end
 		game:GetService("TweenService"):Create(Section, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 0, TargetSize)}):Play()
 		task.delay(0.3, function()
 			if IsCollapsed then 
 				SectionList.Visible = false 
+                Line_3.Visible = false
 			end
 		end)
 	end

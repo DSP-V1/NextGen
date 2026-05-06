@@ -4,7 +4,7 @@ IconsV2.SetIconsType("lucide")
 local componentsIcon = IconsV2.GetIcon("circle-plus")
 local Window = Library:NewWindow({
   Title = "NextGenUI Library",
-  Description = "by DSPV1 | BETA",
+  Description = "by DSPV1 & T0XÏC| BETA",
   Icon = componentsIcon,
   ReopenButton = {
       ButtonIcon = componentsIcon,

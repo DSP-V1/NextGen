@@ -1,9 +1,13 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DSP-V1/NextGen/refs/heads/main/UILib/main_quickupdates.luau"))()
 local IconsV2 = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Footagesus/Icons/main/Main-v2.lua"))()
 IconsV2.SetIconsType("lucide")
+local componentsIcon = IconsV2.GetIcon("circle-plus")
 local Window = Library:NewWindow({
   Title = "NextGenUI Library",
   Description = "by DSPV1 | BETA",
+  Icon = componentsIcon,
+  ButtonIcon = componentsIcon,
+  ButtonColorStroke = Color3.fromRGB(69,69,69),
   Watermark = {
           Text = "NextGen UI",
           Position = "bottom-right",

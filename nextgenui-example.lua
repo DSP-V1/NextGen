@@ -6,8 +6,10 @@ local Window = Library:NewWindow({
   Title = "NextGenUI Library",
   Description = "by DSPV1 | BETA",
   Icon = componentsIcon,
-  ButtonIcon = componentsIcon,
-  ButtonColorStroke = Color3.fromRGB(69,69,69),
+  ReopenButton = {
+      ButtonIcon = componentsIcon,
+      ButtonColorStroke = Color3.fromRGB(69,69,69),
+  },
   Watermark = {
           Text = "NextGen UI",
           Position = "bottom-right",

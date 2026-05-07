@@ -27,34 +27,6 @@ function Library:MouseEvent(Skibidi, ...)
 	Skibidi.MouseLeave:Connect(Args[2])
 end
 
-Library.ThemeObjects = {
-    Lines = {
-        UIBorderColor = UIStroke,
-        UITabBorderColor = Line_2,
-        UITopBarColor = Line
-    }
-}
-
-function Library:ChangeTheme(ThemeTable)
-    for SectionName, SectionValues in pairs(ThemeTable) do
-        local ThemeSection = self.ThemeObjects[SectionName]
-
-        if ThemeSection then
-            for SettingName, Value in pairs(SectionValues) do
-                local Object = ThemeSection[SettingName]
-
-                if Object then
-                    if Object:IsA("UIStroke") then
-                        Object.Color = Value
-                    else
-                        Object.BackgroundColor3 = Value
-                    end
-                end
-            end
-        end
-    end
-end
-
 function Library:MakeConfig(Config, NewConfig)
 	for i, v in next, Config do
 		if NewConfig[i] == nil then
@@ -2072,6 +2044,34 @@ end
 		return TabFunc
 	end
 	return Tab
+end
+
+Library.ThemeObjects = {
+    Lines = {
+        UIBorderColor = UIStroke,
+        UITabBorderColor = Line_2,
+        UITopBarColor = Line
+    }
+}
+
+function Library:ChangeTheme(ThemeTable)
+    for SectionName, SectionValues in pairs(ThemeTable) do
+        local ThemeSection = self.ThemeObjects[SectionName]
+
+        if ThemeSection then
+            for SettingName, Value in pairs(SectionValues) do
+                local Object = ThemeSection[SettingName]
+
+                if Object then
+                    if Object:IsA("UIStroke") then
+                        Object.Color = Value
+                    else
+                        Object.BackgroundColor3 = Value
+                    end
+                end
+            end
+        end
+    end
 end
 
 return Library

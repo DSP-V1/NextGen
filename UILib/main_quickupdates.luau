@@ -84,14 +84,6 @@ function Library:NewWindow(ConfigWindow)
 	end
 	return input
 end
-function Library:ChangeColors(lines, lines_two)
-    if lines then
-       print("test")
-    end
-    if lines_two then
-       print("testing)
-    end
-end
 	local ConfigWindow = self:MakeConfig({
     Title = "NextGen UI",
     Description = "By DSPV1 & T0X1C",

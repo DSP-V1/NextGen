@@ -91,7 +91,10 @@ end
     Resizable = true,
     ReopenButton = {
       ButtonIcon = "rbxassetid://1234567890",
-      ButtonColorStroke = Color3.fromRGB(116, 18, 217)
+      ButtonColorStroke = Color3.fromRGB(116, 18, 217),
+      ButtonBackgroundColor = Color3.fromRGB(225, 225, 225),
+      ButtonPosition = UDim2.new(0.267, -171, 0.437, -115),
+      ButtonSize = UDim2.new(0, 50, 0, 50)
     },
     Watermark = {
       Text = "Watermark!",
@@ -411,11 +414,11 @@ G2L["2"] = Instance.new("ImageButton", G2L["1"]);
 G2L["2"]["BorderSizePixel"] = 0;
 G2L["2"].Visible = true
 self:MakeDraggable(G2L["2"],G2L["2"])
-G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["2"]["BackgroundColor3"] = rpnBtn_cfgs.ButtonBackgroundColor;
 G2L["2"]["Image"] = rpnBtn_cfgs.ButtonIcon;
-G2L["2"]["Size"] = UDim2.new(0, 50, 0, 50);
+G2L["2"]["Size"] = rpnBtn_cfgs.ButtonSize;
 G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["2"]["Position"] = UDim2.new(0.267, -171, 0.437, -115);
+G2L["2"]["Position"] = rpnBtn_cfgs.ButtonPosition;
 
 G2L["3"] = Instance.new("UICorner", G2L["2"]);
 G2L["3"]["CornerRadius"] = UDim.new(0, 8);

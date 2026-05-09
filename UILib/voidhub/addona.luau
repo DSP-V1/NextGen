@@ -724,6 +724,7 @@ TextLabel.Font = Enum.Font.GothamBold
 TextLabel.Text = ""
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextSize = 13.000
+TextLabel.RichText = true
 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 DropdownZone.Name = "DropdownZone"

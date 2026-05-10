@@ -759,7 +759,7 @@ DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
 local AllLayouts = 0
 	local Tab = {}
-     function Tab:AddTab(cfTab)
+    function Tab:AddTab(cfTab)
 	local cfTab = Library:MakeConfig({
 		Title = "Tab < Missing Title >",
 		Border = true,
@@ -778,7 +778,10 @@ local AllLayouts = 0
 	local UIListLayout_3 = Instance.new("UIListLayout")
 	local TabIcon = Instance.new("ImageLabel")
 	local TabStroke = Instance.new("UIStroke")
-	local GlowStroke = Instance.new("UIStroke")
+
+	local Glow1 = Instance.new("UIStroke")
+	local Glow2 = Instance.new("UIStroke")
+
 	local TabUICorner = Instance.new("UICorner")
 
 	TabDisable.Name = "TabDisable"
@@ -798,11 +801,19 @@ local AllLayouts = 0
 	TabStroke.Transparency = 0.85
 	TabStroke.Enabled = cfTab.Border
 
-	GlowStroke.Parent = TabDisable
-	GlowStroke.Thickness = 6
-	GlowStroke.Color = Color3.fromRGB(255, 0, 0)
-	GlowStroke.Transparency = 1
-	GlowStroke.Enabled = cfTab.Border
+	Glow1.Parent = TabDisable
+	Glow1.Thickness = 6
+	Glow1.Color = Color3.fromRGB(255, 0, 0)
+	Glow1.Transparency = 1
+	Glow1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	Glow1.Enabled = cfTab.Border
+
+	Glow2.Parent = TabDisable
+	Glow2.Thickness = 12
+	Glow2.Color = Color3.fromRGB(255, 0, 0)
+	Glow2.Transparency = 1
+	Glow2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	Glow2.Enabled = cfTab.Border
 
 	Choose_2.Name = "Choose"
 	Choose_2.Parent = TabDisable
@@ -870,23 +881,35 @@ local AllLayouts = 0
 	UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout_3.Padding = UDim.new(0, 10)
 
-	if AllLayouts == 0 then
-		NameTab_2.TextTransparency = 0
-
-		if TabIcon then
-			TabIcon.ImageTransparency = 0
-		end
-
-		Choose_2.Visible = true
-
+	local function SetActive()
 		TabStroke.Color = Color3.fromRGB(255, 0, 0)
-		TabStroke.Transparency = 0.1
+		TabStroke.Transparency = 0
 		TabStroke.Thickness = 1.5
 
-		GlowStroke.Transparency = 0.7
+		Glow1.Transparency = 0.65
+		Glow2.Transparency = 0.82
+	end
+
+	local function SetInactive()
+		TabStroke.Color = Color3.fromRGB(120, 120, 120)
+		TabStroke.Transparency = 0.85
+		TabStroke.Thickness = 1
+
+		Glow1.Transparency = 1
+		Glow2.Transparency = 1
+	end
+
+	if AllLayouts == 0 then
+		NameTab_2.TextTransparency = 0
+		if TabIcon then TabIcon.ImageTransparency = 0 end
+
+		Choose_2.Visible = true
+		SetActive()
 
 		UIPageLayout:JumpToIndex(0)
 		TextLabel.Text = t
+	else
+		SetInactive()
 	end
 
 	Click_Tab_2.Activated:Connect(function()
@@ -900,17 +923,14 @@ local AllLayouts = 0
 					Library:TweenInstance(v.TabIcon, 0.3, "ImageTransparency", 0.3)
 				end
 
-				local strokes = v:GetChildren()
-
-				for _, s in next, strokes do
-					if s:IsA("UIStroke") then
-						if s.Thickness >= 5 then
-							Library:TweenInstance(s, 0.25, "Transparency", 1)
-						else
-							Library:TweenInstance(s, 0.25, "Transparency", 0.85)
-							Library:TweenInstance(s, 0.25, "Thickness", 1)
-							Library:TweenInstance(s, 0.25, "Color", Color3.fromRGB(120, 120, 120))
-						end
+				local stroke = v:FindFirstChildOfClass("UIStroke")
+				if stroke then
+					if stroke.Thickness >= 6 then
+						Library:TweenInstance(stroke, 0.2, "Transparency", 1)
+					else
+						Library:TweenInstance(stroke, 0.2, "Transparency", 0.85)
+						Library:TweenInstance(stroke, 0.2, "Color", Color3.fromRGB(120, 120, 120))
+						Library:TweenInstance(stroke, 0.2, "Thickness", 1)
 					end
 				end
 
@@ -919,22 +939,15 @@ local AllLayouts = 0
 		end
 
 		Library:TweenInstance(NameTab_2, 0.2, "TextTransparency", 0)
+		if TabIcon then Library:TweenInstance(TabIcon, 0.2, "ImageTransparency", 0) end
 
-		if TabIcon then
-			Library:TweenInstance(TabIcon, 0.2, "ImageTransparency", 0)
-		end
-
-		Library:TweenInstance(TabStroke, 0.25, "Transparency", 0.1)
-		Library:TweenInstance(TabStroke, 0.25, "Thickness", 1.5)
-		Library:TweenInstance(TabStroke, 0.25, "Color", Color3.fromRGB(255, 0, 0))
-
-		Library:TweenInstance(GlowStroke, 0.25, "Transparency", 0.7)
+		SetActive()
 
 		UIPageLayout:JumpToIndex(Layout.LayoutOrder)
 		Choose_2.Visible = true
 	end)
 
-	AllLayouts = AllLayouts + 1
+	AllLayouts += 1
 		local TabFunc = {}
         function TabFunc:AddSection(cfsection)
 	local cfsection = Library:MakeConfig({

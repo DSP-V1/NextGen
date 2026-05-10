@@ -759,7 +759,7 @@ DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
 local AllLayouts = 0
 	local Tab = {}
-    function Tab:AddTab(cfTab)
+     function Tab:AddTab(cfTab)
 	local cfTab = Library:MakeConfig({
 		Title = "Tab < Missing Title >",
 		Border = true,
@@ -778,6 +778,7 @@ local AllLayouts = 0
 	local UIListLayout_3 = Instance.new("UIListLayout")
 	local TabIcon = Instance.new("ImageLabel")
 	local TabStroke = Instance.new("UIStroke")
+	local GlowStroke = Instance.new("UIStroke")
 	local TabUICorner = Instance.new("UICorner")
 
 	TabDisable.Name = "TabDisable"
@@ -796,6 +797,12 @@ local AllLayouts = 0
 	TabStroke.Color = Color3.fromRGB(120, 120, 120)
 	TabStroke.Transparency = 0.85
 	TabStroke.Enabled = cfTab.Border
+
+	GlowStroke.Parent = TabDisable
+	GlowStroke.Thickness = 6
+	GlowStroke.Color = Color3.fromRGB(255, 0, 0)
+	GlowStroke.Transparency = 1
+	GlowStroke.Enabled = cfTab.Border
 
 	Choose_2.Name = "Choose"
 	Choose_2.Parent = TabDisable
@@ -871,9 +878,12 @@ local AllLayouts = 0
 		end
 
 		Choose_2.Visible = true
+
 		TabStroke.Color = Color3.fromRGB(255, 0, 0)
-		TabStroke.Transparency = 0.2
-		TabStroke.Thickness = 2
+		TabStroke.Transparency = 0.1
+		TabStroke.Thickness = 1.5
+
+		GlowStroke.Transparency = 0.7
 
 		UIPageLayout:JumpToIndex(0)
 		TextLabel.Text = t
@@ -890,10 +900,18 @@ local AllLayouts = 0
 					Library:TweenInstance(v.TabIcon, 0.3, "ImageTransparency", 0.3)
 				end
 
-				if v:FindFirstChildOfClass("UIStroke") then
-					Library:TweenInstance(v:FindFirstChildOfClass("UIStroke"), 0.25, "Transparency", 0.85)
-					Library:TweenInstance(v:FindFirstChildOfClass("UIStroke"), 0.25, "Thickness", 1)
-					Library:TweenInstance(v:FindFirstChildOfClass("UIStroke"), 0.25, "Color", Color3.fromRGB(120, 120, 120))
+				local strokes = v:GetChildren()
+
+				for _, s in next, strokes do
+					if s:IsA("UIStroke") then
+						if s.Thickness >= 5 then
+							Library:TweenInstance(s, 0.25, "Transparency", 1)
+						else
+							Library:TweenInstance(s, 0.25, "Transparency", 0.85)
+							Library:TweenInstance(s, 0.25, "Thickness", 1)
+							Library:TweenInstance(s, 0.25, "Color", Color3.fromRGB(120, 120, 120))
+						end
+					end
 				end
 
 				v.Choose.Visible = false
@@ -906,9 +924,11 @@ local AllLayouts = 0
 			Library:TweenInstance(TabIcon, 0.2, "ImageTransparency", 0)
 		end
 
-		Library:TweenInstance(TabStroke, 0.25, "Transparency", 0.2)
-		Library:TweenInstance(TabStroke, 0.25, "Thickness", 2)
+		Library:TweenInstance(TabStroke, 0.25, "Transparency", 0.1)
+		Library:TweenInstance(TabStroke, 0.25, "Thickness", 1.5)
 		Library:TweenInstance(TabStroke, 0.25, "Color", Color3.fromRGB(255, 0, 0))
+
+		Library:TweenInstance(GlowStroke, 0.25, "Transparency", 0.7)
 
 		UIPageLayout:JumpToIndex(Layout.LayoutOrder)
 		Choose_2.Visible = true

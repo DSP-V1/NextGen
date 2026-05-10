@@ -513,74 +513,84 @@ Close.Size = UDim2.new(0, 30, 0, 30)
 Close.Text = ""
 Close.MouseButton1Down:Connect(function()
     DropdownZone.Visible = true
-    local tat_ = Instance.new("Frame", DropdownZone);
-    tat_["BorderSizePixel"] = 0;
-    tat_["BackgroundColor3"] = Color3.fromRGB(19, 19, 19);
-    tat_["AnchorPoint"] = Vector2.new(0.5, 0.5);
-    tat_["Size"] = UDim2.new(0, 400, 0, 150);
-    tat_["Position"] = UDim2.new(0.5, 0, 0.5, 0);
-    tat_["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    tat_["Name"] = [[Tat]];
+    local tat_ = Instance.new("Frame", DropdownZone)
+tat_.Name = "Tat"
+tat_.AnchorPoint = Vector2.new(0.5, 0.5)
+tat_.Position = UDim2.new(0.5, 0, 0.5, 0)
+tat_.Size = UDim2.new(0, 400, 0, 150)
+tat_.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+tat_.BorderSizePixel = 0
 
-    local suacc = Instance.new("UIStroke", tat_);
-    suacc["Transparency"] = 0.5;
-    suacc["Color"] = Color3.fromRGB(101, 101, 101);
+local frameStroke = Instance.new("UIStroke", tat_)
+frameStroke.Color = Color3.fromRGB(255, 0, 0)
+frameStroke.Transparency = 0
+frameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-    local suacc = Instance.new("UICorner", tat_);
-    suacc["CornerRadius"] = UDim.new(0, 5);
+local frameCorner = Instance.new("UICorner", tat_)
+frameCorner.CornerRadius = UDim.new(0, 5)
 
-    local suacc2 = Instance.new("TextLabel", tat_);
-    suacc2["BorderSizePixel"] = 0;
-    suacc2["TextSize"] = 20;
-    suacc2["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-    suacc2["FontFace"] = Font.new([[rbxasset://fonts/families/Ubuntu.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-    suacc2["TextColor3"] = Color3.fromRGB(255, 255, 255);
-    suacc2["BackgroundTransparency"] = 1;
-    suacc2["Size"] = UDim2.new(0, 400, 0, 50);
-    suacc2["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    suacc2["Text"] = [[Are you sure?]];
+local titleLabel = Instance.new("TextLabel", tat_)
+titleLabel.Size = UDim2.new(0, 400, 0, 40)
+titleLabel.Position = UDim2.new(0, 0, 0, 10)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "Are you sure?"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextSize = 22
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.TextXAlignment = Enum.TextXAlignment.Center
 
-    local btnyes = Instance.new("TextButton", tat_);
-    btnyes["BorderSizePixel"] = 0;
-    btnyes["TextSize"] = 25;
-    btnyes["TextColor3"] = Color3.fromRGB(255, 255, 255);
-    btnyes["BackgroundColor3"] = Color3.fromRGB(5, 5, 5);
-    btnyes["FontFace"] = Font.new([[rbxasset://fonts/families/Ubuntu.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-    btnyes["AnchorPoint"] = Vector2.new(0, 1);
-    btnyes["Size"] = UDim2.new(0, 150, 0, 50);
-    btnyes["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    btnyes["Text"] = [[Yes]];
-    btnyes["Position"] = UDim2.new(0, 40, 1, -40);
-    btnyes.MouseButton1Down:Connect(function()
-        vui:Destroy()
-        G2L["1"]:Destroy()
-    end)
+local descLabel = Instance.new("TextLabel", tat_)
+descLabel.Size = UDim2.new(0, 400, 0, 50)
+descLabel.Position = UDim2.new(0, 0, 0, 50)
+descLabel.BackgroundTransparency = 1
+descLabel.Text = "Are you want to close this UI. This will close the UI fully!"
+descLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+descLabel.TextSize = 18
+descLabel.Font = Enum.Font.Gotham
+descLabel.TextWrapped = true
+descLabel.TextXAlignment = Enum.TextXAlignment.Center
+descLabel.TextYAlignment = Enum.TextYAlignment.Top
 
-    local thuaaa = Instance.new("UICorner", btnyes);
-    local thuaaa = Instance.new("UIStroke", btnyes);
-    thuaaa["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-    thuaaa["Color"] = Color3.fromRGB(39, 39, 39);
+local btnYes = Instance.new("TextButton", tat_)
+btnYes.Size = UDim2.new(0, 150, 0, 50)
+btnYes.Position = UDim2.new(0, 40, 1, -40)
+btnYes.AnchorPoint = Vector2.new(0, 1)
+btnYes.BackgroundColor3 = Color3.fromRGB(5, 5, 5)
+btnYes.BorderSizePixel = 0
+btnYes.Text = "Yes"
+btnYes.TextColor3 = Color3.fromRGB(255, 255, 255)
+btnYes.TextSize = 25
+btnYes.Font = Enum.Font.GothamBold
 
-    local btnno = Instance.new("TextButton", tat_);
-    btnno["BorderSizePixel"] = 0;
-    btnno["TextSize"] = 25;
-    btnno["TextColor3"] = Color3.fromRGB(255, 255, 255);
-    btnno["BackgroundColor3"] = Color3.fromRGB(5, 5, 5);
-    btnno["FontFace"] = Font.new([[rbxasset://fonts/families/Ubuntu.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-    btnno["AnchorPoint"] = Vector2.new(1, 1);
-    btnno["Size"] = UDim2.new(0, 150, 0, 50);
-    btnno["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-    btnno["Text"] = [[No]];
-    btnno["Position"] = UDim2.new(1, -40, 1, -40);
+local btnYesCorner = Instance.new("UICorner", btnYes)
+local btnYesStroke = Instance.new("UIStroke", btnYes)
+btnYesStroke.Color = Color3.fromRGB(255, 0, 0)
+btnYesStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-    btnno.MouseButton1Down:Connect(function()
-        tat_:Destroy()
-        DropdownZone.Visible = false
-    end)
-    local thuaa = Instance.new("UICorner", btnno);
-    local thuaa = Instance.new("UIStroke", btnno);
-    thuaa["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-    thuaa["Color"] = Color3.fromRGB(39, 39, 39);
+btnYes.MouseButton1Down:Connect(function()
+    vui:Destroy()
+    G2L["1"]:Destroy()
+end)
+
+local btnNo = Instance.new("TextButton", tat_)
+btnNo.Size = UDim2.new(0, 150, 0, 50)
+btnNo.Position = UDim2.new(1, -40, 1, -40)
+btnNo.AnchorPoint = Vector2.new(1, 1)
+btnNo.BackgroundColor3 = Color3.fromRGB(5, 5, 5)
+btnNo.BorderSizePixel = 0
+btnNo.Text = "No"
+btnNo.TextColor3 = Color3.fromRGB(255, 255, 255)
+btnNo.TextSize = 25
+btnNo.Font = Enum.Font.GothamBold
+
+local btnNoCorner = Instance.new("UICorner", btnNo)
+local btnNoStroke = Instance.new("UIStroke", btnNo)
+btnNoStroke.Color = Color3.fromRGB(255, 0, 0)
+btnNoStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+btnNo.MouseButton1Down:Connect(function()
+    tat_:Destroy()
+    DropdownZone.Visible = false
 end)
 
 Icon_3.Name = "Icon"

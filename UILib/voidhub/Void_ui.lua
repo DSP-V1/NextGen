@@ -778,10 +778,6 @@ local AllLayouts = 0
 	local UIListLayout_3 = Instance.new("UIListLayout")
 	local TabIcon = Instance.new("ImageLabel")
 	local TabStroke = Instance.new("UIStroke")
-
-	local Glow1 = Instance.new("UIStroke")
-	local Glow2 = Instance.new("UIStroke")
-
 	local TabUICorner = Instance.new("UICorner")
 
 	TabDisable.Name = "TabDisable"
@@ -800,20 +796,6 @@ local AllLayouts = 0
 	TabStroke.Color = Color3.fromRGB(120, 120, 120)
 	TabStroke.Transparency = 0.85
 	TabStroke.Enabled = cfTab.Border
-
-	Glow1.Parent = TabDisable
-	Glow1.Thickness = 6
-	Glow1.Color = Color3.fromRGB(255, 0, 0)
-	Glow1.Transparency = 1
-	Glow1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	Glow1.Enabled = cfTab.Border
-
-	Glow2.Parent = TabDisable
-	Glow2.Thickness = 12
-	Glow2.Color = Color3.fromRGB(255, 0, 0)
-	Glow2.Transparency = 1
-	Glow2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	Glow2.Enabled = cfTab.Border
 
 	Choose_2.Name = "Choose"
 	Choose_2.Parent = TabDisable
@@ -881,35 +863,20 @@ local AllLayouts = 0
 	UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout_3.Padding = UDim.new(0, 10)
 
-	local function SetActive()
-		TabStroke.Color = Color3.fromRGB(255, 0, 0)
-		TabStroke.Transparency = 0
-		TabStroke.Thickness = 1.5
-
-		Glow1.Transparency = 0.65
-		Glow2.Transparency = 0.82
-	end
-
-	local function SetInactive()
-		TabStroke.Color = Color3.fromRGB(120, 120, 120)
-		TabStroke.Transparency = 0.85
-		TabStroke.Thickness = 1
-
-		Glow1.Transparency = 1
-		Glow2.Transparency = 1
-	end
-
 	if AllLayouts == 0 then
 		NameTab_2.TextTransparency = 0
-		if TabIcon then TabIcon.ImageTransparency = 0 end
+
+		if TabIcon then
+			TabIcon.ImageTransparency = 0
+		end
 
 		Choose_2.Visible = true
-		SetActive()
+		TabStroke.Color = Color3.fromRGB(255, 0, 0)
+		TabStroke.Transparency = 0.2
+		TabStroke.Thickness = 2
 
 		UIPageLayout:JumpToIndex(0)
 		TextLabel.Text = t
-	else
-		SetInactive()
 	end
 
 	Click_Tab_2.Activated:Connect(function()
@@ -923,15 +890,10 @@ local AllLayouts = 0
 					Library:TweenInstance(v.TabIcon, 0.3, "ImageTransparency", 0.3)
 				end
 
-				local stroke = v:FindFirstChildOfClass("UIStroke")
-				if stroke then
-					if stroke.Thickness >= 6 then
-						Library:TweenInstance(stroke, 0.2, "Transparency", 1)
-					else
-						Library:TweenInstance(stroke, 0.2, "Transparency", 0.85)
-						Library:TweenInstance(stroke, 0.2, "Color", Color3.fromRGB(120, 120, 120))
-						Library:TweenInstance(stroke, 0.2, "Thickness", 1)
-					end
+				if v:FindFirstChildOfClass("UIStroke") then
+					Library:TweenInstance(v:FindFirstChildOfClass("UIStroke"), 0.25, "Transparency", 0.85)
+					Library:TweenInstance(v:FindFirstChildOfClass("UIStroke"), 0.25, "Thickness", 1)
+					Library:TweenInstance(v:FindFirstChildOfClass("UIStroke"), 0.25, "Color", Color3.fromRGB(120, 120, 120))
 				end
 
 				v.Choose.Visible = false
@@ -939,15 +901,20 @@ local AllLayouts = 0
 		end
 
 		Library:TweenInstance(NameTab_2, 0.2, "TextTransparency", 0)
-		if TabIcon then Library:TweenInstance(TabIcon, 0.2, "ImageTransparency", 0) end
 
-		SetActive()
+		if TabIcon then
+			Library:TweenInstance(TabIcon, 0.2, "ImageTransparency", 0)
+		end
+
+		Library:TweenInstance(TabStroke, 0.25, "Transparency", 0.2)
+		Library:TweenInstance(TabStroke, 0.25, "Thickness", 2)
+		Library:TweenInstance(TabStroke, 0.25, "Color", Color3.fromRGB(255, 0, 0))
 
 		UIPageLayout:JumpToIndex(Layout.LayoutOrder)
 		Choose_2.Visible = true
 	end)
 
-	AllLayouts += 1
+	AllLayouts = AllLayouts + 1
 		local TabFunc = {}
         function TabFunc:AddSection(cfsection)
 	local cfsection = Library:MakeConfig({

@@ -744,7 +744,7 @@ TextLabel.Size = UDim2.new(1, -10, 1, 0)
 TextLabel.Font = Enum.Font.GothamBold
 TextLabel.Text = ""
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextSize = 13.000
+TextLabel.TextSize = 20.000
 TextLabel.RichText = true
 TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 

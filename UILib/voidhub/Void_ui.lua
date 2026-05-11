@@ -2034,6 +2034,7 @@ function Library:NewWindow(ConfigWindow)
 	end
 
 	return ListFunc
+			end
 			return SectionFunc
 		end
 		return TabFunc

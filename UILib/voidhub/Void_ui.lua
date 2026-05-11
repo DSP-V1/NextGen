@@ -1937,10 +1937,10 @@ function Library:NewWindow(ConfigWindow)
 
 	local List = Instance.new("Frame")
 	local UICorner_169 = Instance.new("UICorner")
-	local UIPadding = Instance.new("UIPadding")
+	local UIPadding839 = Instance.new("UIPadding")
 	local Title_76 = Instance.new("TextLabel")
 	local ContentHolder = Instance.new("ScrollingFrame")
-	local UIListLayout = Instance.new("UIListLayout")
+	local UIListLayoutOur = Instance.new("UIListLayout")
 
 	local ListFunc = {}
 
@@ -1955,11 +1955,11 @@ function Library:NewWindow(ConfigWindow)
 	UICorner_169.CornerRadius = UDim.new(0, 3)
 	UICorner_169.Parent = List
 
-	UIPadding.Parent = List
-	UIPadding.PaddingLeft = UDim.new(0, 10)
-	UIPadding.PaddingRight = UDim.new(0, 10)
-	UIPadding.PaddingTop = UDim.new(0, 7)
-	UIPadding.PaddingBottom = UDim.new(0, 10)
+	UIPadding839.Parent = List
+	UIPadding839.PaddingLeft = UDim.new(0, 10)
+	UIPadding839.PaddingRight = UDim.new(0, 10)
+	UIPadding839.PaddingTop = UDim.new(0, 7)
+	UIPadding839.PaddingBottom = UDim.new(0, 10)
 
 	Title_76.Name = "Title"
 	Title_76.Parent = List
@@ -1985,9 +1985,9 @@ function Library:NewWindow(ConfigWindow)
 	ContentHolder.ScrollBarImageColor3 = Color3.fromRGB(120, 120, 120)
 	ContentHolder.ScrollingDirection = Enum.ScrollingDirection.Y
 
-	UIListLayout.Parent = ContentHolder
-	UIListLayout.Padding = UDim.new(0, 2)
-	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayoutOur.Parent = ContentHolder
+	UIListLayoutOur.Padding = UDim.new(0, 2)
+	UIListLayoutOur.SortOrder = Enum.SortOrder.LayoutOrder
 
 	local function RefreshList()
 		for _, v in ipairs(ContentHolder:GetChildren()) do

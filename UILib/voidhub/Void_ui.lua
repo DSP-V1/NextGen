@@ -1929,6 +1929,111 @@ function Library:NewWindow(ConfigWindow)
 				Space.BorderSizePixel = 0
 				Space.Size = UDim2.new(1, 0, 0, space or 5)
 			end
+			function SectionFunc:AddList(cflist)
+	local cflist = Library:MakeConfig({
+		Title = "List < Missing Title >",
+		Content = {}
+	}, cflist or {})
+
+	local List = Instance.new("Frame")
+	local UICorner_169 = Instance.new("UICorner")
+	local UIPadding = Instance.new("UIPadding")
+	local Title_76 = Instance.new("TextLabel")
+	local ContentHolder = Instance.new("ScrollingFrame")
+	local UIListLayout = Instance.new("UIListLayout")
+
+	local ListFunc = {}
+
+	List.Name = "List"
+	List.Parent = SectionList
+	List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	List.BackgroundTransparency = 0.950
+	List.BorderSizePixel = 0
+	List.Size = UDim2.new(1, 0, 0, 0)
+	List.AutomaticSize = Enum.AutomaticSize.Y
+
+	UICorner_169.CornerRadius = UDim.new(0, 3)
+	UICorner_169.Parent = List
+
+	UIPadding.Parent = List
+	UIPadding.PaddingLeft = UDim.new(0, 10)
+	UIPadding.PaddingRight = UDim.new(0, 10)
+	UIPadding.PaddingTop = UDim.new(0, 7)
+	UIPadding.PaddingBottom = UDim.new(0, 10)
+
+	Title_76.Name = "Title"
+	Title_76.Parent = List
+	Title_76.BackgroundTransparency = 1
+	Title_76.Size = UDim2.new(1, 0, 0, 16)
+	Title_76.Font = Enum.Font.GothamBold
+	Title_76.Text = cflist.Title
+	Title_76.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title_76.TextSize = 13
+	Title_76.RichText = true
+	Title_76.TextXAlignment = Enum.TextXAlignment.Left
+	Title_76.TextWrapped = true
+
+	ContentHolder.Name = "ContentHolder"
+	ContentHolder.Parent = List
+	ContentHolder.BackgroundTransparency = 1
+	ContentHolder.BorderSizePixel = 0
+	ContentHolder.Position = UDim2.new(0, 0, 0, 22)
+	ContentHolder.Size = UDim2.new(1, 0, 0, 64)
+	ContentHolder.CanvasSize = UDim2.new(0, 0, 0, 0)
+	ContentHolder.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	ContentHolder.ScrollBarThickness = 3
+	ContentHolder.ScrollBarImageColor3 = Color3.fromRGB(120, 120, 120)
+	ContentHolder.ScrollingDirection = Enum.ScrollingDirection.Y
+
+	UIListLayout.Parent = ContentHolder
+	UIListLayout.Padding = UDim.new(0, 2)
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	local function RefreshList()
+		for _, v in ipairs(ContentHolder:GetChildren()) do
+			if v:IsA("TextLabel") then
+				v:Destroy()
+			end
+		end
+
+		for _, text in ipairs(cflist.Content) do
+			local Item = Instance.new("TextLabel")
+
+			Item.Parent = ContentHolder
+			Item.BackgroundTransparency = 1
+			Item.Size = UDim2.new(1, -4, 0, 14)
+			Item.Font = Enum.Font.GothamBold
+			Item.Text = tostring(text)
+			Item.TextColor3 = Color3.fromRGB(100, 100, 100)
+			Item.TextSize = 12
+			Item.RichText = true
+			Item.TextWrapped = false
+			Item.TextXAlignment = Enum.TextXAlignment.Left
+		end
+	end
+
+	RefreshList()
+
+	function ListFunc:SetTitle(args)
+		Title_76.Text = args
+	end
+
+	function ListFunc:SetList(args)
+		cflist.Content = args or {}
+		RefreshList()
+	end
+
+	function ListFunc:Add(args)
+		table.insert(cflist.Content, tostring(args))
+		RefreshList()
+	end
+
+	function ListFunc:Clear()
+		table.clear(cflist.Content)
+		RefreshList()
+	end
+
+	return ListFunc
 			return SectionFunc
 		end
 		return TabFunc

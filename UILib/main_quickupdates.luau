@@ -75,6 +75,65 @@ function Library:MakeDraggable(topbarobject, object)
 	end)
 end
 
+Library.ThemeObjects = {
+    Lines = {},
+    Elements = {}
+}
+
+function Library:SetThemeTargets(MainStroke, TabLine, TopLine)
+    self.ThemeObjects.Lines = {
+        UIBorderColor = MainStroke,
+        UITabBorderColor = TabLine,
+        UITopBarColor = TopLine
+    }
+end
+
+function Library:RegisterElement(Object)
+    table.insert(self.ThemeObjects.Elements, Object)
+end
+
+function Library:ChangeTheme(ThemeTable)
+    for SectionName, SectionValues in pairs(ThemeTable) do
+        if SectionName == "Lines" then
+            local ThemeSection = self.ThemeObjects.Lines
+            if ThemeSection then
+                for SettingName, Value in pairs(SectionValues) do
+                    local Object = ThemeSection[SettingName]
+                    if Object then
+                        if Object:IsA("UIStroke") then
+                            Object.Color = Value
+                        else
+                            Object.BackgroundColor3 = Value
+                        end
+                    end
+                end
+            end
+        elseif SectionName == "Accent" then
+            local AccentColor = SectionValues["Color"]
+            if AccentColor then
+                for _, LibSection in pairs(self.ThemeObjects.Lines) do
+                    if LibSection:IsA("UIGradient") then
+                        LibSection.Color = ColorSequence.new({
+                            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)),
+                            ColorSequenceKeypoint.new(0.52, AccentColor),
+                            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25))
+                        })
+                    end
+                end
+                for _, Obj in pairs(self.ThemeObjects.Elements) do
+                    if Obj:IsA("Frame") and Obj.Name == "ToggleCheck" and Obj.BackgroundColor3 ~= Color3.fromRGB(60, 60, 60) then
+                        Obj.BackgroundColor3 = AccentColor
+                    elseif Obj:IsA("Frame") and Obj.Name == "SliderDraggable" then
+                        Obj.BackgroundColor3 = AccentColor
+                    elseif Obj:IsA("TextBox") and Obj.Name == "SliderValue" then
+                        Obj.BackgroundColor3 = AccentColor
+                    end
+                end
+            end
+        end
+    end
+end
+
 function Library:NewWindow(ConfigWindow)
     local function GetIcon(input)
 	if not input then return "" end
@@ -2166,65 +2225,6 @@ function Library:Notify(NotificationConfig)
 		task.wait(0.4)
 		Notification:Destroy()
 	end)
-end
-
-Library.ThemeObjects = {
-    Lines = {},
-    Elements = {}
-}
-
-function Library:SetThemeTargets(MainStroke, TabLine, TopLine)
-    self.ThemeObjects.Lines = {
-        UIBorderColor = MainStroke,
-        UITabBorderColor = TabLine,
-        UITopBarColor = TopLine
-    }
-end
-
-function Library:RegisterElement(Object)
-    table.insert(self.ThemeObjects.Elements, Object)
-end
-
-function Library:ChangeTheme(ThemeTable)
-    for SectionName, SectionValues in pairs(ThemeTable) do
-        if SectionName == "Lines" then
-            local ThemeSection = self.ThemeObjects.Lines
-            if ThemeSection then
-                for SettingName, Value in pairs(SectionValues) do
-                    local Object = ThemeSection[SettingName]
-                    if Object then
-                        if Object:IsA("UIStroke") then
-                            Object.Color = Value
-                        else
-                            Object.BackgroundColor3 = Value
-                        end
-                    end
-                end
-            end
-        elseif SectionName == "Accent" then
-            local AccentColor = SectionValues["Color"]
-            if AccentColor then
-                for _, LibSection in pairs(self.ThemeObjects.Lines) do
-                    if LibSection:IsA("UIGradient") then
-                        LibSection.Color = ColorSequence.new({
-                            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)),
-                            ColorSequenceKeypoint.new(0.52, AccentColor),
-                            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25))
-                        })
-                    end
-                end
-                for _, Obj in pairs(self.ThemeObjects.Elements) do
-                    if Obj:IsA("Frame") and Obj.Name == "ToggleCheck" and Obj.BackgroundColor3 ~= Color3.fromRGB(60, 60, 60) then
-                        Obj.BackgroundColor3 = AccentColor
-                    elseif Obj:IsA("Frame") and Obj.Name == "SliderDraggable" then
-                        Obj.BackgroundColor3 = AccentColor
-                    elseif Obj:IsA("TextBox") and Obj.Name == "SliderValue" then
-                        Obj.BackgroundColor3 = AccentColor
-                    end
-                end
-            end
-        end
-    end
 end
 
 return Library

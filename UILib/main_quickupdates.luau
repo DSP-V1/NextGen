@@ -83,6 +83,7 @@ function Library:NewWindow(ConfigWindow)
 		return "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=" .. id
 	end
 	return input
+    self:SetThemeTargets(UIStroke, Line_2, Line)
 end
 	local ConfigWindow = self:MakeConfig({
     Title = "NextGen UI",
@@ -1167,7 +1168,7 @@ local AllLayouts = 0
     Toggle_Click.Activated:Connect(function()
         ToggleFunc:Set(not ToggleFunc.Value)
     end)
-
+Library:RegisterElement(ToggleCheck)
     return ToggleFunc
 end
             function SectionFunc:AddButton(cfbutton)
@@ -1923,6 +1924,8 @@ end)
       end)
 
       SliderFunc:Set(cfslider.Default)
+Library:RegisterElement(SliderDraggable)
+Library:RegisterElement(SliderValue)
         return SliderFunc
       end
 			function SectionFunc:AddSeperator(args)
@@ -2166,26 +2169,57 @@ function Library:Notify(NotificationConfig)
 end
 
 Library.ThemeObjects = {
-    Lines = {
-        UIBorderColor = UIStroke,
-        UITabBorderColor = Line_2,
-        UITopBarColor = Line
-    }
+    Lines = {},
+    Elements = {}
 }
+
+function Library:SetThemeTargets(MainStroke, TabLine, TopLine)
+    self.ThemeObjects.Lines = {
+        UIBorderColor = MainStroke,
+        UITabBorderColor = TabLine,
+        UITopBarColor = TopLine
+    }
+end
+
+function Library:RegisterElement(Object)
+    table.insert(self.ThemeObjects.Elements, Object)
+end
 
 function Library:ChangeTheme(ThemeTable)
     for SectionName, SectionValues in pairs(ThemeTable) do
-        local ThemeSection = self.ThemeObjects[SectionName]
-
-        if ThemeSection then
-            for SettingName, Value in pairs(SectionValues) do
-                local Object = ThemeSection[SettingName]
-
-                if Object then
-                    if Object:IsA("UIStroke") then
-                        Object.Color = Value
-                    else
-                        Object.BackgroundColor3 = Value
+        if SectionName == "Lines" then
+            local ThemeSection = self.ThemeObjects.Lines
+            if ThemeSection then
+                for SettingName, Value in pairs(SectionValues) do
+                    local Object = ThemeSection[SettingName]
+                    if Object then
+                        if Object:IsA("UIStroke") then
+                            Object.Color = Value
+                        else
+                            Object.BackgroundColor3 = Value
+                        end
+                    end
+                end
+            end
+        elseif SectionName == "Accent" then
+            local AccentColor = SectionValues["Color"]
+            if AccentColor then
+                for _, LibSection in pairs(self.ThemeObjects.Lines) do
+                    if LibSection:IsA("UIGradient") then
+                        LibSection.Color = ColorSequence.new({
+                            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)),
+                            ColorSequenceKeypoint.new(0.52, AccentColor),
+                            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25))
+                        })
+                    end
+                end
+                for _, Obj in pairs(self.ThemeObjects.Elements) do
+                    if Obj:IsA("Frame") and Obj.Name == "ToggleCheck" and Obj.BackgroundColor3 ~= Color3.fromRGB(60, 60, 60) then
+                        Obj.BackgroundColor3 = AccentColor
+                    elseif Obj:IsA("Frame") and Obj.Name == "SliderDraggable" then
+                        Obj.BackgroundColor3 = AccentColor
+                    elseif Obj:IsA("TextBox") and Obj.Name == "SliderValue" then
+                        Obj.BackgroundColor3 = AccentColor
                     end
                 end
             end

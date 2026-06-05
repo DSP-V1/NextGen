@@ -142,7 +142,6 @@ function Library:NewWindow(ConfigWindow)
 		return "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=" .. id
 	end
 	return input
-    self:SetThemeTargets(UIStroke, Line_2, Line)
 end
 	local ConfigWindow = self:MakeConfig({
     Title = "NextGen UI",
@@ -795,6 +794,7 @@ DropdownZone.BorderSizePixel = 0
 DropdownZone.Size = UDim2.new(1, 0, 1, 0)
 DropdownZone.Visible = false
 self:MakeDraggable(Top, DropShadowHolder)
+self:SetThemeTargets(UIStroke, Line_2, Line)
 local AllLayouts = 0
 	local Tab = {}
     function Tab:AddTab(cfTab)

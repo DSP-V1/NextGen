@@ -2046,6 +2046,125 @@ end
 	return Tab
 end
 
+function Library:Notify(NotificationConfig)
+	local cfnotif = self:MakeConfig({
+		Title = "Notification",
+		Content = "Notification text here",
+		Duration = 5
+	}, NotificationConfig or {})
+
+	local NotifGui = game.Players.LocalPlayer:WaitForChild("PlayerGui"):FindFirstChild("NextGen_Notifs")
+	if not NotifGui then
+		NotifGui = Instance.new("ScreenGui")
+		NotifGui.Name = "NextGen_Notifs"
+		NotifGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+		NotifGui.ResetOnSpawn = false
+		NotifGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+		local NotifHolder = Instance.new("Frame")
+		NotifHolder.Name = "NotifHolder"
+		NotifHolder.Parent = NotifGui
+		NotifHolder.BackgroundTransparency = 1
+		NotifHolder.Position = UDim2.new(1, -320, 1, -20)
+		NotifHolder.Size = UDim2.new(0, 300, 1, 0)
+		NotifHolder.AnchorPoint = Vector2.new(0, 1)
+
+		local UIListLayout = Instance.new("UIListLayout")
+		UIListLayout.Parent = NotifHolder
+		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+		UIListLayout.Padding = UDim.new(0, 10)
+	end
+
+	local NotifHolder = NotifGui.NotifHolder
+
+	local Notification = Instance.new("Frame")
+	local UICorner = Instance.new("UICorner")
+	local UIStroke = Instance.new("UIStroke")
+	local Title = Instance.new("TextLabel")
+	local Content = Instance.new("TextLabel")
+	local TopLine = Instance.new("Frame")
+	local UIGradient = Instance.new("UIGradient")
+
+	Notification.Name = "Notification"
+	Notification.Parent = NotifHolder
+	Notification.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+	Notification.BackgroundTransparency = 1 -- Start transparent for fade in
+	Notification.BorderSizePixel = 0
+	Notification.Size = UDim2.new(1, 0, 0, 60)
+
+	UICorner.CornerRadius = UDim.new(0, 4)
+	UICorner.Parent = Notification
+
+	UIStroke.Color = Color3.fromRGB(50, 50, 50)
+	UIStroke.Thickness = 1
+	UIStroke.Transparency = 1 -- Start transparent
+	UIStroke.Parent = Notification
+
+	TopLine.Name = "TopLine"
+	TopLine.Parent = Notification
+	TopLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TopLine.BorderSizePixel = 0
+	TopLine.Size = UDim2.new(1, 0, 0, 2)
+	TopLine.BackgroundTransparency = 1
+
+	UIGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0.00, Color3.fromRGB(24, 24, 25)),
+		ColorSequenceKeypoint.new(0.50, Color3.fromRGB(116, 18, 217)),
+		ColorSequenceKeypoint.new(1.00, Color3.fromRGB(24, 24, 25))
+	})
+	UIGradient.Parent = TopLine
+
+	Title.Name = "Title"
+	Title.Parent = Notification
+	Title.BackgroundTransparency = 1
+	Title.Position = UDim2.new(0, 10, 0, 10)
+	Title.Size = UDim2.new(1, -20, 0, 16)
+	Title.Font = Enum.Font.GothamBold
+	Title.Text = cfnotif.Title
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextSize = 14
+	Title.TextXAlignment = Enum.TextXAlignment.Left
+	Title.TextTransparency = 1
+
+	Content.Name = "Content"
+	Content.Parent = Notification
+	Content.BackgroundTransparency = 1
+	Content.Position = UDim2.new(0, 10, 0, 30)
+	Content.Size = UDim2.new(1, -20, 0, 20)
+	Content.Font = Enum.Font.GothamBold
+	Content.Text = cfnotif.Content
+	Content.TextColor3 = Color3.fromRGB(150, 150, 150)
+	Content.TextSize = 12
+	Content.TextXAlignment = Enum.TextXAlignment.Left
+	Content.TextYAlignment = Enum.TextYAlignment.Top
+	Content.TextWrapped = true
+	Content.TextTransparency = 1
+
+	local textBounds = game:GetService("TextService"):GetTextSize(cfnotif.Content, 12, Enum.Font.GothamBold, Vector2.new(280, math.huge))
+	Notification.Size = UDim2.new(1, 0, 0, math.max(60, 40 + textBounds.Y))
+
+	local TweenService = game:GetService("TweenService")
+	local fadeInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+
+	TweenService:Create(Notification, fadeInfo, {BackgroundTransparency = 0.05}):Play()
+	TweenService:Create(UIStroke, fadeInfo, {Transparency = 0.5}):Play()
+	TweenService:Create(TopLine, fadeInfo, {BackgroundTransparency = 0}):Play()
+	TweenService:Create(Title, fadeInfo, {TextTransparency = 0}):Play()
+	TweenService:Create(Content, fadeInfo, {TextTransparency = 0}):Play()
+
+	task.spawn(function()
+		task.wait(cfnotif.Duration)
+		TweenService:Create(Notification, fadeInfo, {BackgroundTransparency = 1}):Play()
+		TweenService:Create(UIStroke, fadeInfo, {Transparency = 1}):Play()
+		TweenService:Create(TopLine, fadeInfo, {BackgroundTransparency = 1}):Play()
+		TweenService:Create(Title, fadeInfo, {TextTransparency = 1}):Play()
+		TweenService:Create(Content, fadeInfo, {TextTransparency = 1}):Play()
+		task.wait(0.4)
+		Notification:Destroy()
+	end)
+end
+
 Library.ThemeObjects = {
     Lines = {
         UIBorderColor = UIStroke,

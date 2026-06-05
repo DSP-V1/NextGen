@@ -86,7 +86,7 @@ function Library:NewWindow(ConfigWindow)
 end
 	local ConfigWindow = self:MakeConfig({
     Title = "NextGen UI",
-    Description = "By DSPV1 & T0X1C",
+    Description = "By DSPV1",
     Icon = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=75322827874289",
     Resizable = true,
     ReopenButton = {

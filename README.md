@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DSP-V1/NextGen/refs/heads/main/extras/images/image.jpg" alt="NextGen V1 Logo" width="250"/>
+  <img src="https://raw.githubusercontent.com/DSP-V1/NextGen/refs/heads/main/extras/images/grok_image_1787875114454.jpg" alt="NextGen V1 Logo" width="250"/>
 </p>
 
-<h1 align="center">NextGen V1 - The Future of Universal Scripting</h1>
+<h1 align="center">NextGen V2 - The Future of Universal Scripting</h1>
 
 ---
 
-## ✨ Welcome to NextGen V1!
+## ✨ Welcome to NextGen V2!
 
-We are an ambitious and passionate new project dedicated to bringing powerful and intuitive universal scripts to the Roblox community. Our vision for NextGen V1 is to develop a robust, feature-rich platform that enhances your experience across a wide array of Roblox games.
+We are an ambitious and passionate new project dedicated to bringing powerful and intuitive universal scripts to the Roblox community. Our vision for NextGen V2 is to develop a robust, feature-rich platform that enhances your experience across a wide array of Roblox games.
 
 ### 🚀 Our Mission
 
@@ -16,7 +16,7 @@ At NextGen, we believe in accessibility and community. We're not just building a
 
 ### 🌐 Universal Approach
 
-We are currently focused on developing a truly **universal script**. This means we're designing NextGen V1 with adaptability in mind, striving for broad compatibility and functionality that works seamlessly wherever you play.
+We are currently focused on developing a truly **universal script**. This means we're designing NextGen V2 with adaptability in mind, striving for broad compatibility and functionality that works seamlessly wherever you play.
 
 ### 🎨 Open-Source UI
 
@@ -26,8 +26,8 @@ Unlike many others, we believe that great UI should be shared. Our custom-design
 
 ### 📖 Getting Started
 
-To get started with NextGen V1, simply...
-*(Join Our Discord [https://discord.gg/xhuNxV6AHA](NextGenV1))*
+To get started with NextGen V2, simply...
+*(Join Our Discord [https://discord.gg/nextgen](NextGenV2))*
 
 ### 🤝 Contribute & Connect
 
@@ -35,8 +35,7 @@ We are a community-driven project and welcome contributions, feedback, and ideas
 
 * **Report Bugs:** Encounter an issue? Please open an issue on our GitHub repository.
 * **Suggest Features:** Have a brilliant idea? Let us know!
-* **Join Our Community:** *(https://discord.gg/xhuNxV6AHA)*
 
 ---
 
-Thank you for being a part of the NextGen V1 journey!
+Thank you for being a part of the NextGen V2 journey!

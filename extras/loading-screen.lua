@@ -1,250 +1,243 @@
 local a = game:GetService("Players")
 local b = game:GetService("TweenService")
 local c = game:GetService("RunService")
-local d = a.LocalPlayer
-local e = Instance.new("ScreenGui")
-e.Name = "NextGenLoadingScreen"
-e.IgnoreGuiInset = true
-e.ResetOnSpawn = false
-e.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-e.Parent = d:WaitForChild("PlayerGui")
-local f = Instance.new("Frame")
-f.Name = "Background"
-f.Size = UDim2.new(1, 0, 1, 0)
-f.Position = UDim2.new(0, 0, 0, 0)
-f.BackgroundColor3 = Color3.fromRGB(8, 8, 12)
-f.BorderSizePixel = 0
-f.Parent = e
-local g = Instance.new("Frame")
-g.Name = "GridPattern"
-g.Size = UDim2.new(1, 0, 1, 0)
-g.BackgroundTransparency = 1
-g.ClipsDescendants = true
-g.Parent = f
-for h = 1, 40 do
-    local i = Instance.new("Frame")
-    i.Size = UDim2.new(1, 0, 0, 1)
-    i.Position = UDim2.new(0, 0, h / 40, 0)
-    i.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-    i.BorderSizePixel = 0
-    i.Parent = g
-    local j = Instance.new("Frame")
-    j.Size = UDim2.new(0, 1, 1, 0)
-    j.Position = UDim2.new(h / 40, 0, 0, 0)
-    j.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-    j.BorderSizePixel = 0
-    j.Parent = g
-end
-local k = Instance.new("Frame")
-k.Name = "CenterContainer"
-k.Size = UDim2.new(0.7, 0, 0.5, 0)
-k.Position = UDim2.new(0.5, 0, 0.5, 0)
-k.AnchorPoint = Vector2.new(0.5, 0.5)
-k.BackgroundTransparency = 1
-k.Parent = f
-local l = Instance.new("TextLabel")
-l.Name = "Title"
-l.Size = UDim2.new(1, 0, 0.35, 0)
-l.Position = UDim2.new(0, 0, 0.05, 0)
-l.BackgroundTransparency = 1
-l.Text = "N E X T G E N"
-l.TextColor3 = Color3.fromRGB(255, 255, 255)
-l.Font = Enum.Font.GothamBlack
-l.TextScaled = true
-l.Parent = k
-local m = Instance.new("UITextSizeConstraint")
-m.MaxTextSize = 120
-m.Parent = l
-local n = Instance.new("UIStroke")
-n.Color = Color3.fromRGB(0, 255, 255)
-n.Thickness = 3
-n.Transparency = 0.2
-n.Parent = l
-local o = Instance.new("TextLabel")
-o.Name = "TitleGlitch"
-o.Size = UDim2.new(1, 0, 1, 0)
-o.Position = UDim2.new(0.01, 0, 0.01, 0)
-o.BackgroundTransparency = 1
-o.Text = "N E X T G E N"
-o.TextColor3 = Color3.fromRGB(255, 0, 128)
-o.Font = Enum.Font.GothamBlack
-o.TextScaled = true
-o.TextTransparency = 0.5
-o.ZIndex = 0
-o.Parent = l
-local p = Instance.new("TextLabel")
-p.Name = "TitleGlitch2"
-p.Size = UDim2.new(1, 0, 1, 0)
-p.Position = UDim2.new(-0.01, 0, -0.01, 0)
-p.BackgroundTransparency = 1
-p.Text = "N E X T G E N"
-p.TextColor3 = Color3.fromRGB(0, 255, 255)
-p.Font = Enum.Font.GothamBlack
-p.TextScaled = true
-p.TextTransparency = 0.5
-p.ZIndex = 0
-p.Parent = l
-local q = Instance.new("TextLabel")
-q.Name = "Subtitle"
-q.Size = UDim2.new(1, 0, 0.1, 0)
-q.Position = UDim2.new(0, 0, 0.45, 0)
-q.BackgroundTransparency = 1
-q.Text = "INITIALIZING CORE SYSTEMS"
-q.TextColor3 = Color3.fromRGB(180, 180, 220)
-q.Font = Enum.Font.Code
-q.TextScaled = true
-q.Parent = k
-local r = Instance.new("UITextSizeConstraint")
-r.MaxTextSize = 25
-r.Parent = q
-local s = Instance.new("Frame")
-s.Name = "LoadingBarContainer"
-s.Size = UDim2.new(0.9, 0, 0.06, 0)
-s.Position = UDim2.new(0.05, 0, 0.7, 0)
-s.BackgroundColor3 = Color3.fromRGB(15, 15, 25)
-s.BorderSizePixel = 0
-s.ClipsDescendants = true
-s.Parent = k
-local t = Instance.new("UICorner")
-t.CornerRadius = UDim.new(1, 0)
-t.Parent = s
-local u = Instance.new("UIStroke")
-u.Color = Color3.fromRGB(0, 255, 255)
-u.Thickness = 2
-u.Transparency = 0.4
-u.Parent = s
-local v = Instance.new("Frame")
-v.Name = "LoadingBarFill"
-v.Size = UDim2.new(0, 0, 1, 0)
-v.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-v.BorderSizePixel = 0
-v.Parent = s
-local w = Instance.new("UICorner")
-w.CornerRadius = UDim.new(1, 0)
-w.Parent = v
-local x = Instance.new("UIGradient")
-x.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 255)), ColorSequenceKeypoint.new(0.5, Color3.fromRGB(138, 43, 226)), ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 255))}
-x.Parent = v
-local y = Instance.new("Frame")
-y.Name = "GlowEffect"
-y.Size = UDim2.new(1, 0, 1, 0)
-y.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-y.BackgroundTransparency = 0.5
-y.BorderSizePixel = 0
-y.Parent = v
-local z = Instance.new("UIGradient")
-z.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(0.5, 0), NumberSequenceKeypoint.new(1, 1)}
-z.Parent = y
-local aa = Instance.new("TextLabel")
-aa.Name = "PercentageText"
-aa.Size = UDim2.new(1, 0, 0.15, 0)
-aa.Position = UDim2.new(0, 0, 0.8, 0)
-aa.BackgroundTransparency = 1
-aa.Text = "0%"
-aa.TextColor3 = Color3.fromRGB(0, 255, 255)
-aa.Font = Enum.Font.Code
-aa.TextScaled = true
-aa.Parent = k
-local ab = Instance.new("UITextSizeConstraint")
-ab.MaxTextSize = 28
-ab.Parent = aa
-local ac = Instance.new("Frame")
-ac.Name = "DecorativeLineLeft"
-ac.Size = UDim2.new(0.3, 0, 0.01, 0)
-ac.Position = UDim2.new(0.05, 0, 0.6, 0)
-ac.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
-ac.BorderSizePixel = 0
-ac.Parent = k
-local ad = Instance.new("UIGradient")
-ad.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(1, 0)}
-ad.Parent = ac
-local ae = Instance.new("Frame")
-ae.Name = "DecorativeLineRight"
-ae.Size = UDim2.new(0.3, 0, 0.01, 0)
-ae.Position = UDim2.new(0.65, 0, 0.6, 0)
-ae.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
-ae.BorderSizePixel = 0
-ae.Parent = k
-local af = Instance.new("UIGradient")
-af.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 0), NumberSequenceKeypoint.new(1, 1)}
-af.Parent = ae
-local ag = Instance.new("Frame")
-ag.Name = "Scanline"
-ag.Size = UDim2.new(1, 0, 0.02, 0)
-ag.Position = UDim2.new(0, 0, -0.02, 0)
-ag.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ag.BackgroundTransparency = 0.8
-ag.BorderSizePixel = 0
-ag.Parent = f
-local ah = Instance.new("UIGradient")
-ah.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(0.5, 0), NumberSequenceKeypoint.new(1, 1)}
-ah.Parent = ag
-local ai = Instance.new("Folder")
-ai.Name = "FloatingParticles"
-ai.Parent = f
-for aj = 1, 20 do
-    local ak = Instance.new("Frame")
-    ak.Size = UDim2.new(0, math.random(3, 8), 0, math.random(3, 8))
-    ak.Position = UDim2.new(math.random(), 0, math.random(), 0)
-    ak.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
-    ak.BackgroundTransparency = math.random(20, 80) / 100
-    ak.Rotation = math.random(0, 360)
-    ak.BorderSizePixel = 0
-    ak.Parent = ai
-    local al = Instance.new("UICorner")
-    al.CornerRadius = UDim.new(1, 0)
-    al.Parent = ak
-end
-b:Create(ag, TweenInfo.new(2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1), {Position = UDim2.new(0, 0, 1, 0)}):Play()
-local am = 0
-c.RenderStepped:Connect(function(an)
-    am = am + an
-    o.Position = UDim2.new(0.01 + math.sin(am * 20) * 0.005, 0, 0.01 + math.cos(am * 15) * 0.005, 0)
-    p.Position = UDim2.new(-0.01 + math.cos(am * 18) * 0.005, 0, -0.01 + math.sin(am * 22) * 0.005, 0)
-    z.Offset = Vector2.new((am * 0.5) % 1, 0)
-    for ao, ap in pairs(ai:GetChildren()) do
-        ap.Position = ap.Position + UDim2.new(0, 0, -0.001, 0)
-        ap.Rotation = ap.Rotation + 1
-        if ap.Position.Y.Scale < -0.1 then
-            ap.Position = UDim2.new(math.random(), 0, 1.1, 0)
-        end
-    end
+local a = a.LocalPlayer;
+local d = Color3.fromRGB(0, 0, 0)
+local e = Color3.fromRGB(75, 0, 130)
+local f = Color3.fromRGB(138, 43, 226)
+local g = Color3.fromRGB(186, 85, 211)
+local h = Color3.fromRGB(200, 180, 220)
+local i = Color3.fromRGB(15, 10, 25)
+local j = Instance.new("ScreenGui")
+j.Name = "NextGenLoadingScreen";
+j.IgnoreGuiInset = true;
+j.ResetOnSpawn = false;
+j.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+j.Parent = a:WaitForChild("PlayerGui")
+local a = Instance.new("Frame")
+a.Name = "Background";
+a.Size = UDim2.new(1, 0, 1, 0)
+a.Position = UDim2.new(0, 0, 0, 0)
+a.BackgroundColor3 = d;
+a.BorderSizePixel = 0;
+a.Parent = j;
+local d = Instance.new("Frame")
+d.Name = "GridPattern";
+d.Size = UDim2.new(1, 0, 1, 0)
+d.BackgroundTransparency = 1;
+d.ClipsDescendants = true;
+d.Parent = a;
+for a = 1, 40 do
+	local b = Instance.new("Frame")
+	b.Size = UDim2.new(1, 0, 0, 1)
+	b.Position = UDim2.new(0, 0, a / 40, 0)
+	b.BackgroundColor3 = i;
+	b.BorderSizePixel = 0;
+	b.Parent = d;
+	local b = Instance.new("Frame")
+	b.Size = UDim2.new(0, 1, 1, 0)
+	b.Position = UDim2.new(a / 40, 0, 0, 0)
+	b.BackgroundColor3 = i;
+	b.BorderSizePixel = 0;
+	b.Parent = d
+end;
+local d = Instance.new("Folder")
+d.Name = "FloatingParticles";
+d.Parent = a;
+for a = 1, 25 do
+	local a = Instance.new("Frame")
+	a.Size = UDim2.new(0, math.random(3, 7), 0, math.random(3, 7))
+	a.Position = UDim2.new(math.random(), 0, math.random(), 0)
+	a.BackgroundColor3 = f;
+	a.BackgroundTransparency = math.random(30, 80) / 100;
+	a.Rotation = math.random(0, 360)
+	a.BorderSizePixel = 0;
+	a.Parent = d;
+	local b = Instance.new("UICorner")
+	b.CornerRadius = UDim.new(1, 0)
+	b.Parent = a
+end;
+local i = Instance.new("Frame")
+i.Name = "CenterContainer";
+i.Size = UDim2.new(0.7, 0, 0.5, 0)
+i.Position = UDim2.new(0.5, 0, 0.5, 0)
+i.AnchorPoint = Vector2.new(0.5, 0.5)
+i.BackgroundTransparency = 1;
+i.Parent = a;
+local k = Instance.new("TextLabel")
+k.Name = "Title";
+k.Size = UDim2.new(1, 0, 0.35, 0)
+k.Position = UDim2.new(0, 0, 0.05, 0)
+k.BackgroundTransparency = 1;
+k.Text = "N E X T G E N";
+k.TextColor3 = Color3.fromRGB(255, 255, 255)
+k.Font = Enum.Font.GothamBlack;
+k.TextScaled = true;
+k.Parent = i;
+local l = Instance.new("UITextSizeConstraint")
+l.MaxTextSize = 120;
+l.Parent = k;
+local l = Instance.new("UIStroke")
+l.Color = f;
+l.Thickness = 3;
+l.Transparency = 0.2;
+l.Parent = k;
+local k = Instance.new("TextLabel")
+k.Name = "Subtitle";
+k.Size = UDim2.new(1, 0, 0.1, 0)
+k.Position = UDim2.new(0, 0, 0.45, 0)
+k.BackgroundTransparency = 1;
+k.Text = "INITIALIZING CORE SYSTEMS...";
+k.TextColor3 = h;
+k.Font = Enum.Font.Code;
+k.TextScaled = true;
+k.Parent = i;
+local h = Instance.new("UITextSizeConstraint")
+h.MaxTextSize = 22;
+h.Parent = k;
+local h = Instance.new("Frame")
+h.Name = "DecorativeLineLeft";
+h.Size = UDim2.new(0.3, 0, 0.008, 0)
+h.Position = UDim2.new(0.05, 0, 0.6, 0)
+h.BackgroundColor3 = f;
+h.BorderSizePixel = 0;
+h.Parent = i;
+local m = Instance.new("UIGradient")
+m.Transparency = NumberSequence.new{
+	NumberSequenceKeypoint.new(0, 1),
+	NumberSequenceKeypoint.new(1, 0)
+}
+m.Parent = h;
+local h = Instance.new("Frame")
+h.Name = "DecorativeLineRight";
+h.Size = UDim2.new(0.3, 0, 0.008, 0)
+h.Position = UDim2.new(0.65, 0, 0.6, 0)
+h.BackgroundColor3 = f;
+h.BorderSizePixel = 0;
+h.Parent = i;
+local m = Instance.new("UIGradient")
+m.Transparency = NumberSequence.new{
+	NumberSequenceKeypoint.new(0, 0),
+	NumberSequenceKeypoint.new(1, 1)
+}
+m.Parent = h;
+local h = Instance.new("Frame")
+h.Name = "LoadingBarContainer";
+h.Size = UDim2.new(0.9, 0, 0.05, 0)
+h.Position = UDim2.new(0.05, 0, 0.7, 0)
+h.BackgroundColor3 = Color3.fromRGB(15, 10, 20)
+h.BorderSizePixel = 0;
+h.ClipsDescendants = true;
+h.Parent = i;
+local m = Instance.new("UICorner")
+m.CornerRadius = UDim.new(1, 0)
+m.Parent = h;
+local m = Instance.new("UIStroke")
+m.Color = e;
+m.Thickness = 2;
+m.Transparency = 0.3;
+m.Parent = h;
+local m = Instance.new("Frame")
+m.Name = "LoadingBarFill";
+m.Size = UDim2.new(0, 0, 1, 0)
+m.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+m.BorderSizePixel = 0;
+m.Parent = h;
+local h = Instance.new("UICorner")
+h.CornerRadius = UDim.new(1, 0)
+h.Parent = m;
+local h = Instance.new("UIGradient")
+h.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0, e),
+	ColorSequenceKeypoint.new(0.5, f),
+	ColorSequenceKeypoint.new(1, g)
+}
+h.Parent = m;
+local e = Instance.new("TextLabel")
+e.Name = "PercentageText";
+e.Size = UDim2.new(1, 0, 0.15, 0)
+e.Position = UDim2.new(0, 0, 0.8, 0)
+e.BackgroundTransparency = 1;
+e.Text = "0%";
+e.TextColor3 = g;
+e.Font = Enum.Font.Code;
+e.TextScaled = true;
+e.Parent = i;
+local f = Instance.new("UITextSizeConstraint")
+f.MaxTextSize = 26;
+f.Parent = e;
+b:Create(l, TweenInfo.new(1.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, - 1, true), {
+	Transparency = 0.6,
+	Thickness = 5
+}):Play()
+local f;
+f = c.RenderStepped:Connect(function()
+	for a, a in ipairs(d:GetChildren()) do
+		a.Position = a.Position + UDim2.new(0, 0, - 0.0008, 0)
+		a.Rotation = a.Rotation + 0.5;
+		if a.Position.Y.Scale < - 0.1 then
+			a.Position = UDim2.new(math.random(), 0, 1.1, 0)
+		end
+	end
 end)
-local aq = 0
-local ar = {"INITIALIZING CORE SYSTEMS...", "CONNECTING TO NEURAL NET...", "ALLOCATING VIRTUAL MEMORY...", "ESTABLISHING UPLINK...", "DECRYPTING ASSETS...", "RENDERING GEOMETRY...", "LOADING NEXTGEN ENGINE...", "SYSTEMS NOMINAL."}
-local as = 1
-local at = tick()
-local au
-au = c.RenderStepped:Connect(function()
-    if tick() - at > 1.2 then
-        at = tick()
-        as = as + 1
-        if as > #ar then as = #ar end
-        q.Text = ar[as]
-    end
-    if aq < 100 then
-        aq = aq + math.random(5, 20) / 100
-        if aq > 100 then aq = 100 end
-        local av = aq / 100
-        b:Create(v, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {Size = UDim2.new(av, 0, 1, 0)}):Play()
-        aa.Text = tostring(math.floor(aq)) .. "%"
-    else
-        au:Disconnect()
-        q.Text = "ACCESS GRANTED"
-        aa.Text = "100%"
-        task.wait(1)
-        local aw = b:Create(f, TweenInfo.new(1.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {BackgroundTransparency = 1})
-        for ax, ay in pairs(f:GetDescendants()) do
-            if ay:IsA("TextLabel") then
-                b:Create(ay, TweenInfo.new(1), {TextTransparency = 1, TextStrokeTransparency = 1}):Play()
-            elseif ay:IsA("Frame") then
-                b:Create(ay, TweenInfo.new(1), {BackgroundTransparency = 1}):Play()
-            elseif ay:IsA("UIStroke") then
-                b:Create(ay, TweenInfo.new(1), {Transparency = 1}):Play()
-            end
-        end
-        aw:Play()
-        aw.Completed:Wait()
-        e:Destroy()
-    end
+local d = 10;
+local g = {
+	"INITIALIZING CORE SYSTEMS...",
+	"CONNECTING TO NEURAL NET...",
+	"ALLOCATING VIRTUAL MEMORY...",
+	"ESTABLISHING SECURE UPLINK...",
+	"DECRYPTING GRAPHIC ASSETS...",
+	"OPTIMIZING SHADERS...",
+	"RENDERING WORLD GEOMETRY...",
+	"FINALIZING ENGINE STATE..."
+}
+task.spawn(function()
+	local h = tick()
+	local i = 1;
+	while true do
+		local a = tick() - h;
+		local a = math.clamp(a / d, 0, 1)
+		b:Create(m, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+			Size = UDim2.new(a, 0, 1, 0)
+		}):Play()
+		e.Text = tostring(math.floor(a * 100)) .. "%";
+		local b = math.clamp(math.floor(a * # g) + 1, 1, # g)
+		if b ~= i then
+			i = b;
+			k.Text = g[b]
+		end;
+		if a >= 1 then
+			break
+		end;
+		c.RenderStepped:Wait()
+	end;
+	k.Text = "ACCESS GRANTED";
+	e.Text = "100%";
+	task.wait(0.5)
+	if f then
+		f:Disconnect()
+	end;
+	local c = TweenInfo.new(1.2, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+	for a, a in ipairs(a:GetDescendants()) do
+		if a:IsA("TextLabel") then
+			b:Create(a, c, {
+				TextTransparency = 1,
+				TextStrokeTransparency = 1
+			}):Play()
+		elseif a:IsA("Frame") then
+			b:Create(a, c, {
+				BackgroundTransparency = 1
+			}):Play()
+		elseif a:IsA("UIStroke") then
+			b:Create(a, c, {
+				Transparency = 1
+			}):Play()
+		end
+	end;
+	local a = b:Create(a, c, {
+		BackgroundTransparency = 1
+	})
+	a:Play()
+	a.Completed:Wait()
+	j:Destroy()
 end)
